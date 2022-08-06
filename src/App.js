@@ -1,10 +1,14 @@
+
+import React from 'react';
 import Write from './pages/Write';
 import styled from 'styled-components';
 
+import Home from './page/home';
+
 function App() {
-  return (
-      <Write />
-  );
+  return (<Home />
+  <Write />)
+
 }
 
 export default App;
