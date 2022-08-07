@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import LikeButton from '../homeIcon/LikeButton';
 import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
+
 const TextList = () => {
   const navigate = useNavigate();
 
