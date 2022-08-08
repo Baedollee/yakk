@@ -15,7 +15,7 @@ const TextList = () => {
         <TimeDiv>10분전</TimeDiv>
       </HeaderDiv>
 
-      <MentionDiv>비가 무슨 동남아처럼 내리네</MentionDiv>
+      <MentionDiv>비가 무슨 동남아처럼 내리네!!!!</MentionDiv>
 
       <BtnWrapDiv>
         <BtnLikeDiv>
