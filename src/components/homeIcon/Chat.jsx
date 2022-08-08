@@ -3,7 +3,7 @@ import { CommentOutlined } from '@ant-design/icons';
 
 const Chat = () => {
   console.log();
-  return <CommentOutlined />;
+  return <CommentOutlined style={{ fontSize: '20px' }} />;
 };
 
 export default Chat;

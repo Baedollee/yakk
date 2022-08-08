@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const Button = () => {
+const Button = ({ addComment, inputReset }) => {
   return (
     <>
-      <StButton>작성 완료</StButton>
+      <StButton onClick={(e) => {addComment(e.target.value); inputReset();}}>작성 완료</StButton>
     </>
   );
 };

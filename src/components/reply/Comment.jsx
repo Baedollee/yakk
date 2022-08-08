@@ -1,28 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
+import { HeartOutlined, HeartFilled, CommentOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import ReplyButton from './ReplyButton';
 
-function Comment() {
+function Comment(props) {
+	console.log('comment', props);
+	const navigate = useNavigate();
+
 	return (
 		<Content>
 			<ContentHeader>
 				<div>
-					<span>작성자</span>
-					<span>시간</span>
+					<span>{props.comment.username}</span>
+					<span>{props.comment.createdAt}</span>
 				</div>
-				<div>
-					<button>수정하기</button>
-					<button>삭제하기</button>
-				</div>
+				<BtnContainer>
+					<ReplyButton onClick={() => navigate('/Write')}>수정하기</ReplyButton>
+					<ReplyButton>삭제하기</ReplyButton>
+				</BtnContainer>
 			</ContentHeader>
-			<p>내용</p>
+			<p>{props.comment.content}</p>
 			<ContentFooter>
 				<ContentComment>
-					<button>댓글버튼</button>
-					<span>10</span>
-					<button>하트버튼</button>
+					<CommentOutlined />
+					<span>{props.replyLength}</span>
+					<HeartOutlined />
+					{/* <HeartFilled /> */}
 					<span>10</span>
 				</ContentComment>
-				<button>댓글 작성</button>
 			</ContentFooter>
 		</Content>
 	)
@@ -36,7 +42,7 @@ const Content = styled.div`
 
   p {
     margin: 20px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     /* background-color: aliceblue; */
     word-break: normal;
   }
@@ -59,6 +65,11 @@ const ContentHeader = styled.div`
     }
   }
 `;
+
+const BtnContainer = styled.div`
+	display: flex;
+`;
+
 
 const ContentFooter = styled.div`
   margin: 20px;

@@ -8,20 +8,20 @@ const HomeHeader = () => {
   let navigate = useNavigate();
   return (
     <ContainerDiv>
-      <HomeIcon />
       <div
         onClick={() => {
           navigate('/');
         }}>
-        home
+        <HomeIcon />
       </div>
+
       <div>yakk</div>
-      <WriteIcon />
+
       <div
         onClick={() => {
           navigate('/Write');
         }}>
-        write
+        <WriteIcon />
       </div>
     </ContainerDiv>
   );
@@ -33,6 +33,6 @@ const ContainerDiv = styled.div`
   display: flex;
   height: 5em;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 3em;
 `;
 export default HomeHeader;

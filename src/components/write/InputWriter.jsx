@@ -2,10 +2,9 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
-const InputWriter = () => {
-  const [writer, setWriter] = useState('');
-
-  console.log(writer);
+const InputWriter = ({ getUsername }) => {
+  // const [writer, setWriter] = useState('');
+  // console.log(writer)  
 
   return (
     <StInputWriter>
@@ -13,7 +12,7 @@ const InputWriter = () => {
       <StInput
         type="text"
         placeholder="5자 이내로 작성해주세요."
-        onChange={(e) => setWriter(e.target.value)}
+        onChange={(e) => getUsername(e.target.value)}
       />
     </StInputWriter>
   );

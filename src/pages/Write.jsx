@@ -3,6 +3,7 @@ import Form from '../components/write/Form';
 import styled from 'styled-components';
 
 const Write = () => {
+  
   return (
     <WriteContainer>
       <Header />

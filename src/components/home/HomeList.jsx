@@ -4,37 +4,63 @@ import { useNavigate } from 'react-router-dom';
 import LikeButton from '../homeIcon/LikeButton';
 import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
+import { useState } from 'react';
 
-const TextList = () => {
+const HomeList = ({
+  id,
+  userName,
+  content,
+  createAt,
+  commentList,
+  setCommentList,
+}) => {
   const navigate = useNavigate();
+
+  const handleDelete = () => {
+    console.log(commentList);
+    let dummyArray = [];
+    commentList.map((item, index) => {
+      console.log(id);
+      console.log(item.id);
+      if (item.id === id) {
+      } else {
+        dummyArray.push(item);
+      }
+      setCommentList(dummyArray);
+    });
+  };
+
+  const [like, setLike] = useState(0);
+  const [likeButton, setLikeButton] = useState({ checked: false, count: '' });
 
   return (
     <TextListDiv>
       <HeaderDiv>
-        <UserNameDiv>배성열</UserNameDiv>
-        <TimeDiv>10분전</TimeDiv>
+        <UserNameDiv>{userName}</UserNameDiv>
+        <TimeDiv>{createAt}</TimeDiv>
       </HeaderDiv>
 
-      <MentionDiv>비가 무슨 동남아처럼 내리네!!!!</MentionDiv>
+      <MentionDiv>{content}</MentionDiv>
 
       <BtnWrapDiv>
-        <BtnLikeDiv>
-          <LikeButton />
-          <button>하트</button>
-          <div>1</div>
+        <BtnLikeDiv
+          onClick={() => {
+            setLike(like + 1);
+          }}>
+          <LikeButton likeButton={likeButton} setLikeButton={setLikeButton} />
+          <div>{like}</div>
         </BtnLikeDiv>
-        <BtnChatDiv>
+        <BtnChatDiv
+          onClick={() => {
+            navigate('/Reply');
+          }}>
           <Chat />
-          <button
-            onClick={() => {
-              navigate('/Reply');
-            }}>
-            채팅
-          </button>
           <div>2</div>
         </BtnChatDiv>
-        <DeleteIcon />
-        <DeleteDiv>휴지통</DeleteDiv>
+
+        <DeleteDiv onClick={handleDelete}>
+          <DeleteIcon />
+        </DeleteDiv>
       </BtnWrapDiv>
     </TextListDiv>
   );
@@ -72,5 +98,5 @@ const BtnLikeDiv = styled.div`
 const BtnChatDiv = styled.div`
   display: flex;
 `;
-const DeleteDiv = styled.button``;
-export default TextList;
+const DeleteDiv = styled.div``;
+export default HomeList;
