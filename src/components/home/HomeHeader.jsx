@@ -15,7 +15,7 @@ const HomeHeader = () => {
         }}>
         home
       </div>
-      <div>yakk~~!!!!</div>
+      <div>yakk</div>
       <WriteIcon />
       <div
         onClick={() => {

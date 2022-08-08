@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import HomeHeader from '../components/home/HomeHeader';
@@ -14,6 +13,7 @@ const Home = () => {
       <HomeList />
     </div>
   );
+
 };
 
 export default Home;
