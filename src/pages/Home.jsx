@@ -60,3 +60,14 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+// const [commentList, setCommnetList] = useState([{
+//   id: ''
+//   username: ''
+//   title: ''
+//   content: ''
+//   createdAt: ''
+//   }])
