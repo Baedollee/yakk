@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import HomeIcon from './HomeIcon';
-import WriteIcon from './WriteIcon';
+import HomeIcon from '../homeIcon/HomeIcon';
+import WriteIcon from '../homeIcon/WriteIcon';
 
-const Header = () => {
+const HomeHeader = () => {
   let navigate = useNavigate();
   return (
     <ContainerDiv>
@@ -35,4 +35,4 @@ const ContainerDiv = styled.div`
   justify-content: space-between;
   padding: 0 20px;
 `;
-export default Header;
+export default HomeHeader;

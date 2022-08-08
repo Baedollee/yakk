@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import Header from '../components/Header';
-import TextList from '../components/TextList';
+import HomeHeader from '../components/home/HomeHeader';
+import HomeList from '../components/home/HomeList';
 const Home = () => {
   //   const contentsList = useSelector((state) => {
   //     return state.listReducer.list;
   //   });
   return (
     <div>
-      <Header />
-      <TextList />
-      <TextList />
+      <HomeHeader />
+      <HomeList />
+      <HomeList />
     </div>
   );
 };

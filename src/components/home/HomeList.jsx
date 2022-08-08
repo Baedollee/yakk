@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import LikeButton from './LikeButton';
-import Chat from './Chat';
-import DeleteIcon from './DeleteIcon';
-import WriteIcon from './WriteIcon';
+import LikeButton from '../homeIcon/LikeButton';
+import Chat from '../homeIcon/Chat';
+import DeleteIcon from '../homeIcon/DeleteIcon';
+
 const TextList = () => {
   const navigate = useNavigate();
 
