@@ -3,8 +3,6 @@ import styled, { css } from 'styled-components';
 import { EditOutlined, HomeOutlined } from '@ant-design/icons';
 
 function ReplyButton(props) {
-  console.log('reply button', props);
-	console.log(props.id);
 
 	const checkId = (id) => {
 		switch (id) {
@@ -33,7 +31,6 @@ const BtnContainer = styled.div`
     switch (id) {
       case 'homeBtn':
       case 'addBtn':
-				<EditOutlined />
         return css`
           width: 50px;
           height: 50px;
@@ -48,6 +45,11 @@ const BtnContainer = styled.div`
 				  border: 2px solid blueviolet;
 				  border-radius: 10px;
 					font-size: 15px;
+					&:hover {
+						background-color: blueviolet;
+						color: white;
+						font-weight: bold;
+					}
         `;
     }
   }}

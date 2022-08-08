@@ -4,11 +4,8 @@ import styled from 'styled-components';
 import Reply from './Reply';
 import ReplyButton from './ReplyButton';
 
-function ReplyList(props) {
+function ReplyList({ replyList }) {
 	const navigate = useNavigate();
-
-	console.log('replyList', props);
-	const replyList = props.replyList;
 
 	const checkReply = (replyList) => {
 		if (replyList.length === 0) {
