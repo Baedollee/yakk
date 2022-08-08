@@ -5,10 +5,14 @@ import styled from 'styled-components';
 import { removeReply } from '../../redux/reducer/rangReducer';
 import ReplyButton from './ReplyButton';
 
-function Reply({ reply }) {
+function Reply({ commentId, reply }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	const onMoveReplyWrite = () => {
+		navigate(`/Reply/${commentId}/ReplyWrite`, { state: { replyId: reply.id}});
+	}
+	
 	const onRemoveReplyHandler = (replyId) => {
 		console.log('remove reply', replyId);
 		dispatch(removeReply(replyId));
@@ -35,7 +39,7 @@ function Reply({ reply }) {
           <span>{timeCalc(reply.createAt)}</span>
         </div>
         <BtnContainer>
-          <ReplyButton onClick={() => navigate('/ReplyWrite')}>수정하기</ReplyButton>
+          <ReplyButton onClick={onMoveReplyWrite}>수정하기</ReplyButton>
           <ReplyButton onClick={() => onRemoveReplyHandler(reply.id)}>삭제하기</ReplyButton>
         </BtnContainer>
       </ContentHeader>

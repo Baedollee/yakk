@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import Reply from './Reply';
 import ReplyButton from './ReplyButton';
 
-function ReplyList({ replyList }) {
+function ReplyList({ commentId, replyList }) {
 	const navigate = useNavigate();
 
 	const checkReply = (replyList) => {
 		if (replyList.length === 0) {
 			return <NoneReply>댓글이 없습니다!</NoneReply>
 		} else {
-			return replyList.map((item) => <Reply key={item.id} reply={item} />)
+			return replyList.map((item) => <Reply key={item.id} reply={item} commentId={commentId} />)
 		}
 	}
 
@@ -19,7 +19,7 @@ function ReplyList({ replyList }) {
 		<div>
 			<ReplyHeader>
 				<h4>댓글</h4>
-				<ReplyButton onClick={() => navigate('/ReplyWrite')}>댓글 작성</ReplyButton>
+				<ReplyButton onClick={() => navigate(`/Reply/${commentId}/ReplyWrite`)}>댓글 작성</ReplyButton>
 			</ReplyHeader>
 			{checkReply(replyList)}
 		</div>

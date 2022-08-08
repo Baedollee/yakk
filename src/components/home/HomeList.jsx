@@ -33,7 +33,12 @@ const HomeList = ({
 	const onMoveReply = () => {
 		navigate(`/Reply/${id}`, {
 			state: {
-				comment: { id: id, userName: userName, content: content, createAt: createAt}
+				comment: {
+					id: id,
+					userName: userName,
+					content: content,
+					createAt: createAt
+				}
 			}
 		});
 	}

@@ -12,7 +12,7 @@ function Reply() {
 	const comment = location.state.comment;
 	console.log('reply', id, comment);
 
-	const replyList = useSelector((state) => state.reply.replies);
+	const replyList = useSelector((state) => state.reply.replyList);
 	console.log('reply reducer', replyList);
 	
 	const findReplyList = replyList.filter((item) => item.commentId === comment.id);
@@ -23,7 +23,7 @@ function Reply() {
 			<ReplyHeader />
 	    <DetailContainer>
 				<Comment comment={comment} replyLength={findReplyList.length}/>
-				<ReplyList replyList={findReplyList} />
+				<ReplyList commentId={comment.id} replyList={findReplyList} />
 	    </DetailContainer>
 		</>
   );

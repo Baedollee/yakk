@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	replies: [
+	replyList: [
 		{
 			id: 0,
 			commentId: "1",
@@ -31,13 +31,14 @@ const reply = createSlice({
 	initialState,
 	reducers: {
 		addReply: (state, action) => {
-			state.replies.push({ ...action.payload, createAt: new Date().toISOString()});
+			// console.log('add reply');
+			state.replyList.push({ ...action.payload, createAt: new Date().toISOString()});
 		},
 		removeReply: (state, action) => {
-			state.replies = state.replies.filter((item) => item.id !== action.payload);
+			state.replyList = state.replyList.filter((item) => item.id !== action.payload);
 		},
 		editReply: (state, action) => {
-			state.replies.map((item) => {
+			state.replyList.map((item) => {
 				if (item.id === action.payload.id) {
 					return action.payload;
 				} else {
@@ -46,7 +47,8 @@ const reply = createSlice({
 			})
 		},
 		getReply: (state, action) => {
-			state.reply = state.replies.find((item) => item.id === action.payload);
+			// console.log('get reply');
+			state.reply = state.replyList.find((item) => item.id === action.payload);
 		}
 	}
 })
