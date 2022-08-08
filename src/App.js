@@ -4,6 +4,7 @@ import Reply from './pages/Reply.jsx';
 import styled from 'styled-components';
 
 import { Routes, Route } from 'react-router-dom';
+import ReplyWrite from './pages/ReplyWrite';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Write" element={<Write />} />
-        <Route path="/Reply" element={<Reply />} />
+        <Route path="/Reply/:id" element={<Reply />} />
+        <Route path="/ReplyWrite" element={<ReplyWrite />} />
       </Routes>
     </div>
   );
