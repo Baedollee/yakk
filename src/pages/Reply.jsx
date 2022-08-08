@@ -16,13 +16,16 @@ function Reply() {
 
 	const replyList = useSelector((state) => state.reply.replies);
 	console.log('reply reducer', replyList);
+	console.log(replyList.length);
+
+	const findReplyList = replyList.filter((item) => item.commentId === comment.id);
 
   return (
 		<>
 			<ReplyHeader />
 	    <DetailContainer>
-				<Comment comment={comment}/>
-				<ReplyList commentId={comment.id} replyList={replyList} />
+				<Comment comment={comment} replyLength={findReplyList.length}/>
+				<ReplyList replyList={findReplyList} />
 	    </DetailContainer>
 		</>
   );

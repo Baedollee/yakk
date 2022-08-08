@@ -24,7 +24,7 @@ function Reply(props) {
           <span>{props.reply.createdAt}</span>
         </div>
         <BtnContainer>
-          <ReplyButton>수정하기</ReplyButton>
+          <ReplyButton onClick={() => navigate('/ReplyWrite')}>수정하기</ReplyButton>
           <ReplyButton onClick={() => onRemoveReplyHandler(props.reply.id)}>삭제하기</ReplyButton>
         </BtnContainer>
       </ContentHeader>

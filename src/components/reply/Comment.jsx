@@ -24,7 +24,7 @@ function Comment(props) {
 			<ContentFooter>
 				<ContentComment>
 					<CommentOutlined />
-					<span>10</span>
+					<span>{props.replyLength}</span>
 					<HeartOutlined />
 					{/* <HeartFilled /> */}
 					<span>10</span>

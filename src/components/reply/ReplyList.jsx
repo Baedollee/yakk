@@ -9,10 +9,6 @@ function ReplyList(props) {
 
 	console.log('replyList', props);
 	const replyList = props.replyList;
-	console.log(replyList);
-	console.log(replyList.length);
-
-	const findReplyList = replyList.filter((item) => item.commentId === props.commentId);
 
 	const checkReply = (replyList) => {
 		if (replyList.length === 0) {
@@ -28,7 +24,7 @@ function ReplyList(props) {
 				<h4>댓글</h4>
 				<ReplyButton onClick={() => navigate('/ReplyWrite')}>댓글 작성</ReplyButton>
 			</ReplyHeader>
-			{checkReply(findReplyList)}
+			{checkReply(replyList)}
 		</div>
 	)
 }
