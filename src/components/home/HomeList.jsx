@@ -11,6 +11,7 @@ const HomeList = ({
   userName,
   content,
   createAt,
+	comment,
   commentList,
   setCommentList,
 }) => {
@@ -29,6 +30,15 @@ const HomeList = ({
       setCommentList(dummyArray);
     });
   };
+	
+	const onMoveReply = () => {
+		navigate(`/Reply/${comment.id}`, {
+			state: {
+				comment: comment
+			}
+		});
+	}
+
 
   const [like, setLike] = useState(0);
   const [likeButton, setLikeButton] = useState({ checked: false, count: '' });
@@ -51,9 +61,7 @@ const HomeList = ({
           <div>{like}</div>
         </BtnLikeDiv>
         <BtnChatDiv
-          onClick={() => {
-            navigate('/Reply');
-          }}>
+          onClick={onMoveReply}>
           <Chat />
           <div>2</div>
         </BtnChatDiv>
