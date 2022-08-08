@@ -7,10 +7,12 @@ import CommentList from '../components/reply/CommentList';
 
 function Detail() {
   return (
-    <DetailContainer>
-      <HeaderReply />
-			<CommentList />
-    </DetailContainer>
+		<>
+			<HeaderReply />
+	    <DetailContainer>
+				<CommentList />
+	    </DetailContainer>
+		</>
   );
 }
 
