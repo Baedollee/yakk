@@ -6,7 +6,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
 
-function Reply() {
+function Reply(props) {
 	const { id } = useParams();
 	console.log('reply', id);
 
@@ -18,7 +18,11 @@ function Reply() {
 	console.log('reply reducer', replyList);
 	console.log(replyList.length);
 
+	console.log(props);
+	
+
 	const findReplyList = replyList.filter((item) => item.commentId === comment.id);
+	console.log(findReplyList);
 
   return (
 		<>

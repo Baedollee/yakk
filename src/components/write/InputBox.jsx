@@ -13,7 +13,7 @@ const InputBox = ({ commentList, getUsername, getContent, addComment, inputReset
       <div
         style={{ fontSize: '2em', cursor: 'pointer', marginRight: '85%' }}
         onClick={() => {
-          navigate('../');
+          navigate(-1);
         }}>
         🔙
       </div>

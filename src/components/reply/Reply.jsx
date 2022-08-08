@@ -20,8 +20,8 @@ function Reply(props) {
 		<Content>
       <ContentHeader>
         <div>
-          <span>{props.reply.username}</span>
-          <span>{props.reply.createdAt}</span>
+          <span>{props.reply.userName}</span>
+          <span>{props.reply.createAt}</span>
         </div>
         <BtnContainer>
           <ReplyButton onClick={() => navigate('/ReplyWrite')}>수정하기</ReplyButton>
