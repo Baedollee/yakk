@@ -4,19 +4,34 @@ import { useNavigate } from 'react-router-dom';
 import LikeButton from '../homeIcon/LikeButton';
 import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
+import { useState } from 'react';
 
-const HomeList = ({ id, userName, content, createAt, commentList }) => {
+const HomeList = ({
+  id,
+  userName,
+  content,
+  createAt,
+  commentList,
+  setCommentList,
+}) => {
   const navigate = useNavigate();
+
   const handleDelete = () => {
+    console.log(commentList);
     let dummyArray = [];
     commentList.map((item, index) => {
-      if (item.content === content) {
+      console.log(id);
+      console.log(item.id);
+      if (item.id === id) {
       } else {
         dummyArray.push(item);
       }
-      commentList = dummyArray;
+      setCommentList(dummyArray);
     });
   };
+
+  const [like, setLike] = useState(0);
+  const [likeButton, setLikeButton] = useState({ checked: false, count: '' });
 
   return (
     <TextListDiv>
@@ -28,10 +43,12 @@ const HomeList = ({ id, userName, content, createAt, commentList }) => {
       <MentionDiv>{content}</MentionDiv>
 
       <BtnWrapDiv>
-        <BtnLikeDiv>
-          <LikeButton />
-
-          <div>1</div>
+        <BtnLikeDiv
+          onClick={() => {
+            setLike(like + 1);
+          }}>
+          <LikeButton likeButton={likeButton} setLikeButton={setLikeButton} />
+          <div>{like}</div>
         </BtnLikeDiv>
         <BtnChatDiv
           onClick={() => {
@@ -40,6 +57,7 @@ const HomeList = ({ id, userName, content, createAt, commentList }) => {
           <Chat />
           <div>2</div>
         </BtnChatDiv>
+
         <DeleteDiv onClick={handleDelete}>
           <DeleteIcon />
         </DeleteDiv>
