@@ -4,25 +4,25 @@ const initialState = {
 	replies: [
 		{
 			id: 0,
-			commentId: 1,
-			username: 'aaa',
+			commentId: "1",
+			userName: 'aaa',
 			content: '나도 졸리다',
-			createdAt: '3분전'
+			createAt: '3분전'
 		},
 		{
 			id: 1,
-			commentId: 1,
-			username: 'abc',
+			commentId: "1",
+			userName: 'abc',
 			content: '오늘 날씨가 우중충해서 더 졸리다.',
-			createdAt: '2분전'
+			createAt: '2분전'
 		}
 	],
 	reply: {
 		replyId: 0,
 		commnetId: 1,
-		username: "",
+		userName: "",
 		content: "",
-		createdAt: ""
+		createAt: ""
 	}
 }
 

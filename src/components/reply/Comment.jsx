@@ -12,8 +12,8 @@ function Comment(props) {
 		<Content>
 			<ContentHeader>
 				<div>
-					<span>{props.comment.username}</span>
-					<span>{props.comment.createdAt}</span>
+					<span>{props.comment.userName}</span>
+					<span>{props.comment.createAt}</span>
 				</div>
 				<BtnContainer>
 					<ReplyButton onClick={() => navigate('/Write')}>수정하기</ReplyButton>

@@ -17,11 +17,11 @@ const Form = () => {
   // console.log(username,content)
 
   const getUsername = (username) => {
-    setCommentList(username);
+    setUsername(username);
     console.log(username)
   };
   const getContent = (content) => {
-    setCommentList(content);
+    setContent(content);
     console.log(content)
   };
   const inputReset = () => {
