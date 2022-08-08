@@ -1,20 +1,34 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { removeReply } from '../../redux/reducer/rangReducer';
+import ReplyButton from './ReplyButton';
 
-function Reply() {
+function Reply(props) {
+	console.log('reply one', props);
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const onRemoveReplyHandler = (replyId) => {
+		console.log('remove reply', replyId);
+		dispatch(removeReply(replyId));
+	}
+
 	return (
 		<Content>
       <ContentHeader>
         <div>
-          <span>작성자</span>
-          <span>시간</span>
+          <span>{props.reply.username}</span>
+          <span>{props.reply.createdAt}</span>
         </div>
-        <div>
-          <button>수정하기</button>
-          <button>삭제하기</button>
-        </div>
+        <BtnContainer>
+          <ReplyButton>수정하기</ReplyButton>
+          <ReplyButton onClick={() => onRemoveReplyHandler(props.reply.id)}>삭제하기</ReplyButton>
+        </BtnContainer>
       </ContentHeader>
-      <p>내용</p>
+      <p>{props.reply.content}</p>
     </Content>
 	)
 }
@@ -27,7 +41,6 @@ const Content = styled.div`
 
   p {
     margin: 20px;
-    border: 1px solid black;
     /* background-color: aliceblue; */
     word-break: normal;
   }
@@ -35,20 +48,18 @@ const Content = styled.div`
 
 const ContentHeader = styled.div`
   margin: 20px;
-  /* background-color: aliceblue; */
   display: flex;
   justify-content: space-between;
 
   div {
     span {
-      /* background-color: coral; */
       margin-right: 30px;
     }
-
-    button {
-      margin-left: 30px;
-    }
   }
+`;
+
+const BtnContainer = styled.div`
+	display: flex;
 `;
 
 export default Reply;
