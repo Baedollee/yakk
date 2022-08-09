@@ -65,6 +65,38 @@ export const commentList = createSlice({
           return item;
         }
       });
+      console.log(action);
+    },
+    removeComment: (state, action) => {
+      // action.paylod -> id
+      state.commentList = state.commentList.filter(
+        (item) => item.id !== action.payload
+      );
+    },
+    editComment: (state, action) => {
+      // action.payload -> comment
+      state.commentList = state.commentList.map((item) => {
+        if (item.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return item;
+        }
+      });
+    },
+    likeComment: (state, action) => {
+      state.commentList = state.commentList.map((item, index) => {
+        if (item.id === action.payload) {
+          return { ...item, like: !item.like };
+        } else {
+          return item;
+        }
+      });
+    },
+    getComment: (state, action) => {
+      // action.payload -> id
+      state.comment = state.commentList.find(
+        (item) => item.id === action.payload
+      );
     },
     getComment: (state, action) => {
       // action.payload -> id

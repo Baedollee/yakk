@@ -31,7 +31,6 @@ const replyList = createSlice({
 	initialState,
 	reducers: {
 		addReply: (state, action) => {
-			// console.log('add reply');
 			// action.payload -> reply
 			state.replyList.push({ ...action.payload, createAt: new Date().toISOString()});
 		},
@@ -41,7 +40,7 @@ const replyList = createSlice({
 		},
 		editReply: (state, action) => {
 			// action.payload -> reply
-			state.replyList.map((item) => {
+			state.replyList = state.replyList.map((item) => {
 				if (item.id === action.payload.id) {
 					return action.payload;
 				} else {
@@ -51,7 +50,6 @@ const replyList = createSlice({
 		},
 		getReply: (state, action) => {
 			// action.payload -> id
-			// console.log('get reply');
 			state.reply = state.replyList.find((item) => item.id === action.payload);
 		}
 	}

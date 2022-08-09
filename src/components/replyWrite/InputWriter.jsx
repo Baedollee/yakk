@@ -1,11 +1,14 @@
-import { useState } from 'react';
-
 import styled from 'styled-components';
 
-const InputWriter = ({ replyUsername, setUsername }) => {
-  // const [writer, setWriter] = useState('');
-  // console.log(writer)
-	console.log('input writer', replyUsername);
+const InputWriter = ({ username, setUsername }) => {
+	
+	const onCheckUsernameLength = (e) => {
+		if (e.target.value.length > 5) {
+			alert('작성자 이름은 5글자 이내로 적어주세요.')
+		} else {
+			setUsername(e.target.value);
+		}
+	}
 
   return (
     <StInputWriter>
@@ -13,8 +16,8 @@ const InputWriter = ({ replyUsername, setUsername }) => {
       <StInput
         type="text"
         placeholder="5자 이내로 작성해주세요."
-				value={replyUsername}
-        onChange={(e) => setUsername(e.target.value)}
+				value={username}
+        onChange={onCheckUsernameLength}
       />
     </StInputWriter>
   );
