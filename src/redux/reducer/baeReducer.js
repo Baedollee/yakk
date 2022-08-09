@@ -34,11 +34,11 @@ export const commentList = createSlice({
 		},
 		removeComment: (state, action) => {
 			// action.paylod -> id
-			state.commentList.filter((item) => item.id !== action.payload);
+			state.commentList = state.commentList.filter((item) => item.id !== action.payload);
 		},
 		editComment: (state, action) => {
 			// action.payload -> comment
-			state.commentList.map((item) => {
+			state.commentList = state.commentList.map((item) => {
 				if (item.id === action.payload.id) {
 					return action.payload;
 				} else {

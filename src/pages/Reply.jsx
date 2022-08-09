@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ReplyHeader from '../components/reply/ReplyHeader';
@@ -15,7 +15,7 @@ function Reply() {
 
 	const replyList = useSelector((state) => state.reply.replyList);
 	console.log('reply reducer', replyList);
-	
+
 	const findReplyList = replyList.filter((item) => item.commentId === comment.id);
 	console.log(findReplyList);
 

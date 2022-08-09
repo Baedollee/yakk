@@ -1,13 +1,14 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { addReply } from '../../redux/reducer/rangReducer';
+import { addReply, editReply } from '../../redux/reducer/rangReducer';
 
-const Button = ({ commentId, username, content }) => {
+const Button = ({ commentId, username, content, reply, isEdit }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const reply = {
+	const newReply = {
 		id: '11' + username,
 		commentId: commentId,
 		userName: username,
@@ -20,11 +21,14 @@ const Button = ({ commentId, username, content }) => {
 		navigate(-1);
 	}
 
-  return (
-    <>
-      <StButton onClick={() => onAddReplyHandler(reply)}>작성 완료</StButton>
-    </>
-  );
+	const onEditReplyHandler = (reply) => {
+		console.log('reply edit', {...reply, userName: username, content: content});
+		dispatch(editReply({...reply, userName: username, content: content}));
+		console.log('finish edit');
+		navigate(-1);
+	}
+
+  return <StButton onClick={isEdit ? () => onEditReplyHandler(reply) : () => onAddReplyHandler(newReply)}>작성 완료</StButton>;
 };
 
 export default Button;
