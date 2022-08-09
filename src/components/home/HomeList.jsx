@@ -5,20 +5,27 @@ import LikeButton from '../homeIcon/LikeButton';
 import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteList } from '../../redux/reducer/baeReducer';
 
 const HomeList = ({ postList, setPostList, post }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch;
 
   const handleDelete = () => {
-    let dummyArray = [];
-    postList.map((item, index) => {
-      if (item.id === post.id) {
-      } else {
-        dummyArray.push(item);
-      }
-      setPostList(dummyArray);
-    });
+    dispatch(deleteList(post.id));
   };
+
+  // const handleDelete = () => {
+  //   let dummyArray = [];
+  //   postList.map((item, index) => {
+  //     if (item.id === post.id) {
+  //     } else {
+  //       dummyArray.push(item);
+  //     }
+  //     setPostList(dummyArray);
+  //   });
+  // };
 
   const onMoveReply = () => {
     navigate(`/Reply/${post.id}`, {
@@ -32,6 +39,9 @@ const HomeList = ({ postList, setPostList, post }) => {
       },
     });
   };
+  // const onMoveReply = () => {
+  //   navigate(`/Reply/${id}`);
+  // };
 
   const timeCalc = (date) => {
     let today = new Date();
