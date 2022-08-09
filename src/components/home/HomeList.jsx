@@ -6,68 +6,64 @@ import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
 import { useState } from 'react';
 
-const HomeList = ({
-  id,
-  userName,
-  content,
-  createAt,
-  commentList,
-  setCommentList,
-}) => {
+const HomeList = ({ postList, setPostList, post }) => {
   const navigate = useNavigate();
 
   const handleDelete = () => {
     let dummyArray = [];
-    commentList.map((item, index) => {
-      if (item.id === id) {
+    postList.map((item, index) => {
+      if (item.id === post.id) {
       } else {
         dummyArray.push(item);
       }
-      setCommentList(dummyArray);
+      setPostList(dummyArray);
     });
   };
 
-	
-	const onMoveReply = () => {
-		navigate(`/Reply/${id}`, {
-			state: {
-				comment: {
-					id: id,
-					userName: userName,
-					content: content,
-					createAt: createAt
-				}
-			}
-		});
-	}
+  const onMoveReply = () => {
+    navigate(`/Reply/${post.id}`, {
+      state: {
+        comment: {
+          id: post.id,
+          userName: post.userName,
+          content: post.content,
+          createAt: post.createAt,
+        },
+      },
+    });
+  };
 
-  const [count, setCount] = useState(0);
+  const timeCalc = (date) => {
+    let today = new Date();
+    date = new Date(date);
 
-  const [likeButton, setLikeButton] = useState({ like: 0 });
+    let time = (today.getTime() - date.getTime()) / 1000 / 60; // min
+    if (time < 1) return '방금 전';
+    if (time < 60) return parseInt(time) + '분 전';
+    time /= 60; // hour
+    if (time < 24) return parseInt(time) + '시간 전';
+    time /= 24; // day
+    return parseInt(time) + '일 전';
+  };
 
   // console.log(likeButton.count);
   return (
     <TextListDiv>
       <HeaderDiv>
-        <UserNameDiv>{userName}</UserNameDiv>
-        <TimeDiv>{createAt}</TimeDiv>
+        <UserNameDiv>{post.userName}</UserNameDiv>
+        <TimeDiv>{timeCalc(post.createAt)}</TimeDiv>
       </HeaderDiv>
 
-      <MentionDiv>{content}</MentionDiv>
+      <MentionDiv>{post.content}</MentionDiv>
 
       <BtnWrapDiv>
+        <LikeButton post={post} setPostList={setPostList} postList={postList} />
         <BtnLikeDiv
         // onClick={() => {
-        //   setLike(like + 1);
+        //   setCount(count + 1);
         // }}
         >
-          <LikeButton
-            likeButton={likeButton}
-            setLikeButton={setLikeButton}
-            count={count}
-            setCount={setCount}
-          />
-          <div>{count}</div>
+          {/* <div>{count}</div> */}
         </BtnLikeDiv>
         <BtnChatDiv onClick={onMoveReply}>
           <Chat />

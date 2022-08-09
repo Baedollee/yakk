@@ -5,27 +5,24 @@ import HomeList from '../components/home/HomeList';
 import { useState } from 'react';
 import { useEffect } from 'react';
 const Home = () => {
-  //   const contentsList = useSelector((state) => {
-  //     return state.listReducer.list;
-  //   });
-  const [commentList, setCommentList] = useState([
+  const [postList, setPostList] = useState([
     {
       id: '0',
       userName: '배돌이',
-      // title: '',
       content: '비가 주륵주륵!',
       createAt: '5분전',
+      like: false,
+      notice: '',
     },
     {
       id: '1',
       userName: '배돌이',
-      // title: '',
       content: '비가 주륵주륵 아휴!',
-      createAt: '5분전',
+      createAt: '10분전',
+      like: false,
+      notice: '',
     },
   ]);
-
-  const [like, setLike] = useState(0);
 
   useEffect(() => {
     return () => {};
@@ -36,19 +33,18 @@ const Home = () => {
       <HomeHeader />
 
       <div>
-        {commentList.map((item, index) => {
-          if (commentList.length > 0) {
+        {postList.map((item, index) => {
+          if (postList.length > 0) {
             return (
               <HomeList
-                commentList={commentList}
-                setCommentList={setCommentList}
-
+                postList={postList}
+                setPostList={setPostList}
                 key={`${item.id}_${item.userName}`}
-                id={item.id}
-                userName={item.userName}
-                // title={item.title}
-                content={item.content}
-                createAt={item.createAt}
+                post={item}
+                // id={item.id}
+                // userName={item.userName}
+                // content={item.content}
+                // createAt={item.createAt}
               />
             );
           } else {
