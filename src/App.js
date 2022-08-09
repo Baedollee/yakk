@@ -1,7 +1,6 @@
 import Home from './pages/Home';
 import Write from './pages/Write';
 import Reply from './pages/Reply.jsx';
-import styled from 'styled-components';
 
 import { Routes, Route } from 'react-router-dom';
 import ReplyWrite from './pages/ReplyWrite';
@@ -29,8 +28,6 @@ export default App;
 
 //   height:100%;
 // `
-
-
 
 // const [commentList, setCommnetList] = useState([{
 //   id: ''

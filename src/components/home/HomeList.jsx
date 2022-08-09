@@ -4,59 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import LikeButton from '../homeIcon/LikeButton';
 import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteList } from '../../redux/reducer/baeReducer';
-import { useSelector } from 'react-redux';
+import { removeComment } from '../../redux/reducer/baeReducer';
 
-//const HomeList = ({
-//  id,
- // username,
- // content,
-//  createAt,
- // commentList,
-//  setCommentList,
-//}) => {
- // const navigate = useNavigate();
- // const _comment = useSelector((state) => state.comment)
- 
-
-
-const HomeList = ({ postList, setPostList, post }) => {
+const HomeList = ({ post }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch;
-
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteList(post.id));
+    dispatch(removeComment(post.id));
   };
-
-
-	
-	// const onMoveReply = () => {
-	//	navigate(`/Reply/${id}`, {
-	//		state: {
-	//			comment: {
-	//				id: id,
-	//				username: username,
-	//				content: content,
-	//				createAt: createAt
-	//			}
-	//		}
-	//	});
-	// } 
-
-  // const handleDelete = () => {
-  //   let dummyArray = [];
-  //   postList.map((item, index) => {
-  //     if (item.id === post.id) {
-  //     } else {
-  //       dummyArray.push(item);
-  //     }
-  //     setPostList(dummyArray);
-  //   });
-  // };
-
 
   const onMoveReply = () => {
     navigate(`/Reply/${post.id}`, {
@@ -70,9 +27,6 @@ const HomeList = ({ postList, setPostList, post }) => {
       },
     });
   };
-  // const onMoveReply = () => {
-  //   navigate(`/Reply/${id}`);
-  // };
 
   const timeCalc = (date) => {
     let today = new Date();
@@ -87,48 +41,29 @@ const HomeList = ({ postList, setPostList, post }) => {
     return parseInt(time) + '일 전';
   };
 
-  // console.log(likeButton.count);
   return (
     <>
-    <div style={{backgroundColor: 'pink'}}>
-      {
-        _comment.commentList.map( a => (
-          <p>
-          작성자: {a.username}
-          내용 : {a.content}
-          </p>
-        ))
-      }
-      </div>
-    <TextListDiv>
-      <HeaderDiv>
+      <TextListDiv>
+        <MentionDiv>
+          <h3>{post.username}</h3>
 
-        <UserNameDiv>{post.userName}</UserNameDiv>
-        <TimeDiv>{timeCalc(post.createAt)}</TimeDiv>
-      </HeaderDiv>
+          <TimeDiv>{timeCalc(post.createAt)}</TimeDiv>
+        </MentionDiv>
+        <User>
+          <h3>{post.content}</h3>
+        </User>
 
-      <MentionDiv>{post.content}</MentionDiv>
-
-
-      <BtnWrapDiv>
-        <LikeButton post={post} setPostList={setPostList} postList={postList} />
-        <BtnLikeDiv
-        // onClick={() => {
-        //   setCount(count + 1);
-        // }}
-        >
-          {/* <div>{count}</div> */}
-        </BtnLikeDiv>
-        <BtnChatDiv onClick={onMoveReply}>
-          <Chat />
-          <div>2</div>
-        </BtnChatDiv>
-
-        <DeleteDiv onClick={handleDelete}>
-          <DeleteIcon />
-        </DeleteDiv>
-      </BtnWrapDiv>
-    </TextListDiv>
+        <BtnWrapDiv>
+          <LikeButton post={post} />
+          <BtnChatDiv onClick={onMoveReply}>
+            <Chat />
+            <div>2</div>
+          </BtnChatDiv>
+          <DeleteButton onClick={handleDelete}>
+            <DeleteIcon />
+          </DeleteButton>
+        </BtnWrapDiv>
+      </TextListDiv>
     </>
   );
 };
@@ -156,8 +91,8 @@ const MentionDiv = styled.div`
 `;
 const BtnWrapDiv = styled.div`
   display: flex;
-  justify-content: flex-start;
-  margin: 1em 0 0 0;
+  /* justify-content: flex-start; */
+  /* margin: 1em 0 0 0; */
 `;
 const BtnLikeDiv = styled.div`
   display: flex;
@@ -165,5 +100,12 @@ const BtnLikeDiv = styled.div`
 const BtnChatDiv = styled.div`
   display: flex;
 `;
-const DeleteDiv = styled.div``;
+const DeleteButton = styled.button`
+  border: none;
+  background-color: white;
+  :focus {
+    border: none;
+    outline: none !important;
+  }
+`;
 export default HomeList;
