@@ -6,7 +6,7 @@ import InputContent from './InputContent';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 
-const InputBox = ({ commentList, getUsername, getContent, addComment, inputReset }) => {
+const InputBox = ({ commentList, getUsername, getContent, addComment, inputReset, username, content }) => {
   const navigate = useNavigate();
   return (
     <InputBoxContainer>
@@ -17,10 +17,10 @@ const InputBox = ({ commentList, getUsername, getContent, addComment, inputReset
         }}>
         🔙
       </div>
-      <InputWriter commentList={commentList} getUsername={getUsername}/>
+      <InputWriter commentList={commentList} getUsername={getUsername} username={username}/>
       {/* <InputTitle /> */}
-      <InputContent getContent={getContent} />
-      <Button addComment={addComment} inputReset={inputReset} />
+      <InputContent getContent={getContent} username={username} content={content} />
+      <Button addComment={addComment} inputReset={inputReset} username={username} content={content} />
     </InputBoxContainer>
   );
 };

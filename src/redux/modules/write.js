@@ -1,21 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const WRITE_TITLE = "app/write/WRITE_TITLE";
+// const WRITE_TITLE = "app/write/WRITE_TITLE";
 
 const initialState = {
-  list:[],
+  comment:{
+    id:0,
+    username:'재정',
+    content:'즐겁다'
+  },
 }
 
-const createList = createSlice({
-  name:'list',
+const createComment = createSlice({
+  name:"getComment",
   initialState,
   reducers:{
-    getTitle(state, action){
-      state.list = action.payload
-    }
+    getUsername: (state, action) => {
+      state.comment.username = action.payload
+      console.log(action.payload)
+    },
+    getContent: (state, action) => {
+      state.comment.content = action.payload
+    },
   }
 });
 
-console.log('aaa', createList)
+console.log('comment:', createComment.actions )
 
-export default createList.reducer
+export const { getUsername, getContent } = createComment.actions;
+
+export default createComment.reducer;
