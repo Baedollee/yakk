@@ -11,9 +11,6 @@ const HomeList = ({
   userName,
   content,
   createAt,
-
-  comment,
-
   commentList,
   setCommentList,
 }) => {
@@ -48,13 +45,6 @@ const HomeList = ({
 
   const [likeButton, setLikeButton] = useState({ like: 0 });
 
-  const onMoveReply = () => {
-    navigate(`/Reply/${comment.id}`, {
-      state: {
-        comment: comment,
-      },
-    });
-  };
   // console.log(likeButton.count);
   return (
     <TextListDiv>

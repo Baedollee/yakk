@@ -26,18 +26,21 @@ const initialState = {
 	}
 }
 
-const reply = createSlice({
-	name: "reply",
+const replyList = createSlice({
+	name: "replyList",
 	initialState,
 	reducers: {
 		addReply: (state, action) => {
 			// console.log('add reply');
+			// action.payload -> reply
 			state.replyList.push({ ...action.payload, createAt: new Date().toISOString()});
 		},
 		removeReply: (state, action) => {
+			// action.payload -> id
 			state.replyList = state.replyList.filter((item) => item.id !== action.payload);
 		},
 		editReply: (state, action) => {
+			// action.payload -> reply
 			state.replyList.map((item) => {
 				if (item.id === action.payload.id) {
 					return action.payload;
@@ -47,11 +50,12 @@ const reply = createSlice({
 			})
 		},
 		getReply: (state, action) => {
+			// action.payload -> id
 			// console.log('get reply');
 			state.reply = state.replyList.find((item) => item.id === action.payload);
 		}
 	}
 })
 
-export const { addReply, removeReply, editReply, getReply } = reply.actions;
-export default reply.reducer;
+export const { addReply, removeReply, editReply, getReply } = replyList.actions;
+export default replyList.reducer;
