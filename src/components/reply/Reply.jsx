@@ -5,10 +5,15 @@ import styled from 'styled-components';
 import { removeReply } from '../../redux/reducer/rangReducer';
 import ReplyButton from './ReplyButton';
 
-
 function Reply({ commentId, reply }) {
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onMoveReplyWrite = () => {
+    navigate(`/Reply/${commentId}/ReplyWrite`, {
+      state: { replyId: reply.id },
+    });
+  };
 
 	const onMoveReplyWrite = () => {
 		navigate(`/Reply/${commentId}/ReplyWrite`, { state: { replyId: reply.id }});
@@ -23,15 +28,19 @@ function Reply({ commentId, reply }) {
 		let today = new Date();
 		date = new Date(date);
 
-		let time = (today.getTime() - date.getTime()) / 1000 / 60;		// min
-		if (time < 1) return "방금 전";
-		if (time < 60) return parseInt(time) + "분 전";
-		time /= 60; 	// hour
-		if (time < 24) return parseInt(time) + "시간 전";
-		time /= 24;		// day
-		return parseInt(time) + "일 전"
-	}
 
+  const timeCalc = (date) => {
+    let today = new Date();
+    date = new Date(date);
+
+    let time = (today.getTime() - date.getTime()) / 1000 / 60; // min
+    if (time < 1) return '방금 전';
+    if (time < 60) return parseInt(time) + '분 전';
+    time /= 60; // hour
+    if (time < 24) return parseInt(time) + '시간 전';
+    time /= 24; // day
+    return parseInt(time) + '일 전';
+  };
 
   return (
     <Content>
@@ -41,10 +50,10 @@ function Reply({ commentId, reply }) {
           <span>{timeCalc(reply.createAt)}</span>
         </div>
         <BtnContainer>
-
           <ReplyButton onClick={onMoveReplyWrite}>수정하기</ReplyButton>
-          <ReplyButton onClick={() => onRemoveReplyHandler(reply.id)}>삭제하기</ReplyButton>
-
+          <ReplyButton onClick={() => onRemoveReplyHandler(reply.id)}>
+            삭제하기
+          </ReplyButton>
         </BtnContainer>
       </ContentHeader>
       <p>{reply.content}</p>

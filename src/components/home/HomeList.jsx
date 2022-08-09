@@ -5,69 +5,119 @@ import LikeButton from '../homeIcon/LikeButton';
 import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteList } from '../../redux/reducer/baeReducer';
+import { useSelector } from 'react-redux';
 
-const HomeList = ({
-  id,
-  userName,
-  content,
-  createAt,
-  commentList,
-  setCommentList,
-}) => {
+//const HomeList = ({
+//  id,
+ // username,
+ // content,
+//  createAt,
+ // commentList,
+//  setCommentList,
+//}) => {
+ // const navigate = useNavigate();
+ // const _comment = useSelector((state) => state.comment)
+ 
+
+
+const HomeList = ({ postList, setPostList, post }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch;
+
 
   const handleDelete = () => {
-    let dummyArray = [];
-    commentList.map((item, index) => {
-      if (item.id === id) {
-      } else {
-        dummyArray.push(item);
-      }
-      setCommentList(dummyArray);
-    });
+    dispatch(deleteList(post.id));
   };
 
+
 	
-	const onMoveReply = () => {
-		navigate(`/Reply/${id}`, {
-			state: {
-				comment: {
-					id: id,
-					userName: userName,
-					content: content,
-					createAt: createAt
-				}
-			}
-		});
-	}
+	// const onMoveReply = () => {
+	//	navigate(`/Reply/${id}`, {
+	//		state: {
+	//			comment: {
+	//				id: id,
+	//				username: username,
+	//				content: content,
+	//				createAt: createAt
+	//			}
+	//		}
+	//	});
+	// } 
 
-  const [count, setCount] = useState(0);
+  // const handleDelete = () => {
+  //   let dummyArray = [];
+  //   postList.map((item, index) => {
+  //     if (item.id === post.id) {
+  //     } else {
+  //       dummyArray.push(item);
+  //     }
+  //     setPostList(dummyArray);
+  //   });
+  // };
 
-  const [likeButton, setLikeButton] = useState({ like: 0 });
+
+  const onMoveReply = () => {
+    navigate(`/Reply/${post.id}`, {
+      state: {
+        comment: {
+          id: post.id,
+          userName: post.userName,
+          content: post.content,
+          createAt: post.createAt,
+        },
+      },
+    });
+  };
+  // const onMoveReply = () => {
+  //   navigate(`/Reply/${id}`);
+  // };
+
+  const timeCalc = (date) => {
+    let today = new Date();
+    date = new Date(date);
+
+    let time = (today.getTime() - date.getTime()) / 1000 / 60; // min
+    if (time < 1) return '방금 전';
+    if (time < 60) return parseInt(time) + '분 전';
+    time /= 60; // hour
+    if (time < 24) return parseInt(time) + '시간 전';
+    time /= 24; // day
+    return parseInt(time) + '일 전';
+  };
 
   // console.log(likeButton.count);
   return (
+    <>
+    <div style={{backgroundColor: 'pink'}}>
+      {
+        _comment.commentList.map( a => (
+          <p>
+          작성자: {a.username}
+          내용 : {a.content}
+          </p>
+        ))
+      }
+      </div>
     <TextListDiv>
       <HeaderDiv>
-        <UserNameDiv>{userName}</UserNameDiv>
-        <TimeDiv>{createAt}</TimeDiv>
+
+        <UserNameDiv>{post.userName}</UserNameDiv>
+        <TimeDiv>{timeCalc(post.createAt)}</TimeDiv>
       </HeaderDiv>
 
-      <MentionDiv>{content}</MentionDiv>
+      <MentionDiv>{post.content}</MentionDiv>
+
 
       <BtnWrapDiv>
+        <LikeButton post={post} setPostList={setPostList} postList={postList} />
         <BtnLikeDiv
         // onClick={() => {
-        //   setLike(like + 1);
+        //   setCount(count + 1);
         // }}
         >
-          <LikeButton
-            likeButton={likeButton}
-            setLikeButton={setLikeButton}
-            count={count}
-            setCount={setCount}
-          />
-          <div>{count}</div>
+          {/* <div>{count}</div> */}
         </BtnLikeDiv>
         <BtnChatDiv onClick={onMoveReply}>
           <Chat />
@@ -79,6 +129,7 @@ const HomeList = ({
         </DeleteDiv>
       </BtnWrapDiv>
     </TextListDiv>
+    </>
   );
 };
 
@@ -89,7 +140,7 @@ const TextListDiv = styled.div`
 const HeaderDiv = styled.div`
   display: flex;
 `;
-const UserNameDiv = styled.div`
+const User = styled.div`
   font-size: 15px;
   font-weight: 700;
   color: red;

@@ -1,36 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	commentList: [
+  commentList: [
     {
       id: '0',
-      userName: '배돌이',
+      username: '배돌이',
       content: '비가 주륵주륵!',
       createAt: '5분전',
     },
     {
       id: '1',
-      userName: '배돌이',
+      username: '배돌이',
       content: '비가 주륵주륵 아휴!',
       createAt: '5분전',
     },
   ],
-	comment: {
-		id: '0',
-		userName: '배돌이',
-		content: '비가 주륵주륵!',
-		createAt: '5분전',
-	}
-}
 
+  comment: {
+    id: '0',
+    userName: '배돌이',
+    content: '비가 주륵주륵!',
+    createAt: '5분전',
+  },
+};
 
 export const commentList = createSlice({
   name: 'commentList',
   initialState,
+
+
 	reducers: {
 		addComment: (state, action) => {
 			// action.payload -> comment
 			state.commentList.push({ ...action.payload, createAt: new Date().toISOString() });
+
 		},
 		removeComment: (state, action) => {
 			// action.paylod -> id
@@ -54,5 +57,24 @@ export const commentList = createSlice({
 });
 
 
-export const { addComment, removeComment, editComment, getComment } = commentList.actions;
+    deleteList: (state, action) => {
+      let dummyArray = [];
+      state.commentList = state.commentList.map((item) => {
+        if (item.id === action.payload) {
+        } else {
+          dummyArray.push(item);
+        }
+        state.commentList = dummyArray;
+      });
+    },
+  },
+});
+
+export const {
+  addComment,
+  removeComment,
+  editComment,
+  getComment,
+  deleteList,
+} = commentList.actions;
 export default commentList.reducer;

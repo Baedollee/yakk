@@ -1,8 +1,6 @@
-import { useState } from 'react';
-
 import styled from 'styled-components';
 
-const InputContent = ({ getContent, content }) => {
+const InputContent = ({ onchangeHandler}) => {
   // const [content, setContent] = useState('');
   // console.log(content);
 
@@ -10,9 +8,9 @@ const InputContent = ({ getContent, content }) => {
     <StInputContent>
       <StContent>내 용</StContent>
       <StInput
-        value={content}
+        name='content'
         placeholder="200자 이내로 작성해주세요."
-        onChange={(e) => getContent(e.target.value)}
+        onChange={onchangeHandler}
       />
     </StInputContent>
   );
