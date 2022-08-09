@@ -2,14 +2,15 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
-const InputContent = ({ getContent }) => {
-  const [content, setContent] = useState('');
+const InputContent = ({ getContent, content }) => {
+  // const [content, setContent] = useState('');
   // console.log(content);
 
   return (
     <StInputContent>
       <StContent>내 용</StContent>
       <StInput
+        value={content}
         placeholder="200자 이내로 작성해주세요."
         onChange={(e) => getContent(e.target.value)}
       />

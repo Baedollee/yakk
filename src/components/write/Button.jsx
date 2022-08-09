@@ -1,9 +1,19 @@
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { getUsername } from '../../redux/modules/write';
 
-const Button = ({ addComment, inputReset }) => {
+
+const Button = ({ addComment, username }) => {
+  const distpatch = useDispatch();
+
+  const usernameHandler = (username) => {
+    console.log(username)
+    distpatch(getUsername(username))
+  }
+
   return (
     <>
-      <StButton onClick={(e) => {addComment(e.target.value); inputReset();}}>작성 완료</StButton>
+      <StButton onClick={() => usernameHandler(username)}>작성 완료</StButton>
     </>
   );
 };
