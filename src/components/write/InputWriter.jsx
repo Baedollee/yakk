@@ -1,9 +1,6 @@
-import { useState } from 'react';
-
 import styled from 'styled-components';
 
-const InputWriter = ({ getUsername, username }) => {
-  console.log(username)
+const InputWriter = ({ onchangeHandler }) => {
 
   return (
     <StInputWriter>
@@ -11,8 +8,8 @@ const InputWriter = ({ getUsername, username }) => {
       <StInput
         type="text"
         placeholder="5자 이내로 작성해주세요."
-        value={username}
-        onChange={(e) => getUsername(e.target.value)}
+        name='username'
+        onChange={onchangeHandler}
       />
     </StInputWriter>
   );

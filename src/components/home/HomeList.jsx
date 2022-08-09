@@ -7,14 +7,44 @@ import DeleteIcon from '../homeIcon/DeleteIcon';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteList } from '../../redux/reducer/baeReducer';
+import { useSelector } from 'react-redux';
+
+//const HomeList = ({
+//  id,
+ // username,
+ // content,
+//  createAt,
+ // commentList,
+//  setCommentList,
+//}) => {
+ // const navigate = useNavigate();
+ // const _comment = useSelector((state) => state.comment)
+ 
+
 
 const HomeList = ({ postList, setPostList, post }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch;
 
+
   const handleDelete = () => {
     dispatch(deleteList(post.id));
   };
+
+
+	
+	// const onMoveReply = () => {
+	//	navigate(`/Reply/${id}`, {
+	//		state: {
+	//			comment: {
+	//				id: id,
+	//				username: username,
+	//				content: content,
+	//				createAt: createAt
+	//			}
+	//		}
+	//	});
+	// } 
 
   // const handleDelete = () => {
   //   let dummyArray = [];
@@ -26,6 +56,7 @@ const HomeList = ({ postList, setPostList, post }) => {
   //     setPostList(dummyArray);
   //   });
   // };
+
 
   const onMoveReply = () => {
     navigate(`/Reply/${post.id}`, {
@@ -58,13 +89,26 @@ const HomeList = ({ postList, setPostList, post }) => {
 
   // console.log(likeButton.count);
   return (
+    <>
+    <div style={{backgroundColor: 'pink'}}>
+      {
+        _comment.commentList.map( a => (
+          <p>
+          작성자: {a.username}
+          내용 : {a.content}
+          </p>
+        ))
+      }
+      </div>
     <TextListDiv>
       <HeaderDiv>
+
         <UserNameDiv>{post.userName}</UserNameDiv>
         <TimeDiv>{timeCalc(post.createAt)}</TimeDiv>
       </HeaderDiv>
 
       <MentionDiv>{post.content}</MentionDiv>
+
 
       <BtnWrapDiv>
         <LikeButton post={post} setPostList={setPostList} postList={postList} />
@@ -85,6 +129,7 @@ const HomeList = ({ postList, setPostList, post }) => {
         </DeleteDiv>
       </BtnWrapDiv>
     </TextListDiv>
+    </>
   );
 };
 
@@ -95,7 +140,7 @@ const TextListDiv = styled.div`
 const HeaderDiv = styled.div`
   display: flex;
 `;
-const UserNameDiv = styled.div`
+const User = styled.div`
   font-size: 15px;
   font-weight: 700;
   color: red;

@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 import InputWriter from './InputWriter';
-import InputTitle from './InputTitle';
 import InputContent from './InputContent';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 
-const InputBox = ({ commentList, getUsername, getContent, addComment, inputReset, username, content }) => {
+const InputBox = ({ commentList, onchangeHandler }) => {
   const navigate = useNavigate();
   return (
     <InputBoxContainer>
@@ -17,10 +16,9 @@ const InputBox = ({ commentList, getUsername, getContent, addComment, inputReset
         }}>
         🔙
       </div>
-      <InputWriter commentList={commentList} getUsername={getUsername} username={username}/>
-      {/* <InputTitle /> */}
-      <InputContent getContent={getContent} username={username} content={content} />
-      <Button addComment={addComment} inputReset={inputReset} username={username} content={content} />
+      <InputWriter onchangeHandler={onchangeHandler} />
+      <InputContent onchangeHandler={onchangeHandler} />
+      <Button commentList={commentList} />
     </InputBoxContainer>
   );
 };
