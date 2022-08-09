@@ -4,31 +4,27 @@ import styled from 'styled-components';
 import Reply from './Reply';
 import ReplyButton from './ReplyButton';
 
-function ReplyList(props) {
-  const navigate = useNavigate();
 
-  // console.log('replyList', props);
-  const replyList = props.replyList;
+function ReplyList({ commentId, replyList }) {
+	const navigate = useNavigate();
 
-  const checkReply = (replyList) => {
-    if (replyList.length === 0) {
-      return <NoneReply>댓글이 없습니다!</NoneReply>;
-    } else {
-      return replyList.map((item) => <Reply key={item.id} reply={item} />);
-    }
-  };
+	const checkReply = (replyList) => {
+		if (replyList.length === 0) {
+			return <NoneReply>댓글이 없습니다!</NoneReply>
+		} else {
+			return replyList.map((item) => <Reply key={item.id} reply={item} commentId={commentId} />)
+		}
+	}
 
-  return (
-    <div>
-      <ReplyHeader>
-        <h4>댓글</h4>
-        <ReplyButton onClick={() => navigate('/ReplyWrite')}>
-          댓글 작성
-        </ReplyButton>
-      </ReplyHeader>
-      {checkReply(replyList)}
-    </div>
-  );
+	return (
+		<div>
+			<ReplyHeader>
+				<h4>댓글</h4>
+				<ReplyButton onClick={() => navigate(`/Reply/${commentId}/ReplyWrite`)}>댓글 작성</ReplyButton>
+			</ReplyHeader>
+			{checkReply(replyList)}
+		</div>
+	)
 }
 
 const ReplyHeader = styled.div`

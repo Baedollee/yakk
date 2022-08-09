@@ -3,16 +3,18 @@ import styled, { css } from 'styled-components';
 import { EditOutlined, HomeOutlined } from '@ant-design/icons';
 
 function ReplyButton(props) {
-  const checkId = (id) => {
-    switch (id) {
-      case 'homeBtn':
-        return <HomeOutlined />;
-      case 'addBtn':
-        return <EditOutlined />;
-      default:
-        return props.children;
-    }
-  };
+
+
+	const checkId = (id) => {
+		switch (id) {
+			case 'homeBtn':
+				return <HomeOutlined />
+			case 'addBtn':
+				return <EditOutlined />
+			default:
+				return props.children;
+		}
+	}
 
   return (
     <BtnContainer {...props} disabled={props.disabled}>
@@ -30,7 +32,7 @@ const BtnContainer = styled.div`
     switch (id) {
       case 'homeBtn':
       case 'addBtn':
-        <EditOutlined />;
+
         return css`
           width: 50px;
           height: 50px;
@@ -41,10 +43,16 @@ const BtnContainer = styled.div`
         return css`
           width: 80px;
           height: 30px;
-          margin: auto 10px;
-          border: 2px solid blueviolet;
-          border-radius: 10px;
-          font-size: 15px;
+
+					margin: auto 10px;
+				  border: 2px solid blueviolet;
+				  border-radius: 10px;
+					font-size: 15px;
+					&:hover {
+						background-color: blueviolet;
+						color: white;
+						font-weight: bold;
+					}
         `;
     }
   }}

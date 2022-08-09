@@ -11,7 +11,9 @@ const HomeList = ({
   userName,
   content,
   createAt,
+
   comment,
+
   commentList,
   setCommentList,
 }) => {
@@ -27,6 +29,20 @@ const HomeList = ({
       setCommentList(dummyArray);
     });
   };
+
+	
+	const onMoveReply = () => {
+		navigate(`/Reply/${id}`, {
+			state: {
+				comment: {
+					id: id,
+					userName: userName,
+					content: content,
+					createAt: createAt
+				}
+			}
+		});
+	}
 
   const [count, setCount] = useState(0);
 

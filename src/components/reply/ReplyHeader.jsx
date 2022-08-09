@@ -37,9 +37,10 @@ const HeaderContainer = styled.div`
 
 const HeaderLayout = styled.div`
   min-width: 600px;
-  max-width: 800px;
-  width: 100%;
-  margin: auto 200px;
+
+	max-width: 800px;
+	width: 100%;
+	margin: auto;
 
   display: flex;
   flex-direction: row;
