@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { HeartOutlined, HeartFilled, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import ReplyButton from './ReplyButton';
 import { useDispatch } from 'react-redux';
 import { removeComment } from '../../redux/reducer/baeReducer';
-
+import { colorWhite, colorPink2 } from '../color/ColorPalette';
+import KingButton from '../kingButton/Button';
 
 function Comment({ comment, replyLength }) {
 	const navigate = useNavigate();
@@ -47,8 +47,8 @@ function Comment({ comment, replyLength }) {
 					<span>{timeCalc(comment.createAt)}</span>
 				</div>
 				<BtnContainer>
-					<ReplyButton onClick={onMoveWriteHandler}>수정하기</ReplyButton>
-					<ReplyButton onClick={() => onRemoveCommentHandler(comment.id)}>삭제하기</ReplyButton>
+					<KingButton onClick={onMoveWriteHandler}>수정하기</KingButton>
+					<KingButton onClick={() => onRemoveCommentHandler(comment.id)}>삭제하기</KingButton>
 				</BtnContainer>
 			</ContentHeader>
 			<p>{comment.content}</p>
@@ -69,7 +69,7 @@ function Comment({ comment, replyLength }) {
 const Content = styled.div`
   margin-bottom: 20px;
   /* background-color: beige; */
-  border: 1px solid black;
+  border: 1px solid ${colorWhite};
   border-radius: 10px;
 
   p {

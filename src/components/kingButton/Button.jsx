@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { EditOutlined, HomeOutlined, HeartOutlined, HeartFilled, DeleteOutlined } from '@ant-design/icons';
+import { colorPink2, colorWhite } from '../color/ColorPalette';
 
 function KingButton(props) {
 
@@ -40,7 +41,7 @@ const BtnContainer = styled.div`
         return css`
           width: 50px;
           height: 50px;
-          font-size: 20px;
+          font-size: 30px;
         `;
 
 			case 'heartBtn':
@@ -90,15 +91,15 @@ const BtnContainer = styled.div`
         return css`
           width: 80px;
           height: 30px;
+					color: ${colorPink2};
 
 					margin: auto 10px;
-				  border: 2px solid blueviolet;
+				  border: 1px solid ${colorPink2};
 				  border-radius: 10px;
 					font-size: 15px;
 					&:hover {
-						background-color: blueviolet;
-						color: white;
-						font-weight: bold;
+						background-color: ${colorPink2};
+						color: ${colorWhite};
 					}
         `;
 		

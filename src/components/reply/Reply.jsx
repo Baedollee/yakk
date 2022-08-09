@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { removeReply } from '../../redux/reducer/rangReducer';
 import ReplyButton from './ReplyButton';
+import { colorWhite } from '../color/ColorPalette';
+import KingButton from '../kingButton/Button';
 
 function Reply({ commentId, reply }) {
   const dispatch = useDispatch();
@@ -45,10 +47,10 @@ function Reply({ commentId, reply }) {
           <span>{timeCalc(reply.createAt)}</span>
         </div>
         <BtnContainer>
-          <ReplyButton onClick={onMoveReplyWrite}>수정하기</ReplyButton>
-          <ReplyButton onClick={() => onRemoveReplyHandler(reply.id)}>
+          <KingButton onClick={onMoveReplyWrite}>수정하기</KingButton>
+          <KingButton onClick={() => onRemoveReplyHandler(reply.id)}>
             삭제하기
-          </ReplyButton>
+          </KingButton>
         </BtnContainer>
       </ContentHeader>
       <p>{reply.content}</p>
@@ -59,7 +61,7 @@ function Reply({ commentId, reply }) {
 const Content = styled.div`
   margin-bottom: 20px;
   /* background-color: beige; */
-  border: 1px solid black;
+  border: 1px solid ${colorWhite};
   border-radius: 10px;
 
   p {
