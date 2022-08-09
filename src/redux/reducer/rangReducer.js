@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	replies: [
+	replyList: [
 		{
 			id: 0,
 			commentId: "1",
 			userName: 'aaa',
 			content: '나도 졸리다',
-			createAt: '3분전'
+			createAt: '2022-08-08T10:50:00.000Z'
 		},
 		{
 			id: 1,
 			commentId: "1",
 			userName: 'abc',
 			content: '오늘 날씨가 우중충해서 더 졸리다.',
-			createAt: '2분전'
+			createAt: '2022-08-08T15:50:00.000Z'
 		}
 	],
 	reply: {
@@ -31,23 +31,24 @@ const reply = createSlice({
 	initialState,
 	reducers: {
 		addReply: (state, action) => {
-			state.replies.push(action.payload);
+			// console.log('add reply');
+			state.replyList.push({ ...action.payload, createAt: new Date().toISOString()});
 		},
 		removeReply: (state, action) => {
-			// console.log(state.replies.filter((item) => item.id !== action.payload))
-			state.replies = state.replies.filter((item) => item.id !== action.payload);
+			state.replyList = state.replyList.filter((item) => item.id !== action.payload);
 		},
 		editReply: (state, action) => {
-			state.replies.map((item) => {
-				if (item.id === action.payload) {
-					return { ...item, editCheck: !item.editCheck }
+			state.replyList.map((item) => {
+				if (item.id === action.payload.id) {
+					return action.payload;
 				} else {
 					return item;
 				}
 			})
 		},
 		getReply: (state, action) => {
-			state.reply = state.replies.find((item) => item.id === action.payload);
+			// console.log('get reply');
+			state.reply = state.replyList.find((item) => item.id === action.payload);
 		}
 	}
 })

@@ -1,13 +1,31 @@
 import styled from 'styled-components';
 
 import InputWriter from './InputWriter';
-import InputTitle from './InputTitle';
 import InputContent from './InputContent';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { getReply } from '../../redux/reducer/rangReducer';
 
-const InputBox = ({ commentList, getUsername, getContent, addComment, inputReset, username, content }) => {
+const InputBox = ({ commentId, replyId }) => {
   const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const reply = useSelector((item) => item.reply.reply);
+
+	const [username, setUsername] = useState('');
+	const [content, setContent] = useState('');
+	console.log(username, content);
+
+	useEffect(() => {
+		if (replyId !== '') {
+			dispatch(getReply(replyId));
+			console.log('finish get reply', reply);
+		}
+	}, [reply]);
+
+
   return (
     <InputBoxContainer>
       <div
@@ -17,10 +35,10 @@ const InputBox = ({ commentList, getUsername, getContent, addComment, inputReset
         }}>
         🔙
       </div>
-      <InputWriter commentList={commentList} getUsername={getUsername} username={username}/>
+      <InputWriter replyUsername={reply.username} setUsername={setUsername}/>
       {/* <InputTitle /> */}
-      <InputContent getContent={getContent} username={username} content={content} />
-      <Button addComment={addComment} inputReset={inputReset} username={username} content={content} />
+      <InputContent replyContent={reply.content} setContent={setContent}/>
+      <Button commentId={commentId} username={username} content={content} reply={reply}/>
     </InputBoxContainer>
   );
 };

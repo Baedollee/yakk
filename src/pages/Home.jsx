@@ -42,7 +42,7 @@ const Home = () => {
               <HomeList
                 commentList={commentList}
                 setCommentList={setCommentList}
-								comment={item}
+
                 key={`${item.id}_${item.userName}`}
                 id={item.id}
                 userName={item.userName}
@@ -61,9 +61,6 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
 
 // const [commentList, setCommnetList] = useState([{
 //   id: ''
