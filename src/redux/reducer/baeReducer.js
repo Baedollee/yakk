@@ -32,8 +32,8 @@ export const commentList = createSlice({
 	reducers: {
 		addComment: (state, action) => {
 			// action.payload -> comment
-			state.commentList = state.commentList.concat({ ...action.payload, createAt: new Date().toISOString() }); 
-			console.log(action)
+			state.commentList.push({ ...action.payload, createAt: new Date().toISOString() });
+
 		},
 		removeComment: (state, action) => {
 			// action.paylod -> id

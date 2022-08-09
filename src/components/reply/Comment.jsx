@@ -3,10 +3,20 @@ import styled from 'styled-components';
 import { HeartOutlined, HeartFilled, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import ReplyButton from './ReplyButton';
+import { useDispatch } from 'react-redux';
+import { removeComment } from '../../redux/reducer/baeReducer';
 
 
 function Comment({ comment, replyLength }) {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const onRemoveCommentHandler = (commentId) => {
+		console.log('remove comment', commentId);
+		dispatch(removeComment(commentId));
+		alert('글이 삭제되었습니다.');
+		navigate(-1);
+	}
 
 	return (
 		<Content>
@@ -16,8 +26,8 @@ function Comment({ comment, replyLength }) {
 					<span>{comment.createAt}</span>
 				</div>
 				<BtnContainer>
-					<ReplyButton onClick={() => navigate('/Write')}>수정하기</ReplyButton>
-					<ReplyButton>삭제하기</ReplyButton>
+					<ReplyButton onClick={() => navigate(`/Write/${comment.id}`)}>수정하기</ReplyButton>
+					<ReplyButton onClick={() => onRemoveCommentHandler(comment.id)}>삭제하기</ReplyButton>
 				</BtnContainer>
 			</ContentHeader>
 			<p>{comment.content}</p>

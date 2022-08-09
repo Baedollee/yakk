@@ -1,17 +1,22 @@
-import { useState } from 'react';
-
 import styled from 'styled-components';
 
-const InputContent = ({ setContent }) => {
-  // const [content, setContent] = useState('');
-  // console.log(content);
+const InputContent = ({ content, setContent }) => {
+
+	const onCheckContentLength = (e) => {
+		if (e.target.value.length > 200) {
+			alert('내용은 200글자 이내로 적어주세요.')
+		} else {
+			setContent(e.target.value);
+		}
+	}
 
   return (
     <StInputContent>
       <StContent>내 용</StContent>
       <StInput
         placeholder="200자 이내로 작성해주세요."
-        onChange={(e) => setContent(e.target.value)}
+				value={content}
+        onChange={onCheckContentLength}
       />
     </StInputContent>
   );
