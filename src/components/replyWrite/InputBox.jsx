@@ -16,15 +16,18 @@ const InputBox = ({ commentId, replyId }) => {
 
 	const [username, setUsername] = useState('');
 	const [content, setContent] = useState('');
-	console.log(username, content);
+	const [isEdit, setIsEdit] = useState(false);
+	// console.log(username, content);
 
 	useEffect(() => {
 		if (replyId !== '') {
 			dispatch(getReply(replyId));
-			console.log('finish get reply', reply);
+			setUsername(reply.userName);
+			setContent(reply.content);
+			setIsEdit(true);
 		}
+		console.log('finish get reply', reply);
 	}, [reply]);
-
 
   return (
     <InputBoxContainer>
@@ -35,10 +38,10 @@ const InputBox = ({ commentId, replyId }) => {
         }}>
         🔙
       </div>
-      <InputWriter replyUsername={reply.username} setUsername={setUsername}/>
+      <InputWriter username={username} setUsername={setUsername}/>
       {/* <InputTitle /> */}
-      <InputContent replyContent={reply.content} setContent={setContent}/>
-      <Button commentId={commentId} username={username} content={content} reply={reply}/>
+      <InputContent content={content} setContent={setContent}/>
+      <Button commentId={commentId} username={username} content={content} reply={reply} isEdit={isEdit}/>
     </InputBoxContainer>
   );
 };

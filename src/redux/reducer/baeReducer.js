@@ -49,6 +49,7 @@ export const commentList = createSlice({
     },
     editComment: (state, action) => {
       // action.payload -> comment
+
       state.commentList = state.commentList.map((item) => {
         if (item.id === action.payload.id) {
           return action.payload;
