@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const InputContent = ({ onchangeHandler}) => {
+const InputContent = ({ onchangeHandler, content, isEdit }) => {
   // const [content, setContent] = useState('');
   // console.log(content);
 
@@ -10,7 +10,8 @@ const InputContent = ({ onchangeHandler}) => {
       <StInput
         name='content'
         placeholder="200자 이내로 작성해주세요."
-        onChange={onchangeHandler}
+				value={content}
+        onChange={(e) => onchangeHandler(e)}
       />
     </StInputContent>
   );

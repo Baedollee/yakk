@@ -33,6 +33,12 @@ function Comment({ comment, replyLength }) {
 		navigate(-1);
 	}
 
+	const onMoveWriteHandler = () => {
+		navigate(`/Write/${comment.id}`, {
+			state: { commentId: comment.id }
+		})
+	}
+
 	return (
 		<Content>
 			<ContentHeader>
@@ -41,7 +47,7 @@ function Comment({ comment, replyLength }) {
 					<span>{timeCalc(comment.createAt)}</span>
 				</div>
 				<BtnContainer>
-					<ReplyButton onClick={() => navigate(`/Write/${comment.id}`)}>수정하기</ReplyButton>
+					<ReplyButton onClick={onMoveWriteHandler}>수정하기</ReplyButton>
 					<ReplyButton onClick={() => onRemoveCommentHandler(comment.id)}>삭제하기</ReplyButton>
 				</BtnContainer>
 			</ContentHeader>
