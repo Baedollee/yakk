@@ -4,27 +4,26 @@ import { HeartOutlined, HeartFilled, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import ReplyButton from './ReplyButton';
 
-function Comment(props) {
-	console.log('comment', props);
+function Comment({ comment, replyLength }) {
 	const navigate = useNavigate();
 
 	return (
 		<Content>
 			<ContentHeader>
 				<div>
-					<span>{props.comment.userName}</span>
-					<span>{props.comment.createAt}</span>
+					<span>{comment.userName}</span>
+					<span>{comment.createAt}</span>
 				</div>
 				<BtnContainer>
 					<ReplyButton onClick={() => navigate('/Write')}>수정하기</ReplyButton>
 					<ReplyButton>삭제하기</ReplyButton>
 				</BtnContainer>
 			</ContentHeader>
-			<p>{props.comment.content}</p>
+			<p>{comment.content}</p>
 			<ContentFooter>
 				<ContentComment>
 					<CommentOutlined />
-					<span>{props.replyLength}</span>
+					<span>{replyLength}</span>
 					<HeartOutlined />
 					{/* <HeartFilled /> */}
 					<span>10</span>

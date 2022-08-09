@@ -5,30 +5,45 @@ import styled from 'styled-components';
 import { removeReply } from '../../redux/reducer/rangReducer';
 import ReplyButton from './ReplyButton';
 
-function Reply(props) {
-	console.log('reply one', props);
-
+function Reply({ commentId, reply }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	const onMoveReplyWrite = () => {
+		navigate(`/Reply/${commentId}/ReplyWrite`, { state: { replyId: reply.id}});
+	}
+	
 	const onRemoveReplyHandler = (replyId) => {
 		console.log('remove reply', replyId);
 		dispatch(removeReply(replyId));
+	}
+	
+	const timeCalc = (date) => {
+		let today = new Date();
+		date = new Date(date);
+
+		let time = (today.getTime() - date.getTime()) / 1000 / 60;		// min
+		if (time < 1) return "방금 전";
+		if (time < 60) return parseInt(time) + "분 전";
+		time /= 60; 	// hour
+		if (time < 24) return parseInt(time) + "시간 전";
+		time /= 24;		// day
+		return parseInt(time) + "일 전"
 	}
 
 	return (
 		<Content>
       <ContentHeader>
         <div>
-          <span>{props.reply.userName}</span>
-          <span>{props.reply.createAt}</span>
+          <span>{reply.userName}</span>
+          <span>{timeCalc(reply.createAt)}</span>
         </div>
         <BtnContainer>
-          <ReplyButton onClick={() => navigate('/ReplyWrite')}>수정하기</ReplyButton>
-          <ReplyButton onClick={() => onRemoveReplyHandler(props.reply.id)}>삭제하기</ReplyButton>
+          <ReplyButton onClick={onMoveReplyWrite}>수정하기</ReplyButton>
+          <ReplyButton onClick={() => onRemoveReplyHandler(reply.id)}>삭제하기</ReplyButton>
         </BtnContainer>
       </ContentHeader>
-      <p>{props.reply.content}</p>
+      <p>{reply.content}</p>
     </Content>
 	)
 }
