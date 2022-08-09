@@ -4,21 +4,17 @@ import { useSelector } from 'react-redux/es/exports';
 import InputBox from './InputBox';
 
 const Form = () => {
-  const comment = useSelector((state) => state.comment.commentList)
-  console.log(comment)
-  console.log('length:', comment.length)
-  // const nextId = useRef(0).current
-  const [commentList, setCommentList] = useState(
-    {
-      username: '',
-      content: '',
-    },
-  );
+  const comment = useSelector((state) => state.comment.commentList);
+
+  const [commentList, setCommentList] = useState({
+    username: '',
+    content: '',
+  });
 
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
     setCommentList({
-      id: comment.length +1,
+      id: comment.length + 1,
       ...commentList,
       [name]: value,
     });
@@ -26,9 +22,7 @@ const Form = () => {
 
   return (
     <div style={{ height: '100vh' }}>
-
-      <InputBox commentList={commentList} onchangeHandler={onChangeHandler} 
-      />      
+      <InputBox commentList={commentList} onchangeHandler={onChangeHandler} />
     </div>
   );
 };
