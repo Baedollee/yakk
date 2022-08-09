@@ -5,16 +5,19 @@ import LikeButton from '../homeIcon/LikeButton';
 import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const HomeList = ({
   id,
-  userName,
+  username,
   content,
   createAt,
   commentList,
   setCommentList,
 }) => {
   const navigate = useNavigate();
+  const _comment = useSelector((state) => state.comment)
+  console.log('1:',_comment, '2:',_comment.comment)
 
   const handleDelete = () => {
     let dummyArray = [];
@@ -33,7 +36,7 @@ const HomeList = ({
 			state: {
 				comment: {
 					id: id,
-					userName: userName,
+					username: username,
 					content: content,
 					createAt: createAt
 				}
@@ -47,14 +50,25 @@ const HomeList = ({
 
   // console.log(likeButton.count);
   return (
+    <>
+    <div style={{backgroundColor: 'pink'}}>
+      {
+        _comment.commentList.map( a => (
+          <p>
+          작성자: {a.username}
+          내용 : {a.content}
+          </p>
+        ))
+      }
+      </div>
     <TextListDiv>
       <HeaderDiv>
-        <UserNameDiv>{userName}</UserNameDiv>
+        <User>{username}</User>
         <TimeDiv>{createAt}</TimeDiv>
       </HeaderDiv>
 
       <MentionDiv>{content}</MentionDiv>
-
+      
       <BtnWrapDiv>
         <BtnLikeDiv
         // onClick={() => {
@@ -79,6 +93,7 @@ const HomeList = ({
         </DeleteDiv>
       </BtnWrapDiv>
     </TextListDiv>
+    </>
   );
 };
 
@@ -89,7 +104,7 @@ const TextListDiv = styled.div`
 const HeaderDiv = styled.div`
   display: flex;
 `;
-const UserNameDiv = styled.div`
+const User = styled.div`
   font-size: 15px;
   font-weight: 700;
   color: red;
