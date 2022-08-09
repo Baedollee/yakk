@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+
 
 // const WRITE_TITLE = "app/write/WRITE_TITLE";
 

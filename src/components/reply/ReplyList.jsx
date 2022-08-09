@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Reply from './Reply';
 import ReplyButton from './ReplyButton';
 
+
 function ReplyList({ commentId, replyList }) {
 	const navigate = useNavigate();
 
@@ -28,18 +29,18 @@ function ReplyList({ commentId, replyList }) {
 
 const ReplyHeader = styled.div`
   margin: 20px;
-	
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 
-	button {
-		height: 100%;
-	}
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    height: 100%;
+  }
 `;
 
 const NoneReply = styled.p`
-	text-align: center;
+  text-align: center;
 `;
 
 export default ReplyList;

@@ -6,6 +6,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
 
+
 function Reply() {
 	const { id } = useParams();
 	const location = useLocation();
@@ -33,7 +34,7 @@ const DetailContainer = styled.div`
   /* background-color: blueviolet; */
   height: 80%;
   min-width: 600px;
-	max-width: 800px;
+  max-width: 800px;
   margin: 30px auto;
 `;
 

@@ -4,6 +4,7 @@ import { HeartOutlined, HeartFilled, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import ReplyButton from './ReplyButton';
 
+
 function Comment({ comment, replyLength }) {
 	const navigate = useNavigate();
 
@@ -31,6 +32,7 @@ function Comment({ comment, replyLength }) {
 			</ContentFooter>
 		</Content>
 	)
+
 }
 
 const Content = styled.div`
@@ -66,9 +68,8 @@ const ContentHeader = styled.div`
 `;
 
 const BtnContainer = styled.div`
-	display: flex;
+  display: flex;
 `;
-
 
 const ContentFooter = styled.div`
   margin: 20px;

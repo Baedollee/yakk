@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux/es/exports';
 import InputBox from './InputBox';
 
 const Form = () => {
+
   const [username, setUsername] = useState('')
   const [content, setContent] = useState('')
   const [commentList, setCommentList] = useState([
@@ -12,19 +13,19 @@ const Form = () => {
       username: '박재정',
       content: '리덕스를 공부해보자',
       createdAt: '',
-    }
-  ]); 
+    },
+  ]);
 
   // console.log(username,content)
 
   const getUsername = (username) => {
     setUsername(username);
-    console.log(username)
   };
   const getContent = (content) => {
     setContent(content);
-    console.log(content)
+    // console.log(content);
   };
+
   // const inputReset = () => {
   //   setUsername('')
   //   setContent('')
@@ -47,6 +48,7 @@ const Form = () => {
 
   return (
     <div style={{ height: '100vh' }}>
+
       <InputBox commentList={commentList} getUsername={getUsername} getContent={getContent} addComment={addComment} username={username} content={content}
       // inputReset={inputReset} 
       />

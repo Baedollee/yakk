@@ -4,6 +4,7 @@ import { EditOutlined, HomeOutlined } from '@ant-design/icons';
 
 function ReplyButton(props) {
 
+
 	const checkId = (id) => {
 		switch (id) {
 			case 'homeBtn':
@@ -15,11 +16,11 @@ function ReplyButton(props) {
 		}
 	}
 
-	return (
-		<BtnContainer {...props} disabled={props.disabled}>
-			{checkId(props.id)}
-		</BtnContainer>
-	);
+  return (
+    <BtnContainer {...props} disabled={props.disabled}>
+      {checkId(props.id)}
+    </BtnContainer>
+  );
 }
 
 const BtnContainer = styled.div`
@@ -31,16 +32,18 @@ const BtnContainer = styled.div`
     switch (id) {
       case 'homeBtn':
       case 'addBtn':
+
         return css`
           width: 50px;
           height: 50px;
-					font-size: 30px;
+          font-size: 30px;
         `;
 
       default:
         return css`
           width: 80px;
           height: 30px;
+
 					margin: auto 10px;
 				  border: 2px solid blueviolet;
 				  border-radius: 10px;

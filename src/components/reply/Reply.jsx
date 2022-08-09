@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { removeReply } from '../../redux/reducer/rangReducer';
 import ReplyButton from './ReplyButton';
 
+
 function Reply({ commentId, reply }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -31,21 +32,24 @@ function Reply({ commentId, reply }) {
 		return parseInt(time) + "일 전"
 	}
 
-	return (
-		<Content>
+
+  return (
+    <Content>
       <ContentHeader>
         <div>
           <span>{reply.userName}</span>
           <span>{timeCalc(reply.createAt)}</span>
         </div>
         <BtnContainer>
+
           <ReplyButton onClick={onMoveReplyWrite}>수정하기</ReplyButton>
           <ReplyButton onClick={() => onRemoveReplyHandler(reply.id)}>삭제하기</ReplyButton>
+
         </BtnContainer>
       </ContentHeader>
       <p>{reply.content}</p>
     </Content>
-	)
+  );
 }
 
 const Content = styled.div`
@@ -74,7 +78,7 @@ const ContentHeader = styled.div`
 `;
 
 const BtnContainer = styled.div`
-	display: flex;
+  display: flex;
 `;
 
 export default Reply;
