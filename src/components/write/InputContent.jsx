@@ -40,10 +40,6 @@ const StInput = styled.textarea`
   overflow: hidden;
 
   padding: 10px;
-
-  ::placeholder {
-    font-weight: bold;
-  }
 `;
 const StContent = styled.div`
   width: 60px;
