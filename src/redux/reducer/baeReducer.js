@@ -29,7 +29,7 @@ export const commentList = createSlice({
   initialState,
 	reducers: {
 		addComment: (state, action) => {
-			// action.payload -> commet
+			// action.payload -> comment
 			state.commentList.push({ ...action.payload, createAt: new Date().toISOString() });
 		},
 		removeComment: (state, action) => {

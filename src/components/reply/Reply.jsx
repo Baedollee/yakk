@@ -11,7 +11,7 @@ function Reply({ commentId, reply }) {
 	const navigate = useNavigate();
 
 	const onMoveReplyWrite = () => {
-		navigate(`/Reply/${commentId}/ReplyWrite`, { state: { replyId: reply.id}});
+		navigate(`/Reply/${commentId}/ReplyWrite`, { state: { replyId: reply.id }});
 	}
 	
 	const onRemoveReplyHandler = (replyId) => {

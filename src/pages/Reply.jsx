@@ -1,23 +1,33 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ReplyHeader from '../components/reply/ReplyHeader';
 import { useLocation, useParams } from 'react-router-dom';
 import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
+import { getComment } from '../redux/reducer/baeReducer';
 
 
 function Reply() {
 	const { id } = useParams();
-	const location = useLocation();
-	const comment = location.state.comment;
-	console.log('reply', id, comment);
+	const dispatch = useDispatch();
+
+	// comment by reducer
+	const comment = useSelector((state) => state.comment.comment);
+	console.log('comment reducer', comment);
+
+	useEffect(() => {
+		dispatch(getComment(id));
+	}, [comment]);
+
+	// comment by parameter
+	// const location = useLocation();
+	// const comment = location.state.comment;
+	// console.log('reply', id, comment);
 
 	const replyList = useSelector((state) => state.reply.replyList);
-	console.log('reply reducer', replyList);
-
 	const findReplyList = replyList.filter((item) => item.commentId === comment.id);
-	console.log(findReplyList);
+	// console.log(findReplyList);
 
   return (
 		<>

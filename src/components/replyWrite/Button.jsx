@@ -16,19 +16,20 @@ const Button = ({ commentId, username, content, reply, isEdit }) => {
 	}
 
 	const onAddReplyHandler = (reply) => {
-		console.log('reply add', reply);
+		// console.log('reply add', reply);
 		dispatch(addReply(reply));
 		navigate(-1);
 	}
 
 	const onEditReplyHandler = (reply) => {
-		console.log('reply edit', {...reply, userName: username, content: content});
+		// console.log('reply edit', {...reply, userName: username, content: content});
 		dispatch(editReply({...reply, userName: username, content: content}));
-		console.log('finish edit');
 		navigate(-1);
 	}
 
-  return <StButton onClick={isEdit ? () => onEditReplyHandler(reply) : () => onAddReplyHandler(newReply)}>작성 완료</StButton>;
+  return (
+		<StButton onClick={isEdit ? () => onEditReplyHandler(reply) : () => onAddReplyHandler(newReply)}>{isEdit ? '수정' : '작성'} 완료</StButton>
+	);
 };
 
 export default Button;

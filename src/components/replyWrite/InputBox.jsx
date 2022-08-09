@@ -21,12 +21,12 @@ const InputBox = ({ commentId, replyId }) => {
 
 	useEffect(() => {
 		if (replyId !== '') {
-			console.log('finish get reply', reply);
 			dispatch(getReply(replyId));
 			setUsername(reply.userName);
 			setContent(reply.content);
 			setIsEdit(true);
 		}
+		console.log('finish get reply', reply);
 	}, [reply]);
 
   return (
