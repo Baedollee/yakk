@@ -1,27 +1,24 @@
 import React from 'react';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 
-const LikeButton = ({ likeButton, setLikeButton }) => {
+const LikeButton = ({ likeButton, setLikeButton, count, setCount }) => {
   onclick = () => {
-    if (likeButton.checked) {
-      setLikeButton({ checked: false, count: '' });
+    if (likeButton.like === '') {
+      setLikeButton({ like: likeButton.like + 1 });
     } else {
-      setLikeButton({ checked: true, count: '좋아요1회' });
+      setCount(count + 1);
     }
   };
 
   return (
     <div>
-      {likeButton.checked ? (
+      {likeButton.like !== 0 ? (
         <HeartFilled
           style={{ color: 'red', fontSize: '20px' }}
-          onclick={LikeButton.onclick}
+          onClick={LikeButton}
         />
       ) : (
-        <HeartOutlined
-          style={{ fontSize: '20px' }}
-          onclick={LikeButton.onclick}
-        />
+        <HeartOutlined style={{ fontSize: '20px' }} onClick={LikeButton} />
       )}
       {/* <HeartFilled
         style={{ color: 'red', fontSize: '20px' }}

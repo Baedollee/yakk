@@ -5,33 +5,33 @@ import { useNavigate } from 'react-router-dom';
 import ReplyButton from './ReplyButton';
 
 function Comment(props) {
-	console.log('comment', props);
-	const navigate = useNavigate();
+  // console.log('comment', props);
+  const navigate = useNavigate();
 
-	return (
-		<Content>
-			<ContentHeader>
-				<div>
-					<span>{props.comment.userName}</span>
-					<span>{props.comment.createAt}</span>
-				</div>
-				<BtnContainer>
-					<ReplyButton onClick={() => navigate('/Write')}>수정하기</ReplyButton>
-					<ReplyButton>삭제하기</ReplyButton>
-				</BtnContainer>
-			</ContentHeader>
-			<p>{props.comment.content}</p>
-			<ContentFooter>
-				<ContentComment>
-					<CommentOutlined />
-					<span>{props.replyLength}</span>
-					<HeartOutlined />
-					{/* <HeartFilled /> */}
-					<span>10</span>
-				</ContentComment>
-			</ContentFooter>
-		</Content>
-	)
+  return (
+    <Content>
+      <ContentHeader>
+        <div>
+          <span>{props.comment.userName}</span>
+          <span>{props.comment.createAt}</span>
+        </div>
+        <BtnContainer>
+          <ReplyButton onClick={() => navigate('/Write')}>수정하기</ReplyButton>
+          <ReplyButton>삭제하기</ReplyButton>
+        </BtnContainer>
+      </ContentHeader>
+      <p>{props.comment.content}</p>
+      <ContentFooter>
+        <ContentComment>
+          <CommentOutlined />
+          <span>{props.replyLength}</span>
+          <HeartOutlined />
+          {/* <HeartFilled /> */}
+          <span>10</span>
+        </ContentComment>
+      </ContentFooter>
+    </Content>
+  );
 }
 
 const Content = styled.div`
@@ -67,9 +67,8 @@ const ContentHeader = styled.div`
 `;
 
 const BtnContainer = styled.div`
-	display: flex;
+  display: flex;
 `;
-
 
 const ContentFooter = styled.div`
   margin: 20px;

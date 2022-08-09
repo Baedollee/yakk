@@ -11,18 +11,15 @@ const HomeList = ({
   userName,
   content,
   createAt,
-	comment,
+  comment,
   commentList,
   setCommentList,
 }) => {
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    console.log(commentList);
     let dummyArray = [];
     commentList.map((item, index) => {
-      console.log(id);
-      console.log(item.id);
       if (item.id === id) {
       } else {
         dummyArray.push(item);
@@ -30,19 +27,19 @@ const HomeList = ({
       setCommentList(dummyArray);
     });
   };
-	
-	const onMoveReply = () => {
-		navigate(`/Reply/${comment.id}`, {
-			state: {
-				comment: comment
-			}
-		});
-	}
 
+  const [count, setCount] = useState(0);
 
-  const [like, setLike] = useState(0);
-  const [likeButton, setLikeButton] = useState({ checked: false, count: '' });
+  const [likeButton, setLikeButton] = useState({ like: 0 });
 
+  const onMoveReply = () => {
+    navigate(`/Reply/${comment.id}`, {
+      state: {
+        comment: comment,
+      },
+    });
+  };
+  // console.log(likeButton.count);
   return (
     <TextListDiv>
       <HeaderDiv>
@@ -54,14 +51,19 @@ const HomeList = ({
 
       <BtnWrapDiv>
         <BtnLikeDiv
-          onClick={() => {
-            setLike(like + 1);
-          }}>
-          <LikeButton likeButton={likeButton} setLikeButton={setLikeButton} />
-          <div>{like}</div>
+        // onClick={() => {
+        //   setLike(like + 1);
+        // }}
+        >
+          <LikeButton
+            likeButton={likeButton}
+            setLikeButton={setLikeButton}
+            count={count}
+            setCount={setCount}
+          />
+          <div>{count}</div>
         </BtnLikeDiv>
-        <BtnChatDiv
-          onClick={onMoveReply}>
+        <BtnChatDiv onClick={onMoveReply}>
           <Chat />
           <div>2</div>
         </BtnChatDiv>

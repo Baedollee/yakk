@@ -7,31 +7,32 @@ import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
 
 function Reply(props) {
-	const { id } = useParams();
-	console.log('reply', id);
+  const { id } = useParams();
+  // console.log('reply', id);
 
-	const location = useLocation();
-	const comment = location.state.comment;
-	console.log('reply', comment);
+  const location = useLocation();
+  const comment = location.state.comment;
+  // console.log('reply', comment);
 
-	const replyList = useSelector((state) => state.reply.replies);
-	console.log('reply reducer', replyList);
-	console.log(replyList.length);
+  const replyList = useSelector((state) => state.reply.replies);
+  // console.log('reply reducer', replyList);
+  // console.log(replyList.length);
 
-	console.log(props);
-	
+  // console.log(props);
 
-	const findReplyList = replyList.filter((item) => item.commentId === comment.id);
-	console.log(findReplyList);
+  const findReplyList = replyList.filter(
+    (item) => item.commentId === comment.id
+  );
+  // console.log(findReplyList);
 
   return (
-		<>
-			<ReplyHeader />
-	    <DetailContainer>
-				<Comment comment={comment} replyLength={findReplyList.length}/>
-				<ReplyList replyList={findReplyList} />
-	    </DetailContainer>
-		</>
+    <>
+      <ReplyHeader />
+      <DetailContainer>
+        <Comment comment={comment} replyLength={findReplyList.length} />
+        <ReplyList replyList={findReplyList} />
+      </DetailContainer>
+    </>
   );
 }
 
@@ -39,7 +40,7 @@ const DetailContainer = styled.div`
   /* background-color: blueviolet; */
   height: 80%;
   min-width: 600px;
-	max-width: 800px;
+  max-width: 800px;
   margin: 30px auto;
 `;
 

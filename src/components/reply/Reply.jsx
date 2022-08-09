@@ -6,31 +6,34 @@ import { removeReply } from '../../redux/reducer/rangReducer';
 import ReplyButton from './ReplyButton';
 
 function Reply(props) {
-	console.log('reply one', props);
+  // console.log('reply one', props);
 
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-	const onRemoveReplyHandler = (replyId) => {
-		console.log('remove reply', replyId);
-		dispatch(removeReply(replyId));
-	}
+  const onRemoveReplyHandler = (replyId) => {
+    dispatch(removeReply(replyId));
+  };
 
-	return (
-		<Content>
+  return (
+    <Content>
       <ContentHeader>
         <div>
           <span>{props.reply.userName}</span>
           <span>{props.reply.createAt}</span>
         </div>
         <BtnContainer>
-          <ReplyButton onClick={() => navigate('/ReplyWrite')}>수정하기</ReplyButton>
-          <ReplyButton onClick={() => onRemoveReplyHandler(props.reply.id)}>삭제하기</ReplyButton>
+          <ReplyButton onClick={() => navigate('/ReplyWrite')}>
+            수정하기
+          </ReplyButton>
+          <ReplyButton onClick={() => onRemoveReplyHandler(props.reply.id)}>
+            삭제하기
+          </ReplyButton>
         </BtnContainer>
       </ContentHeader>
       <p>{props.reply.content}</p>
     </Content>
-	)
+  );
 }
 
 const Content = styled.div`
@@ -59,7 +62,7 @@ const ContentHeader = styled.div`
 `;
 
 const BtnContainer = styled.div`
-	display: flex;
+  display: flex;
 `;
 
 export default Reply;

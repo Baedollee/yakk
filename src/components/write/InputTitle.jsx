@@ -17,8 +17,6 @@ const InputTitle = () => {
   //   }
   // };
 
-  console.log(title);
-
   return (
     <StInputTitle>
       <StTitle>제 목</StTitle>

@@ -3,25 +3,22 @@ import styled, { css } from 'styled-components';
 import { EditOutlined, HomeOutlined } from '@ant-design/icons';
 
 function ReplyButton(props) {
-  console.log('reply button', props);
-	console.log(props.id);
+  const checkId = (id) => {
+    switch (id) {
+      case 'homeBtn':
+        return <HomeOutlined />;
+      case 'addBtn':
+        return <EditOutlined />;
+      default:
+        return props.children;
+    }
+  };
 
-	const checkId = (id) => {
-		switch (id) {
-			case 'homeBtn':
-				return <HomeOutlined />
-			case 'addBtn':
-				return <EditOutlined />
-			default:
-				return props.children;
-		}
-	}
-
-	return (
-		<BtnContainer {...props} disabled={props.disabled}>
-			{checkId(props.id)}
-		</BtnContainer>
-	);
+  return (
+    <BtnContainer {...props} disabled={props.disabled}>
+      {checkId(props.id)}
+    </BtnContainer>
+  );
 }
 
 const BtnContainer = styled.div`
@@ -33,21 +30,21 @@ const BtnContainer = styled.div`
     switch (id) {
       case 'homeBtn':
       case 'addBtn':
-				<EditOutlined />
+        <EditOutlined />;
         return css`
           width: 50px;
           height: 50px;
-					font-size: 30px;
+          font-size: 30px;
         `;
 
       default:
         return css`
           width: 80px;
           height: 30px;
-					margin: auto 10px;
-				  border: 2px solid blueviolet;
-				  border-radius: 10px;
-					font-size: 15px;
+          margin: auto 10px;
+          border: 2px solid blueviolet;
+          border-radius: 10px;
+          font-size: 15px;
         `;
     }
   }}
