@@ -38,6 +38,7 @@ export const commentList = createSlice({
       state.commentList = state.commentList.concat({
         ...action.payload,
         createAt: new Date().toISOString(),
+				like: false
       });
       console.log(action);
     },

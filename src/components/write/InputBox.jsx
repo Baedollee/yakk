@@ -4,18 +4,19 @@ import InputWriter from './InputWriter';
 import InputContent from './InputContent';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
+import KingButton from '../kingButton/Button';
 
 const InputBox = ({ commentList, onchangeHandler }) => {
   const navigate = useNavigate();
   return (
     <InputBoxContainer>
-      <div
+      <KingButton id='backBtn'
         style={{ fontSize: '2em', cursor: 'pointer', marginRight: '85%' }}
         onClick={() => {
           navigate(-1);
         }}>
         🔙
-      </div>
+      </KingButton>
       <InputWriter onchangeHandler={onchangeHandler} />
       <InputContent onchangeHandler={onchangeHandler} />
       <Button commentList={commentList} />

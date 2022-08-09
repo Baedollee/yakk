@@ -11,6 +11,7 @@ import { getComment } from '../redux/reducer/baeReducer';
 function Reply() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
+	console.log('reply', id);
 
 	// comment by reducer
 	const comment = useSelector((state) => state.comment.comment);

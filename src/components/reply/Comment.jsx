@@ -11,6 +11,21 @@ function Comment({ comment, replyLength }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
+	console.log(comment);
+	
+  const timeCalc = (date) => {
+    let today = new Date();
+    date = new Date(date);
+
+    let time = (today.getTime() - date.getTime()) / 1000 / 60; // min
+    if (time < 1) return '방금 전';
+    if (time < 60) return parseInt(time) + '분 전';
+    time /= 60; // hour
+    if (time < 24) return parseInt(time) + '시간 전';
+    time /= 24; // day
+    return parseInt(time) + '일 전';
+  };
+
 	const onRemoveCommentHandler = (commentId) => {
 		console.log('remove comment', commentId);
 		dispatch(removeComment(commentId));
@@ -22,8 +37,8 @@ function Comment({ comment, replyLength }) {
 		<Content>
 			<ContentHeader>
 				<div>
-					<span>{comment.userName}</span>
-					<span>{comment.createAt}</span>
+					<span>{comment.username}</span>
+					<span>{timeCalc(comment.createAt)}</span>
 				</div>
 				<BtnContainer>
 					<ReplyButton onClick={() => navigate(`/Write/${comment.id}`)}>수정하기</ReplyButton>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment } from '../../redux/reducer/baeReducer';
 import { useNavigate } from 'react-router-dom';
+import KingButton from '../kingButton/Button';
 
 const Button = ({ commentList }) => {
   const dispatch = useDispatch();
@@ -27,12 +28,12 @@ const Button = ({ commentList }) => {
 
   return (
     <>
-      <StButton
+      <KingButton id='writeBtn'
         onClick={() => {
           onClickHandler(commentList);
         }}>
         작성 완료
-      </StButton>
+      </KingButton>
     </>
   );
 };
