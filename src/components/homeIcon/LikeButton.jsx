@@ -13,9 +13,14 @@ const LikeButton = ({ post }) => {
   return (
     <div style={{ display: 'flex' }} onClick={onClick}>
       {post.like ? (
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div
+          style={{
+            justifyContent: 'space-between',
+            display: 'flex',
+            flexDirection: 'row',
+          }}>
           <KingButton id="heartFillBtn" />
-          <p>좋아요</p>
+          <p style={{ margin: '0' }}>좋아요!</p>
         </div>
       ) : (
         <div>

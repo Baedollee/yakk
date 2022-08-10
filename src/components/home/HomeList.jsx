@@ -16,7 +16,6 @@ const HomeList = ({ post }) => {
   };
 
   const onMoveReply = () => {
-		console.log(post.id);
     navigate(`/Reply/${post.id}`, {
       state: {
         comment: {
@@ -44,69 +43,87 @@ const HomeList = ({ post }) => {
 
   return (
     <>
-      <TextListDiv>
-        <MentionDiv>
-          <h3>{post.username}</h3>
-
-          <TimeDiv>{timeCalc(post.createAt)}</TimeDiv>
-        </MentionDiv>
+      <ListContainerDiv>
+        <ListWrapDiv>
+          <div>
+            <span>{post.username}</span>
+            <span>{timeCalc(post.createAt)}</span>
+          </div>
+        </ListWrapDiv>
         <User>
           <h3>{post.content}</h3>
         </User>
-
         <BtnWrapDiv>
-          <LikeButton post={post} />
-          <BtnChatDiv onClick={onMoveReply}>
-            <Chat />
-            <div>2</div>
-          </BtnChatDiv>
-          <DeleteButton onClick={handleDelete}>
-            <DeleteIcon />
-          </DeleteButton>
+          <div>
+            <LikeButton post={post} />
+          </div>
+          <div>
+            <BtnChatDiv onClick={onMoveReply}>
+              <Chat />
+              <span>2</span>
+            </BtnChatDiv>
+          </div>
+          <div>
+            <DeleteButton onClick={handleDelete}>
+              <DeleteIcon />
+            </DeleteButton>
+          </div>
         </BtnWrapDiv>
-      </TextListDiv>
+      </ListContainerDiv>
     </>
   );
 };
 
-const TextListDiv = styled.div`
-  border-bottom: 1px solid #ddd;
-  padding: 20px 50px;
+const ListContainerDiv = styled.div`
+  margin-bottom: 20px;
+  border: 1px solid #f4f4f4;
+  border-radius: 10px;
 `;
-const HeaderDiv = styled.div`
+const ListWrapDiv = styled.div`
+  margin: 20px;
   display: flex;
+  justify-content: space-between;
+  div {
+    span {
+      margin-right: 10px;
+    }
+  }
 `;
+
 const User = styled.div`
+  margin-left: 20px;
   font-size: 15px;
   font-weight: 700;
-  color: red;
+  color: white;
 `;
-const TimeDiv = styled.div`
-  margin: 5px;
-  font-size: 3px;
-  color: red;
-`;
-const MentionDiv = styled.div`
-  margin-top: 7px;
-  font-size: 15px;
-`;
+
 const BtnWrapDiv = styled.div`
+  margin: 20px;
   display: flex;
+  justify-content: flex-start;
+  div {
+    margin-right: 2px;
+    span {
+      margin-left: 5px;
+    }
+  }
+
   /* justify-content: flex-start; */
   /* margin: 1em 0 0 0; */
 `;
-const BtnLikeDiv = styled.div`
-  display: flex;
-`;
+
 const BtnChatDiv = styled.div`
   display: flex;
 `;
 const DeleteButton = styled.button`
+  /* 버튼 테크 테두리 없애주는  */
   border: none;
-  background-color: white;
+  background-color: #08182b;
+  color: white;
   :focus {
     border: none;
     outline: none !important;
-  }
+  }import { useSelector } from 'react-redux/es/exports';
+
 `;
 export default HomeList;
