@@ -2,14 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import { HeartOutlined, HeartFilled, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import ReplyButton from './ReplyButton';
 import { useDispatch } from 'react-redux';
 import { removeComment } from '../../redux/reducer/baeReducer';
-
+import { colorWhite, colorPink2 } from '../color/ColorPalette';
+import KingButton from '../kingButton/Button';
 
 function Comment({ comment, replyLength }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	console.log(comment);
+	
+  const timeCalc = (date) => {
+    let today = new Date();
+    date = new Date(date);
+
+    let time = (today.getTime() - date.getTime()) / 1000 / 60; // min
+    if (time < 1) return '방금 전';
+    if (time < 60) return parseInt(time) + '분 전';
+    time /= 60; // hour
+    if (time < 24) return parseInt(time) + '시간 전';
+    time /= 24; // day
+    return parseInt(time) + '일 전';
+  };
 
 	const onRemoveCommentHandler = (commentId) => {
 		console.log('remove comment', commentId);
@@ -18,16 +33,22 @@ function Comment({ comment, replyLength }) {
 		navigate(-1);
 	}
 
+	const onMoveWriteHandler = () => {
+		navigate(`/Write/${comment.id}`, {
+			state: { commentId: comment.id }
+		})
+	}
+
 	return (
 		<Content>
 			<ContentHeader>
 				<div>
-					<span>{comment.userName}</span>
-					<span>{comment.createAt}</span>
+					<span>{comment.username}</span>
+					<span>{timeCalc(comment.createAt)}</span>
 				</div>
 				<BtnContainer>
-					<ReplyButton onClick={() => navigate(`/Write/${comment.id}`)}>수정하기</ReplyButton>
-					<ReplyButton onClick={() => onRemoveCommentHandler(comment.id)}>삭제하기</ReplyButton>
+					<KingButton onClick={onMoveWriteHandler}>수정하기</KingButton>
+					<KingButton onClick={() => onRemoveCommentHandler(comment.id)}>삭제하기</KingButton>
 				</BtnContainer>
 			</ContentHeader>
 			<p>{comment.content}</p>
@@ -48,7 +69,7 @@ function Comment({ comment, replyLength }) {
 const Content = styled.div`
   margin-bottom: 20px;
   /* background-color: beige; */
-  border: 1px solid black;
+  border: 1px solid ${colorWhite};
   border-radius: 10px;
 
   p {

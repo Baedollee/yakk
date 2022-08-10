@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { addComment } from '../../redux/reducer/baeReducer';
+import { addComment, editComment } from '../../redux/reducer/baeReducer';
 import { useNavigate } from 'react-router-dom';
+import KingButton from '../kingButton/Button';
 
-const Button = ({ commentList }) => {
+const Button = ({ commentList, isEdit }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const a = useSelector((state) => state.comment.commentList);
   console.log('a:', a);
-  console.log(commentList.username);
+  // console.log(commentList.username);
 
   const onClickHandler = () => {
     if (commentList.username === '' && commentList.content === '') {
@@ -18,21 +19,28 @@ const Button = ({ commentList }) => {
     } else if (commentList.content.split('').length > 200) {
       alert('내용을 200자 이하로 입력해주세요!');
     } else {
-      dispatch(addComment(commentList));
-      console.log(commentList);
-      alert('작성 완료!');
-      navigate('/');
+			console.log('click button', commentList);
+			if (isEdit) {
+				dispatch(editComment(commentList));
+				alert('수정 완료!');
+			} else {
+				dispatch(addComment(commentList));
+				console.log(commentList);
+				alert('작성 완료!');
+			}
+      navigate(-1);
     }
   };
 
   return (
     <>
-      <StButton
+      {/* <KingButton id='writeBtn'
         onClick={() => {
           onClickHandler(commentList);
         }}>
         작성 완료
-      </StButton>
+      </KingButton> */}
+			<KingButton id='writeBtn' onClick={onClickHandler}>{isEdit ? '수정' : '작성'} 완료</KingButton>
     </>
   );
 };

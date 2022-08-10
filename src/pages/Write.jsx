@@ -1,13 +1,16 @@
 import Header from '../components/write/Header';
 import Form from '../components/write/Form';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 
 const Write = () => {
+	const { id } = useParams();
+	console.log('write', id);
   
   return (
     <WriteContainer>
       <Header />
-      <Form />
+      <Form commentId={id}/>
     </WriteContainer>
   );
 };

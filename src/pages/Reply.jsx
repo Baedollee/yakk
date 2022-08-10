@@ -7,9 +7,12 @@ import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
 import { getComment } from '../redux/reducer/baeReducer';
 
+import { colorBlack, colorWhite } from '../components/color/ColorPalette';
+
 function Reply() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  console.log('reply', id);
 
   // comment by reducer
   const comment = useSelector((state) => state.comment.comment);
@@ -30,15 +33,21 @@ function Reply() {
   );
 
   return (
-    <>
+    <ReplyContainer>
       <ReplyHeader />
       <DetailContainer>
         <Comment comment={comment} replyLength={findReplyList.length} />
         <ReplyList commentId={comment.id} replyList={findReplyList} />
       </DetailContainer>
-    </>
+    </ReplyContainer>
   );
 }
+
+const ReplyContainer = styled.div`
+  height: 100vh;
+  background-color: ${colorBlack};
+  color: ${colorWhite};
+`;
 
 const DetailContainer = styled.div`
   /* background-color: blueviolet; */

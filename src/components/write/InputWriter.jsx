@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-const InputWriter = ({ onchangeHandler }) => {
-
+const InputWriter = ({ onchangeHandler, username, isEdit }) => {
   return (
     <StInputWriter>
       <StWriter>작성자</StWriter>
@@ -9,7 +8,8 @@ const InputWriter = ({ onchangeHandler }) => {
         type="text"
         placeholder="5자 이내로 작성해주세요."
         name='username'
-        onChange={onchangeHandler}
+				value={username}
+        onChange={(e) => {onchangeHandler(e, isEdit)}}
       />
     </StInputWriter>
   );
