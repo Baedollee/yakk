@@ -14,7 +14,7 @@ const Form = () => {
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
     setCommentList({
-      id: comment.length + 1,
+      id: (comment.length + 1).toString(),
       ...commentList,
       [name]: value,
     });

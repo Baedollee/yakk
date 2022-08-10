@@ -7,36 +7,36 @@ import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
 import { getComment } from '../redux/reducer/baeReducer';
 
-
 function Reply() {
-	const { id } = useParams();
-	const dispatch = useDispatch();
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-	// comment by reducer
-	const comment = useSelector((state) => state.comment.comment);
-	console.log('comment reducer', comment);
+  // comment by reducer
+  const comment = useSelector((state) => state.comment.comment);
+  //   console.log('comment reducer', comment);
 
-	useEffect(() => {
-		dispatch(getComment(id));
-	}, [comment]);
+  useEffect(() => {
+    dispatch(getComment(id));
+  }, [comment]);
 
-	// comment by parameter
-	// const location = useLocation();
-	// const comment = location.state.comment;
-	// console.log('reply', id, comment);
+  // comment by parameter
+  // const location = useLocation();
+  // const comment = location.state.comment;
+  // console.log('reply', id, comment);
 
-	const replyList = useSelector((state) => state.reply.replyList);
-	const findReplyList = replyList.filter((item) => item.commentId === comment.id);
-	// console.log(findReplyList);
+  const replyList = useSelector((state) => state.reply.replyList);
+  const findReplyList = replyList.filter(
+    (item) => item.commentId === comment.id
+  );
 
   return (
-		<>
-			<ReplyHeader />
-	    <DetailContainer>
-				<Comment comment={comment} replyLength={findReplyList.length}/>
-				<ReplyList commentId={comment.id} replyList={findReplyList} />
-	    </DetailContainer>
-		</>
+    <>
+      <ReplyHeader />
+      <DetailContainer>
+        <Comment comment={comment} replyLength={findReplyList.length} />
+        <ReplyList commentId={comment.id} replyList={findReplyList} />
+      </DetailContainer>
+    </>
   );
 }
 

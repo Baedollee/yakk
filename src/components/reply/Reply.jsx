@@ -15,19 +15,9 @@ function Reply({ commentId, reply }) {
     });
   };
 
-	const onMoveReplyWrite = () => {
-		navigate(`/Reply/${commentId}/ReplyWrite`, { state: { replyId: reply.id }});
-	}
-	
-	const onRemoveReplyHandler = (replyId) => {
-		console.log('remove reply', replyId);
-		dispatch(removeReply(replyId));
-	}
-	
-	const timeCalc = (date) => {
-		let today = new Date();
-		date = new Date(date);
-
+  const onRemoveReplyHandler = (replyId) => {
+    dispatch(removeReply(replyId));
+  };
 
   const timeCalc = (date) => {
     let today = new Date();
