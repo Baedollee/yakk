@@ -1,27 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import HomeHeader from '../components/home/HomeHeader';
 import HomeList from '../components/home/HomeList';
-<<<<<<< HEAD
 import { useEffect } from 'react';
 import axios from 'axios';
 import { setComment } from '../redux/reducer/baeReducer';
 import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 import styled from 'styled-components';
-=======
 import { asyncGetAllPost } from '../redux/reducer/baeReducer';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
->>>>>>> develop
 
 const Home = () => {
   // const url = process.env.REACT_APP_URL;
 
   const postList = useSelector((state) => state.comment.commentList);
   const dispatch = useDispatch();
-<<<<<<< HEAD
-=======
   const [_post, _setPost] = useState([]);
->>>>>>> develop
 
   const fetchPost = async () => {
     const { data } = await axios.get('http://localhost:3001/postList');
@@ -39,7 +33,6 @@ const Home = () => {
   // };
 	
   useEffect(() => {
-<<<<<<< HEAD
     axios
       .get('http://localhost:3001/postList')
       .then((response) => {
@@ -59,9 +52,7 @@ const Home = () => {
       .get(`http://localhost:3001/api/replyList?postId={postId}`)
       .then((res) => {})
       .catch((err) => console.log(err));
-=======
 		dispatch(asyncGetAllPost());
->>>>>>> develop
     return () => {};
   }, [JSON.stringify(postList)]);
 
@@ -72,14 +63,9 @@ const Home = () => {
   return (
     <HomeContainer>
       <HomeHeader />
-<<<<<<< HEAD
       <HomeListContainer>
-        {postList.map((item, index) => {
-=======
-      <div>
         //{_post.map((item, index) => {
         {postList?.map((item, index) => {
->>>>>>> develop
           if (postList.length > 0) {
             return <HomeList key={`${item.id}_${item.userName}`} post={item} />;
           } else {

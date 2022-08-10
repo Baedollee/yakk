@@ -92,11 +92,7 @@ const initialState = {
       content: '비가 주륵주륵!',
       createAt: nowDate,
       like: false,
-<<<<<<< HEAD
-      replyCount: 0,
-=======
 			replyNum: 0
->>>>>>> develop
     },
     {
       id: '1',
@@ -104,29 +100,23 @@ const initialState = {
       content: '비가 주륵주륵 아휴!',
       createAt: nowDate,
       like: false,
-<<<<<<< HEAD
-      replyCount: 0,
-    },
-  ],
-=======
 			replyNum: 2
     },
   ],
   
->>>>>>> develop
   comment: {
     id: '0',
     userName: '배돌이',
     content: '비가 주륵주륵!',
     createAt: nowDate,
     like: false,
-<<<<<<< HEAD
-    replyCount: 0,
-=======
 		replyNum: 0
->>>>>>> develop
   },
 };
+
+export const asyncGetPostComment = createAsyncThunk(
+
+)
 
 export const commentList = createSlice({
   name: 'commentList',
@@ -141,45 +131,6 @@ export const commentList = createSlice({
       {
         ...action.payload,
         createAt: new Date().toISOString(),
-<<<<<<< HEAD
-        like: false,
-      });
-      console.log(action);
-    },
-    removeComment: (state, action) => {
-      // action.paylod -> id
-      state.commentList = state.commentList.filter(
-        (item) => item.id !== action.payload
-      );
-    },
-    editComment: (state, action) => {
-      // action.payload -> comment
-      state.commentList = state.commentList.map((item) => {
-        if (item.id === action.payload.id) {
-          return action.payload;
-        } else {
-          return item;
-        }
-      });
-    },
-    likeComment: (state, action) => {
-      state.commentList = state.commentList.map((item, index) => {
-        if (item.id === action.payload) {
-          return { ...item, like: !item.like };
-        } else {
-          return item;
-        }
-      });
-      console.log(action);
-    },
-    getComment: (state, action) => {
-      // action.payload -> id
-      state.comment = state.commentList.find(
-        (item) => item.id === action.payload
-      );
-    },
-  },
-=======
 				like: false
       })
       .then(response => {
@@ -297,7 +248,6 @@ export const commentList = createSlice({
 			}
 		});
 	}
->>>>>>> develop
 });
 
 export const {
