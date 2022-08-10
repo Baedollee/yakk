@@ -40,6 +40,7 @@ const replyList = createSlice({
 		},
 		editReply: (state, action) => {
 			// action.payload -> reply
+			// console.log('edit reducer', action.payload);
 			state.replyList = state.replyList.map((item) => {
 				if (item.id === action.payload.id) {
 					return action.payload;

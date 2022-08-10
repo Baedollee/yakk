@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import KingButton from '../kingButton/Button';
 import Reply from './Reply';
-import ReplyButton from './ReplyButton';
 
 
 function ReplyList({ commentId, replyList }) {
@@ -20,7 +20,7 @@ function ReplyList({ commentId, replyList }) {
 		<div>
 			<ReplyHeader>
 				<h4>댓글</h4>
-				<ReplyButton onClick={() => navigate(`/Reply/${commentId}/ReplyWrite`)}>댓글 작성</ReplyButton>
+				<KingButton onClick={() => navigate(`/Reply/${commentId}/ReplyWrite`)}>댓글 작성</KingButton>
 			</ReplyHeader>
 			{checkReply(replyList)}
 		</div>

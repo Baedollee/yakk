@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from './ReplyButton';
 import { EditOutlined } from '@ant-design/icons';
+import { colorPink1 } from '../color/ColorPalette';
+import KingButton from '../kingButton/Button';
 
 function ReplyHeader() {
   const navigate = useNavigate();
@@ -14,14 +15,14 @@ function ReplyHeader() {
   return (
     <HeaderContainer>
       <HeaderLayout>
-        {/* <Button id="homeBtn"><img src="../public/logo512.png" /></Button> */}
-        <Button id="homeBtn" onClick={onMoveHome}>
+        {/* <KingButton id="homeBtn"><img src="../public/logo512.png" /></KingButton> */}
+        <KingButton id="homeBtn" onClick={onMoveHome}>
           홈
-        </Button>
-        <h1>Yakk</h1>
-        <Button id="addBtn" onClick={() => navigate('/Write')}>
+        </KingButton>
+        <h1>YAKK</h1>
+        <KingButton id="addBtn" onClick={() => navigate('/Write')}>
           추가하기
-        </Button>
+        </KingButton>
       </HeaderLayout>
     </HeaderContainer>
   );
@@ -29,7 +30,7 @@ function ReplyHeader() {
 
 const HeaderContainer = styled.div`
   height: 150px;
-  background-color: aliceblue;
+  background-color: ${colorPink1};
 
   display: flex;
   justify-content: center;

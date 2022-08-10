@@ -16,6 +16,7 @@ const HomeList = ({ post }) => {
   };
 
   const onMoveReply = () => {
+		console.log(post.id);
     navigate(`/Reply/${post.id}`, {
       state: {
         comment: {

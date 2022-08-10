@@ -38,6 +38,7 @@ export const commentList = createSlice({
       state.commentList = state.commentList.concat({
         ...action.payload,
         createAt: new Date().toISOString(),
+				like: false
       });
       console.log(action);
     },
@@ -52,7 +53,7 @@ export const commentList = createSlice({
 
       state.commentList = state.commentList.map((item) => {
         if (item.id === action.payload.id) {
-          return action.payload;
+          return { ...action.payload, createAt: item.createAt, like: item.like };
         } else {
           return item;
         }

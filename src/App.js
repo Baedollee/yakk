@@ -4,10 +4,11 @@ import Reply from './pages/Reply.jsx';
 
 import { Routes, Route } from 'react-router-dom';
 import ReplyWrite from './pages/ReplyWrite';
+import styled from 'styled-components';
 
 function App() {
   return (
-    <div>
+    <Container>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Write" element={<Write />} />
@@ -15,9 +16,15 @@ function App() {
         <Route path="/Reply/:id" element={<Reply />} />
         <Route path="/Reply/:id/ReplyWrite" element={<ReplyWrite />} />
       </Routes>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+	* {
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+`;
 
 export default App;
 
