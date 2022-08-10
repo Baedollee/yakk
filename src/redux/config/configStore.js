@@ -6,6 +6,7 @@ const store = configureStore({
   reducer: {
     reply: rangReducer,
     comment: baeReducer,
+		devTools: process.env.NODE_ENV !== 'production',
   },
 });
 
