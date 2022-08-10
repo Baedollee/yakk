@@ -18,16 +18,16 @@ function Reply({ commentId, reply }) {
     });
   };
 
-	// const onMoveReplyWrite = () => {
-	// 	navigate(`/Reply/${commentId}/ReplyWrite`, { state: { replyId: reply.id }});
-	// }
-	
-	const onRemoveReplyHandler = (replyId) => {
-		console.log('remove reply', replyId);
-		// dispatch(removeReply(replyId));
-		dispatch(asyncRemoveReply(replyId));
-		dispatch(asyncMinusReplyNum(commentId));
-	}
+  // const onMoveReplyWrite = () => {
+  // 	navigate(`/Reply/${commentId}/ReplyWrite`, { state: { replyId: reply.id }});
+  // }
+
+  const onRemoveReplyHandler = (replyId) => {
+    console.log('remove reply', replyId);
+    // dispatch(removeReply(replyId));
+    dispatch(asyncRemoveReply(replyId));
+    dispatch(asyncMinusReplyNum(commentId));
+  };
 
   const timeCalc = (date) => {
     let today = new Date();

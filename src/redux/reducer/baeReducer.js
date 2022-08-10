@@ -114,10 +114,17 @@ const initialState = {
   },
 };
 
+export const asyncGetPostComment = createAsyncThunk(
+
+)
+
 export const commentList = createSlice({
   name: 'commentList',
   initialState,
   reducers: {
+    setComment: (state, action) => {
+      state.commentList = action.payload;
+    },
     addComment: (state, action) => {
       // action.payload -> comment
       state.commentList.concat(axios.post('http://localhost:3001/postList',
@@ -249,6 +256,7 @@ export const {
   editComment,
   getComment,
   likeComment,
+  setComment,
 } = commentList.actions;
 
 export default commentList.reducer;

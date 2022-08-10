@@ -8,11 +8,9 @@ import { colorWhite, colorPink2 } from '../color/ColorPalette';
 import KingButton from '../kingButton/Button';
 
 function Comment({ comment, replyLength }) {
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-	// console.log(comment);
-	
   const timeCalc = (date) => {
     let today = new Date();
     date = new Date(date);
@@ -26,45 +24,46 @@ function Comment({ comment, replyLength }) {
     return parseInt(time) + '일 전';
   };
 
-	const onRemoveCommentHandler = (commentId) => {
-		console.log('remove comment', commentId);
-		// dispatch(removeComment(commentId));
-		dispatch(asyncRemovePost(commentId));
-		alert('글이 삭제되었습니다.');
-		navigate(-1);
-	}
+  const onRemoveCommentHandler = (commentId) => {
+    console.log('remove comment', commentId);
+    // dispatch(removeComment(commentId));
+    dispatch(asyncRemovePost(commentId));
+    alert('글이 삭제되었습니다.');
+    navigate(-1);
+  };
 
-	const onMoveWriteHandler = () => {
-		navigate(`/Write/${comment.id}`, {
-			state: { commentId: comment.id }
-		})
-	}
+  const onMoveWriteHandler = () => {
+    navigate(`/Write/${comment.id}`, {
+      state: { commentId: comment.id },
+    });
+  };
 
-	return (
-		<Content>
-			<ContentHeader>
-				<div>
-					<span>{comment.username}</span>
-					<span>{timeCalc(comment.createAt)}</span>
-				</div>
-				<BtnContainer>
-					<KingButton onClick={onMoveWriteHandler}>수정하기</KingButton>
-					<KingButton onClick={() => onRemoveCommentHandler(comment.id)}>삭제하기</KingButton>
-				</BtnContainer>
-			</ContentHeader>
-			<p>{comment.content}</p>
-			<ContentFooter>
-				<ContentComment>
-					<CommentOutlined />
-					<span>{replyLength}</span>
-					<HeartOutlined />
-					{/* <HeartFilled /> */}
-					<span>10</span>
-				</ContentComment>
-			</ContentFooter>
-		</Content>
-	)
-
+  return (
+    <Content>
+      <ContentHeader>
+        <div>
+          <span>{comment.username}</span>
+          <span>{timeCalc(comment.createAt)}</span>
+        </div>
+        <BtnContainer>
+          <KingButton onClick={onMoveWriteHandler}>수정하기</KingButton>
+          <KingButton onClick={() => onRemoveCommentHandler(comment.id)}>
+            삭제하기
+          </KingButton>
+        </BtnContainer>
+      </ContentHeader>
+      <p>{comment.content}</p>
+      <ContentFooter>
+        <ContentComment>
+          <CommentOutlined />
+          <span>{replyLength}</span>
+          <HeartOutlined />
+          {/* <HeartFilled /> */}
+          <span>10</span>
+        </ContentComment>
+      </ContentFooter>
+    </Content>
+  );
 }
 
 const Content = styled.div`

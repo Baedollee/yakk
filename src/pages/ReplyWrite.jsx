@@ -4,23 +4,22 @@ import styled from 'styled-components';
 import { useLocation, useParams } from 'react-router-dom';
 
 const ReplyWrite = () => {
-	const { id } = useParams();
-	console.log('replyWrite', id);
+  const { id } = useParams();
 
-	const location = useLocation();
-	let replyId = '';
-	
-	if (location.state !== null) {
-		replyId = location.state.replyId;
-	} else {
-		console.log('it\'s null');
-	}
-  
+  const location = useLocation();
+  let replyId = '';
+
+  if (location.state !== null) {
+    replyId = location.state.replyId;
+  } else {
+    console.log("it's null");
+  }
+
   return (
     <WriteContainer>
-			<h1>댓글 작성 화면</h1>
+      <h1>댓글 작성 화면</h1>
       <Header />
-      <Form commentId={id} replyId={replyId}/>
+      <Form commentId={id} replyId={replyId} />
     </WriteContainer>
   );
 };

@@ -3,36 +3,52 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import HomeIcon from '../homeIcon/HomeIcon';
 import WriteIcon from '../homeIcon/WriteIcon';
+import { colorPink1 } from '../color/ColorPalette';
 
 const HomeHeader = () => {
   let navigate = useNavigate();
   return (
     <ContainerDiv>
-      <div
-        onClick={() => {
-          navigate('/');
-        }}>
-        <HomeIcon />
-      </div>
+      <WrapDiv>
+        <div
+          onClick={() => {
+            navigate('/');
+          }}>
+          <HomeIcon />
+        </div>
 
-      <div>yakk</div>
+        <h1>YAKK</h1>
 
-      <div
-        onClick={() => {
-          navigate('/Write');
-        }}>
-        <WriteIcon />
-      </div>
+        <div
+          onClick={() => {
+            navigate('/Write');
+          }}>
+          <WriteIcon />
+        </div>
+      </WrapDiv>
     </ContainerDiv>
   );
 };
 
 const ContainerDiv = styled.div`
-  align-items: center;
-  border: 1px solid #ddd;
+  height: 6em;
+
+  background-color: ${colorPink1};
+
   display: flex;
-  height: 5em;
+  justify-content: center;
+`;
+
+const WrapDiv = styled.div`
+  min-width: 600px;
+
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  padding: 0 3em;
+  align-items: center;
 `;
 export default HomeHeader;
