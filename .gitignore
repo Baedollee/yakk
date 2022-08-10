@@ -9,7 +9,7 @@
 /coverage
 
 # json-server
-/server/db.json
+db.json
 
 # production
 /build
