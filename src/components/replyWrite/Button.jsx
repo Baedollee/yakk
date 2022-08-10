@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { asyncPlusReplyNum } from '../../redux/reducer/baeReducer';
 import { addReply, asyncAddReply, asyncEditReply, editReply } from '../../redux/reducer/rangReducer';
 
 const Button = ({ commentId, username, content, reply, isEdit }) => {
@@ -18,6 +19,8 @@ const Button = ({ commentId, username, content, reply, isEdit }) => {
 		// console.log('reply add', reply);
 		// dispatch(addReply(reply));
 		dispatch(asyncAddReply(reply));
+		dispatch(asyncPlusReplyNum(commentId));
+		console.log('finish add reply num at post');
 		navigate(-1);
 	}
 

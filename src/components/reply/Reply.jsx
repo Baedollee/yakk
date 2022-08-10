@@ -6,6 +6,7 @@ import { asyncRemoveReply, removeReply } from '../../redux/reducer/rangReducer';
 import ReplyButton from './ReplyButton';
 import { colorWhite } from '../color/ColorPalette';
 import KingButton from '../kingButton/Button';
+import { asyncMinusReplyNum } from '../../redux/reducer/baeReducer';
 
 function Reply({ commentId, reply }) {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function Reply({ commentId, reply }) {
 		console.log('remove reply', replyId);
 		// dispatch(removeReply(replyId));
 		dispatch(asyncRemoveReply(replyId));
+		dispatch(asyncMinusReplyNum(commentId));
 	}
 
   const timeCalc = (date) => {

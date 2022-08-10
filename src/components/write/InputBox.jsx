@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import KingButton from '../kingButton/Button';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getComment } from '../../redux/reducer/baeReducer';
+import { asyncGetPost, getComment } from '../../redux/reducer/baeReducer';
 
 const InputBox = ({ commentList, onchangeHandler, commentId, setCommentList }) => {
   const navigate = useNavigate();
@@ -18,15 +18,17 @@ const InputBox = ({ commentList, onchangeHandler, commentId, setCommentList }) =
 
 	useEffect(() => {
 		if (commentId !== undefined) {
-			dispatch(getComment(commentId));
+			// dispatch(getComment(commentId));
+			dispatch(asyncGetPost(commentId));
 			setCommentList({
+				...comment,
 				username: comment.username,
-				content: comment.content
+				content: comment.content,
 			});
 			setIsEdit(true);
 		}
 		console.log('finish get comment', comment);
-	}, [comment]);
+	}, [JSON.stringify(comment)]);
 
   return (
     <InputBoxContainer>
