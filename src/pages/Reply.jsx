@@ -5,23 +5,7 @@ import { useParams,useLocation } from 'react-router-dom';
 import ReplyHeader from '../components/reply/ReplyHeader';
 import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
-import { asyncGetPost, getComment } from '../redux/reducer/baeReducer';
-import { asyncGetPostReply } from '../redux/reducer/rangReducer';
-import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 
-function Reply() {
-	const { id } = useParams();
-	const dispatch = useDispatch();
-	// console.log('reply', id);
-
-  // comment by reducer
-  const comment = useSelector((state) => state.comment.comment);
-  //   // console.log('comment reducer', comment);
-
-  useEffect(() => {
-    dispatch(getComment(id));
-  }, [comment]);
-=======
 import { asyncGetPost, getComment } from '../redux/reducer/baeReducer';
 import { asyncGetPostReply } from '../redux/reducer/rangReducer';
 import { colorBlack, colorWhite } from '../components/color/ColorPalette';
@@ -34,8 +18,6 @@ function Reply() {
 	// comment by reducer
 	const comment = useSelector((state) => state.comment.comment);
 	// console.log('comment reducer', comment);
-
->>>>>>> develop
 
   // comment by parameter
   // const location = useLocation();
