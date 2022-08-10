@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import axios from 'axios';
 const nowDate = new Date().toISOString();
 
 const initialState = {
   commentList: [
-    {
+      {
       id: '0',
       username: '배돌이',
       content: '비가 주륵주륵!',
@@ -19,7 +19,7 @@ const initialState = {
       like: false,
     },
   ],
-
+  
   comment: {
     id: '0',
     userName: '배돌이',
@@ -35,11 +35,18 @@ export const commentList = createSlice({
   reducers: {
     addComment: (state, action) => {
       // action.payload -> comment
-      state.commentList = state.commentList.concat({
+      state.commentList.concat(axios.post('http://localhost:3001/postList',
+      {
         ...action.payload,
         createAt: new Date().toISOString(),
 				like: false
-      });
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err.response);
+      }));
       console.log(action);
     },
     removeComment: (state, action) => {

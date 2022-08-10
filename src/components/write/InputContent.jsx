@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colorBlack, colorPink1, colorWhite } from '../color/ColorPalette';
 
 const InputContent = ({ onchangeHandler, content, isEdit }) => {
   // const [content, setContent] = useState('');
@@ -28,19 +29,33 @@ const StInputContent = styled.div`
   width: 90%;
   height: 40%;
 
-  color: #fff;
+  color: ${colorWhite};
 `;
 const StInput = styled.textarea`
   width: 80%;
   height: 90%;
 
-  border: 2px solid #666;
-  border-radius: 10px;
+  font-size: 1em;
 
+  border: 2px solid ${colorPink1};
+  border-radius: 7px;
+  background-color:${colorBlack};
   resize: none;
   overflow: hidden;
 
+  color:${colorWhite};
+
   padding: 10px;
+  background-color:none;
+
+  :focus{
+    outline:none;
+  }
+  /* outline-color:${colorPink1}; */
+
+  ::placeholder {
+    color:${colorWhite};
+  }
 `;
 const StContent = styled.div`
   width: 60px;
