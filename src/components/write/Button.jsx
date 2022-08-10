@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { addComment, editComment } from '../../redux/reducer/baeReducer';
+import { addComment, asyncAddPost, asyncEditPost, editComment } from '../../redux/reducer/baeReducer';
 import { useNavigate } from 'react-router-dom';
 import KingButton from '../kingButton/Button';
 
@@ -21,10 +21,12 @@ const Button = ({ commentList, isEdit }) => {
     } else {
 			console.log('click button', commentList);
 			if (isEdit) {
-				dispatch(editComment(commentList));
+				// dispatch(editComment(commentList));
+				dispatch(asyncEditPost(commentList));
 				alert('수정 완료!');
 			} else {
-				dispatch(addComment(commentList));
+				// dispatch(addComment(commentList));
+				dispatch(asyncAddPost(commentList));
 				console.log(commentList);
 				alert('작성 완료!');
 			}

@@ -2,28 +2,31 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { addReply, editReply } from '../../redux/reducer/rangReducer';
+import { asyncPlusReplyNum } from '../../redux/reducer/baeReducer';
+import { addReply, asyncAddReply, asyncEditReply, editReply } from '../../redux/reducer/rangReducer';
 
 const Button = ({ commentId, username, content, reply, isEdit }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const newReply = {
-		id: '11' + username,
-		commentId: commentId,
+		postId: commentId,
 		userName: username,
 		content: content
 	}
 
 	const onAddReplyHandler = (reply) => {
 		// console.log('reply add', reply);
-		dispatch(addReply(reply));
+		// dispatch(addReply(reply));
+		dispatch(asyncAddReply(reply));
+		dispatch(asyncPlusReplyNum(commentId));
+		console.log('finish add reply num at post');
 		navigate(-1);
 	}
 
 	const onEditReplyHandler = (reply) => {
-		// console.log('reply edit', {...reply, userName: username, content: content});
-		dispatch(editReply({...reply, userName: username, content: content}));
+		// dispatch(editReply({...reply, userName: username, content: content}));
+		dispatch(asyncEditReply({...reply, userName: username, content: content}));
 		navigate(-1);
 	}
 

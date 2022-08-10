@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { HeartOutlined, HeartFilled, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { removeComment } from '../../redux/reducer/baeReducer';
+import { asyncRemovePost, removeComment } from '../../redux/reducer/baeReducer';
 import { colorWhite, colorPink2 } from '../color/ColorPalette';
 import KingButton from '../kingButton/Button';
 
@@ -11,7 +11,7 @@ function Comment({ comment, replyLength }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	console.log(comment);
+	// console.log(comment);
 	
   const timeCalc = (date) => {
     let today = new Date();
@@ -28,7 +28,8 @@ function Comment({ comment, replyLength }) {
 
 	const onRemoveCommentHandler = (commentId) => {
 		console.log('remove comment', commentId);
-		dispatch(removeComment(commentId));
+		// dispatch(removeComment(commentId));
+		dispatch(asyncRemovePost(commentId));
 		alert('글이 삭제되었습니다.');
 		navigate(-1);
 	}
