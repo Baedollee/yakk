@@ -1,13 +1,14 @@
 import React from 'react';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
-import { likeComment } from '../../redux/reducer/baeReducer';
+import { asyncLikePost, likeComment } from '../../redux/reducer/baeReducer';
 import KingButton from '../kingButton/Button';
 
 const LikeButton = ({ post }) => {
   const dispatch = useDispatch();
   const onClick = () => {
-    dispatch(likeComment(post.id));
+    // dispatch(likeComment(post.id));
+		dispatch(asyncLikePost(post));
   };
 
   return (

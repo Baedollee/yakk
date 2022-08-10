@@ -5,20 +5,18 @@ import { useParams } from 'react-router-dom';
 import ReplyHeader from '../components/reply/ReplyHeader';
 import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
-import { getComment } from '../redux/reducer/baeReducer';
+import { asyncGetPost, getComment } from '../redux/reducer/baeReducer';
 import { asyncGetPostReply } from '../redux/reducer/rangReducer';
 import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 
 function Reply() {
-	const url = process.env.REACT_APP_URL;
-
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	console.log('reply', id);
+	// console.log('reply', id);
 
 	// comment by reducer
 	const comment = useSelector((state) => state.comment.comment);
-	console.log('comment reducer', comment);
+	// console.log('comment reducer', comment);
 
 
 	// comment by parameter
@@ -32,9 +30,10 @@ function Reply() {
 	// console.log(replyList, JSON.parse(JSON.stringify(replyList)));
 	
 	useEffect(() => {
-		dispatch(getComment(id));
+		// dispatch(getComment(id));
+		dispatch(asyncGetPost(id));
 		dispatch(asyncGetPostReply(id));
-	}, [comment, JSON.stringify(replyList)]);
+	}, [JSON.stringify(comment), JSON.stringify(replyList)]);
 
   return (
 		<ReplyContainer>
