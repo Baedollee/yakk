@@ -1,0 +1,23 @@
+{	
+  "commentList": [
+  ],
+
+  "comment": {
+    "id": "0",
+    "userName": "배돌이",
+    "content": "비가 주륵주륵!",
+    "createAt": "2022-08-08T10:50:00.000Z",
+    "like": false
+  },
+
+	"replyList": [
+	],
+
+	"reply": {
+		"replyId": 0,
+		"commnetId": "1",
+		"userName": "",
+		"content": "",
+		"createAt": ""
+	}
+}
