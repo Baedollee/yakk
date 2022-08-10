@@ -174,7 +174,7 @@ export const commentList = createSlice({
   //       (item) => item.id === action.payload
   //     );
   //   },
-  // },
+  },
 
 	extraReducers: {
 		[asyncGetPost.fulfilled]: (state, action) => {
@@ -224,30 +224,30 @@ export const commentList = createSlice({
 	      }
 	    });
 			console.log(state.commentList);
+		},
+		[asyncPlusReplyNum.fulfilled]: (state, action) => {
+			// action.payload -> post
+			state.commentList = state.commentList.map((item, index) => {
+				if (item.id === action.payload.id) {
+					return { ...item, like: item.replyNum + 1 };
+				} else {
+					return item;
+				}
+			});
+		},
+		
+		[asyncMinusReplyNum.fulfilled]: (state, action) => {
+			// action.payload -> post
+			state.commentList = state.commentList.map((item, index) => {
+				if (item.id === action.payload.id) {
+					return { ...item, like: item.replyNum - 1 };
+				} else {
+					return item;
+				}
+			});
 		}
-	},
-
-	[asyncPlusReplyNum.fulfilled]: (state, action) => {
-		// action.payload -> post
-		state.commentList = state.commentList.map((item, index) => {
-			if (item.id === action.payload.id) {
-				return { ...item, like: item.replyNum + 1 };
-			} else {
-				return item;
-			}
-		});
-	},
-	
-	[asyncMinusReplyNum.fulfilled]: (state, action) => {
-		// action.payload -> post
-		state.commentList = state.commentList.map((item, index) => {
-			if (item.id === action.payload.id) {
-				return { ...item, like: item.replyNum - 1 };
-			} else {
-				return item;
-			}
-		});
 	}
+
 });
 
 export const {
