@@ -1,5 +1,19 @@
-{	
+{
   "commentList": [
+    {
+      "id": "0",
+      "username": "배돌이",
+      "content": "비가 주륵주륵!",
+      "createAt": "2022-08-08T10:50:00.000Z",
+      "like": false
+    },
+    {
+      "id": "1",
+      "username": "배돌이",
+      "content": "비가 주륵주륵 아휴!",
+      "createAt": "2022-08-08T10:50:00.000Z",
+      "like": false
+    }
   ],
 
   "comment": {
@@ -10,14 +24,28 @@
     "like": false
   },
 
-	"replyList": [
-	],
+  "replyList": [
+    {
+      "id": 0,
+      "commentId": "1",
+      "userName": "aaa",
+      "content": "나도 졸리다",
+      "createAt": "2022-08-08T10:50:00.000Z"
+    },
+    {
+      "id": 1,
+      "commentId": "1",
+      "userName": "abc",
+      "content": "오늘 날씨가 우중충해서 더 졸리다.",
+      "createAt": "2022-08-08T15:50:00.000Z"
+    }
+  ],
 
-	"reply": {
-		"replyId": 0,
-		"commnetId": "1",
-		"userName": "",
-		"content": "",
-		"createAt": ""
-	}
+  "reply": {
+    "replyId": 0,
+    "commnetId": "1",
+    "userName": "",
+    "content": "",
+    "createAt": ""
+  }
 }
