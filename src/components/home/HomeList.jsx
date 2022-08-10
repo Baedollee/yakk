@@ -60,7 +60,7 @@ const HomeList = ({ post }) => {
           <div>
             <BtnChatDiv onClick={onMoveReply}>
               <Chat />
-              <span>2</span>
+              <span>{post.replyNum}</span>
             </BtnChatDiv>
           </div>
           <div>
