@@ -11,7 +11,7 @@ function Comment({ comment, replyLength }) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	console.log(comment);
+	// console.log(comment);
 	
   const timeCalc = (date) => {
     let today = new Date();

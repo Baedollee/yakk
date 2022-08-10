@@ -15,7 +15,7 @@ const InputContent = ({ content, setContent }) => {
       <StContent>내 용</StContent>
       <StInput
         placeholder="200자 이내로 작성해주세요."
-				value={content}
+				value={content || ''}
         onChange={onCheckContentLength}
       />
     </StInputContent>
