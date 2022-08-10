@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux/es/exports';
 
 import InputBox from './InputBox';
 
-const Form = ({ commentId }) => {
+const Form = ({ commentId, replyId, isPost }) => {
   const url = process.env.REACT_APP_URL;
 
   const comment = useSelector((state) => state.comment.commentList);
@@ -14,6 +14,12 @@ const Form = ({ commentId }) => {
     content: '',
   });
 
+	const [replyList, setReplyList] = useState({
+		username: '',
+		content: '',
+		postId: commentId
+	});
+
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
     setCommentList({
@@ -22,6 +28,14 @@ const Form = ({ commentId }) => {
       [name]: value,
     });
   };
+
+	const onReplyChangeHandler = (e) => {
+		const { value, name } = e.target;
+		setReplyList({
+			...replyList,
+			[name]: value,
+		})
+	}
 
   return (
     <div style={{ height: '100vh' }}>
@@ -32,6 +46,11 @@ const Form = ({ commentId }) => {
         commentId={commentId}
         setCommentList={setCommentList}
         url={url}
+				replyList={replyList}
+				setReplyList={setReplyList}
+				onReplyChangeHandler={onReplyChangeHandler}
+				replyId={replyId}
+				isPost={isPost}
       />
     </div>
   );
