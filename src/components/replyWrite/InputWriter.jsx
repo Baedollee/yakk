@@ -16,7 +16,7 @@ const InputWriter = ({ username, setUsername }) => {
       <StInput
         type="text"
         placeholder="5자 이내로 작성해주세요."
-				value={username}
+				value={username || ''}
         onChange={onCheckUsernameLength}
       />
     </StInputWriter>

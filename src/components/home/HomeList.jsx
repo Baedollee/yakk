@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import LikeButton from '../homeIcon/LikeButton';
 import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
 import { useDispatch } from 'react-redux';
-import { removeComment } from '../../redux/reducer/baeReducer';
+import { asyncRemovePost, removeComment } from '../../redux/reducer/baeReducer';
 
 const HomeList = ({ post }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(removeComment(post.id));
+    // dispatch(removeComment(post.id));
+    dispatch(asyncRemovePost(post.id));
   };
 
   const onMoveReply = () => {

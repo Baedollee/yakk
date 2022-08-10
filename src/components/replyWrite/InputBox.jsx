@@ -6,9 +6,10 @@ import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getReply } from '../../redux/reducer/rangReducer';
+import { asyncGetOneReply, getReply } from '../../redux/reducer/rangReducer';
 
 const InputBox = ({ commentId, replyId }) => {
+	console.log('input box', replyId);
   const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -21,13 +22,15 @@ const InputBox = ({ commentId, replyId }) => {
 
 	useEffect(() => {
 		if (replyId !== '') {
-			dispatch(getReply(replyId));
+			// dispatch(getReply(replyId));
+			dispatch(asyncGetOneReply(replyId));
 			setUsername(reply.userName);
 			setContent(reply.content);
 			setIsEdit(true);
+		} else {
+			console.log('finish get reply', reply);
 		}
-		console.log('finish get reply', reply);
-	}, [reply]);
+	}, [JSON.stringify(reply)]);
 
   return (
     <InputBoxContainer>
