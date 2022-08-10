@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { EditOutlined, HomeOutlined, HeartOutlined, HeartFilled, DeleteOutlined } from '@ant-design/icons';
-import { colorPink2, colorWhite } from '../color/ColorPalette';
+import { EditOutlined, HomeOutlined, HeartOutlined, HeartFilled, DeleteOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { colorBlack, colorPink1, colorPink2, colorWhite } from '../color/ColorPalette';
 
 function KingButton(props) {
 
@@ -17,6 +17,8 @@ function KingButton(props) {
 				return <HeartFilled />;
 			case 'deleteBtn':
 				return <DeleteOutlined />;
+			case 'backBtn':
+				return <ArrowLeftOutlined />;
 			default:
 				return props.children;
 		}
@@ -63,13 +65,15 @@ const BtnContainer = styled.div`
 
 				  font-size: 1.2em;
 				  font-weight: bold;
+					color:${colorWhite};
 
 				  border-radius: 10px;
-				  border: none;
+				  border: 2px solid ${colorPink1};
 
-				  background-color: #fff;
-
-				  box-shadow: 5px 5px 5px gray;
+					:hover{
+						border:2px solid ${colorPink2};
+						background-color:${colorPink2}
+					}
 
 				  cursor: pointer;
 				`;
@@ -80,11 +84,17 @@ const BtnContainer = styled.div`
 					cursor: pointer;
 					margin-right: 85%;
 					border: none;
-				  background-color: darkcyan;
-				  :focus {
+					color:${colorWhite};
+				  background:none;
+					
+					:hover{
+						color:${colorPink2};
+					}
+
+				  /* :focus {
 				    border: none;
 				    outline: none !important;
-				  }
+				  } */
 				`;
 
       default:

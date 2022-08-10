@@ -7,9 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import KingButton from '../kingButton/Button';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { colorPink1, colorWhite } from '../color/ColorPalette';
 import { asyncGetPost, getComment } from '../../redux/reducer/baeReducer';
 
-const InputBox = ({ commentList, onchangeHandler, commentId, setCommentList }) => {
+const InputBox = ({ _comment, commentList, onchangeHandler, commentId, setCommentList, url }) => {
   const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -36,12 +37,10 @@ const InputBox = ({ commentList, onchangeHandler, commentId, setCommentList }) =
         style={{ fontSize: '2em', cursor: 'pointer', marginRight: '85%' }}
         onClick={() => {
           navigate(-1);
-        }}>
-        🔙
-      </KingButton>
+        }}/>
       <InputWriter onchangeHandler={onchangeHandler} username={commentList.username} isEdit={isEdit}/>
       <InputContent onchangeHandler={onchangeHandler} content={commentList.content} isEdit={isEdit}/>
-      <Button commentList={commentList} isEdit={isEdit} />
+      <Button _comment={_comment} commentList={commentList} setCommentList={setCommentList} isEdit={isEdit} url={url} />
     </InputBoxContainer>
   );
 };
@@ -55,14 +54,14 @@ const InputBoxContainer = styled.div`
   justify-content: center;
   gap: 36px;
 
+  margin-top: 30px;
   width: 800px;
   height: 600px;
 
-  background-color: darkcyan;
+  background: none;
 
-  border-radius: 40px;
+  border: 2px solid ${colorWhite};
+  border-radius: 15px;
 
-  padding: 20px 0;
-
-  box-shadow: 10px 10px 10px gray;
+  /* box-shadow: 10px 10px 10px gray; */
 `;

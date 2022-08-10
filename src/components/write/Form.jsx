@@ -4,7 +4,10 @@ import { useSelector } from 'react-redux/es/exports';
 import InputBox from './InputBox';
 
 const Form = ({ commentId }) => {
+  const url = process.env.REACT_APP_URL;
+  
   const comment = useSelector((state) => state.comment.commentList);
+  console.log(comment)
 
   const [commentList, setCommentList] = useState({
     username: '',
@@ -16,7 +19,7 @@ const Form = ({ commentId }) => {
 		console.log(value, name);
 		const id = isEdit ? commentId : (comment.length + 1).toString();
     setCommentList({
-      id: id,
+      // id: id,
       ...commentList,
       [name]: value,
     });
@@ -24,7 +27,7 @@ const Form = ({ commentId }) => {
 
   return (
     <div style={{ height: '100vh' }}>
-      <InputBox commentList={commentList} onchangeHandler={onChangeHandler} commentId={commentId} setCommentList={setCommentList}/>
+      <InputBox _comment={comment} commentList={commentList} onchangeHandler={onChangeHandler} commentId={commentId} setCommentList={setCommentList} url={url} />
     </div>
   );
 };

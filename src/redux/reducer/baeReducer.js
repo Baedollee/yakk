@@ -86,7 +86,7 @@ export const asyncMinusReplyNum = createAsyncThunk(
 
 const initialState = {
   commentList: [
-    {
+      {
       id: '0',
       username: '배돌이',
       content: '비가 주륵주륵!',
@@ -103,7 +103,7 @@ const initialState = {
 			replyNum: 2
     },
   ],
-
+  
   comment: {
     id: '0',
     userName: '배돌이',
@@ -117,16 +117,24 @@ const initialState = {
 export const commentList = createSlice({
   name: 'commentList',
   initialState,
-  // reducers: {
-  //   addComment: (state, action) => {
-  //     // action.payload -> comment
-  //     state.commentList = state.commentList.concat({
-  //       ...action.payload,
-  //       createAt: new Date().toISOString(),
-	// 			like: false
-  //     });
-  //     console.log(action);
-  //   },
+  reducers: {
+    addComment: (state, action) => {
+      // action.payload -> comment
+      state.commentList.concat(axios.post('http://localhost:3001/postList',
+      {
+        ...action.payload,
+        createAt: new Date().toISOString(),
+				like: false
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err.response);
+      }));
+      console.log(action);
+    },
+    
   //   removeComment: (state, action) => {
   //     // action.paylod -> id
   //     state.commentList = state.commentList.filter(
