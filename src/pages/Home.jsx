@@ -1,14 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import HomeHeader from '../components/home/HomeHeader';
 import HomeList from '../components/home/HomeList';
-import { useEffect } from 'react';
-import axios from 'axios';
 import { setComment } from '../redux/reducer/baeReducer';
 import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 import styled from 'styled-components';
 import { asyncGetAllPost } from '../redux/reducer/baeReducer';
 import { useEffect, useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 const Home = () => {
   // const url = process.env.REACT_APP_URL;
@@ -31,7 +29,7 @@ const Home = () => {
   //     console.log(err.response)
   //   })
   // };
-	
+
   useEffect(() => {
     axios
       .get('http://localhost:3001/postList')
@@ -52,11 +50,11 @@ const Home = () => {
       .get(`http://localhost:3001/api/replyList?postId={postId}`)
       .then((res) => {})
       .catch((err) => console.log(err));
-		dispatch(asyncGetAllPost());
+    dispatch(asyncGetAllPost());
     return () => {};
   }, [JSON.stringify(postList)]);
 
-  console.log(_post)
+  console.log(_post);
 
   console.log(postList);
 
@@ -64,7 +62,7 @@ const Home = () => {
     <HomeContainer>
       <HomeHeader />
       <HomeListContainer>
-        //{_post.map((item, index) => {
+        {/* {_post.map((item, index) => { */}
         {postList?.map((item, index) => {
           if (postList.length > 0) {
             return <HomeList key={`${item.id}_${item.userName}`} post={item} />;

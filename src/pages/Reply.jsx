@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { useParams,useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import ReplyHeader from '../components/reply/ReplyHeader';
 import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
@@ -10,57 +10,26 @@ import { asyncGetPostReply } from '../redux/reducer/rangReducer';
 import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 
 function Reply() {
-	const { id } = useParams();
-	const dispatch = useDispatch();
-	// console.log('reply', id);
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-  // comment by reducer
   const comment = useSelector((state) => state.comment.comment);
-  //   // console.log('comment reducer', comment);
+
+  const replyList = useSelector((state) => state.reply.replyList);
 
   useEffect(() => {
-    dispatch(getComment(id));
-  }, [comment]);
-=======
-import { asyncGetPost, getComment } from '../redux/reducer/baeReducer';
-import { asyncGetPostReply } from '../redux/reducer/rangReducer';
-import { colorBlack, colorWhite } from '../components/color/ColorPalette';
-
-function Reply() {
-	const { id } = useParams();
-	const dispatch = useDispatch();
-	// console.log('reply', id);
-
-	// comment by reducer
-	const comment = useSelector((state) => state.comment.comment);
-	// console.log('comment reducer', comment);
-
->>>>>>> develop
-
-  // comment by parameter
-  // const location = useLocation();
-  // const comment = location.state.comment;
-  // console.log('reply', id, comment);
-
-	const replyList = useSelector((state) => state.reply.replyList);
-	// const findReplyList = replyList.filter((item) => item.commentId === comment.id);
-	// console.log(findReplyList);
-	// console.log(replyList, JSON.parse(JSON.stringify(replyList)));
-	
-	useEffect(() => {
-		// dispatch(getComment(id));
-		dispatch(asyncGetPost(id));
-		dispatch(asyncGetPostReply(id));
-	}, [JSON.stringify(comment), JSON.stringify(replyList)]);
+    dispatch(asyncGetPost(id));
+    dispatch(asyncGetPostReply(id));
+  }, [JSON.stringify(comment), JSON.stringify(replyList)]);
 
   return (
-		<ReplyContainer>
-			<ReplyHeader />
-	    <DetailContainer>
-				<Comment comment={comment} replyLength={replyList.length}/>
-				<ReplyList commentId={comment.id} replyList={replyList} />
-	    </DetailContainer>
-		</ReplyContainer>
+    <ReplyContainer>
+      <ReplyHeader />
+      <DetailContainer>
+        <Comment comment={comment} replyLength={replyList.length} />
+        <ReplyList commentId={comment.id} replyList={replyList} />
+      </DetailContainer>
+    </ReplyContainer>
   );
 }
 
