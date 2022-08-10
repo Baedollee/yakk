@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { removeReply } from '../../redux/reducer/rangReducer';
+import { asyncRemoveReply, removeReply } from '../../redux/reducer/rangReducer';
 import ReplyButton from './ReplyButton';
 import { colorWhite } from '../color/ColorPalette';
 import KingButton from '../kingButton/Button';
@@ -23,7 +23,8 @@ function Reply({ commentId, reply }) {
 	
 	const onRemoveReplyHandler = (replyId) => {
 		console.log('remove reply', replyId);
-		dispatch(removeReply(replyId));
+		// dispatch(removeReply(replyId));
+		dispatch(asyncRemoveReply(replyId));
 	}
 
   const timeCalc = (date) => {

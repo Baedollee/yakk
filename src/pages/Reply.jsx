@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import ReplyHeader from '../components/reply/ReplyHeader';
-import { useLocation, useParams } from 'react-router-dom';
 import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
 import { getComment } from '../redux/reducer/baeReducer';
+import { asyncGetPostReply } from '../redux/reducer/rangReducer';
 import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 
 function Reply() {
+	const url = process.env.REACT_APP_URL;
+
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	console.log('reply', id);
@@ -17,9 +20,6 @@ function Reply() {
 	const comment = useSelector((state) => state.comment.comment);
 	console.log('comment reducer', comment);
 
-	useEffect(() => {
-		dispatch(getComment(id));
-	}, [comment]);
 
 	// comment by parameter
 	// const location = useLocation();
@@ -27,15 +27,21 @@ function Reply() {
 	// console.log('reply', id, comment);
 
 	const replyList = useSelector((state) => state.reply.replyList);
-	const findReplyList = replyList.filter((item) => item.commentId === comment.id);
+	// const findReplyList = replyList.filter((item) => item.commentId === comment.id);
 	// console.log(findReplyList);
+	// console.log(replyList, JSON.parse(JSON.stringify(replyList)));
+	
+	useEffect(() => {
+		dispatch(getComment(id));
+		dispatch(asyncGetPostReply(id));
+	}, [comment, JSON.stringify(replyList)]);
 
   return (
 		<ReplyContainer>
 			<ReplyHeader />
 	    <DetailContainer>
-				<Comment comment={comment} replyLength={findReplyList.length}/>
-				<ReplyList commentId={comment.id} replyList={findReplyList} />
+				<Comment comment={comment} replyLength={replyList.length}/>
+				<ReplyList commentId={comment.id} replyList={replyList} />
 	    </DetailContainer>
 		</ReplyContainer>
   );
