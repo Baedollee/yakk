@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colorBlack, colorPink1, colorWhite } from '../color/ColorPalette';
 
 const InputContent = ({ onchangeHandler, content, isEdit }) => {
-  // const [content, setContent] = useState('');
+
 
   return (
     <StInputContent>
@@ -47,10 +47,13 @@ const StInput = styled.textarea`
   padding: 10px;
   background-color: none;
 
-  :focus {
-    outline: none;
+  transition: all 200ms;
+  :focus{
+    outline:none;
+
+    transform:scale(1.02);
+
   }
-  /* outline-color:${colorPink1}; */
 
   ::placeholder {
     color: ${colorWhite};

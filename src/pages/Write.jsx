@@ -6,16 +6,15 @@ import { useLocation, useParams } from 'react-router-dom';
 import { colorBlack } from '../components/color/ColorPalette';
 
 const Write = () => {
-  const { id } = useParams();
+	const { id } = useParams();
 
-  const location = useLocation();
-  const isPost = location.state.isPost;
+	const location = useLocation();
+	const isPost = location.state.isPost;
+
 
   let replyId = '';
   if (location.state !== null) {
     replyId = location.state.replyId;
-  } else {
-    console.log("it's null");
   }
 
   return (

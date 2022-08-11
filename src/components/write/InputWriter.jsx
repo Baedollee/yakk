@@ -47,8 +47,12 @@ const StInput = styled.input`
 
   outline-color:${colorPink1};
 
+  transition: all 200ms;
+
   :focus{
     outline:none;
+
+    transform:scale(1.02);
   }
   
   ::placeholder{

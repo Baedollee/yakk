@@ -44,20 +44,18 @@ const InputBox = ({
       setIsEdit({ ...isEdit, post: true });
     }
 
-    if (replyId !== undefined) {
-      // dispatch(getReply(replyId));
-      dispatch(asyncGetOneReply(replyId));
-      setReplyList({
-        ...reply,
-        username: reply.username,
-        content: reply.content,
-      });
-      setIsEdit({ ...isEdit, reply: true });
-    }
+		if (replyId !== undefined) {
+			// dispatch(getReply(replyId));
+			dispatch(asyncGetOneReply(replyId));
+			setReplyList({
+				...reply,
+				username: reply.username,
+				content: reply.content
+			});
+			setIsEdit({...isEdit, reply:true});
+		}
+	}, [JSON.stringify(comment), JSON.stringify(reply)]);
 
-    if (isPost) console.log('finish get comment', comment);
-    else console.log('finish get reply', reply);
-  }, [JSON.stringify(comment), JSON.stringify(reply)]);
 
   return (
     <InputBoxContainer>
@@ -108,6 +106,4 @@ const InputBoxContainer = styled.div`
 
   border: 2px solid ${colorWhite};
   border-radius: 15px;
-
-  /* box-shadow: 10px 10px 10px gray; */
 `;
