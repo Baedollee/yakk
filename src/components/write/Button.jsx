@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment, asyncAddPost, asyncEditPost, asyncPlusReplyNum, editComment } from '../../redux/reducer/baeReducer';
 import { useNavigate } from 'react-router-dom';
-import KingButton from '../kingButton/Button';
+import KingButton from '../total/Button';
 import { asyncAddReply, asyncEditReply } from '../../redux/reducer/rangReducer';
 
 const Button = ({ commentList, replyList, isEdit, isPost }) => {

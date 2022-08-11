@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import KingButton from '../kingButton/Button';
+import KingButton from '../total/Button';
 import Reply from './Reply';
 
 
