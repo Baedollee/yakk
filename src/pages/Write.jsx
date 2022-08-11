@@ -1,4 +1,5 @@
-import Header from '../components/write/Header';
+// import Header from '../components/write/Header';
+import Header from '../components/total/Header';
 import Form from '../components/write/Form';
 import styled from 'styled-components';
 import { useLocation, useParams } from 'react-router-dom';
@@ -21,7 +22,8 @@ const Write = () => {
   
   return (
     <WriteContainer>
-      <Header />
+      {/* <Header /> */}
+			<Header id="Write" />
       <Form commentId={id} replyId={replyId} isPost={isPost}/>
     </WriteContainer>
   );

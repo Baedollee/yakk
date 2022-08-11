@@ -7,6 +7,7 @@ import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 import styled from 'styled-components';
 import { asyncGetAllPost } from '../redux/reducer/baeReducer';
 import { useEffect, useState } from 'react';
+import Header from '../components/total/Header';
 
 const Home = () => {
   const url = process.env.REACT_APP_URL;
@@ -60,7 +61,8 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      <HomeHeader />
+      {/* <HomeHeader /> */}
+			<Header id="Home" />
       <HomeListContainer>
         {/* //{_post.map((item, index) => { */}
         {postList?.map((item, index) => {

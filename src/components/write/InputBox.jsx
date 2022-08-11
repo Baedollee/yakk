@@ -4,7 +4,7 @@ import InputWriter from './InputWriter';
 import InputContent from './InputContent';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
-import KingButton from '../kingButton/Button';
+import KingButton from '../total/Button';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { colorPink1, colorWhite } from '../color/ColorPalette';
