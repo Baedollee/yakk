@@ -1,71 +1,84 @@
-import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import HomeHeader from '../components/home/HomeHeader';
+import { useDispatch, useSelector } from 'react-redux';
 import HomeList from '../components/home/HomeList';
-import { useState } from 'react';
-import { useEffect } from 'react';
-const Home = () => {
-  //   const contentsList = useSelector((state) => {
-  //     return state.listReducer.list;
-  //   });
-  const [commentList, setCommentList] = useState([
-    {
-      id: '0',
-      userName: '배돌이',
-      // title: '',
-      content: '비가 주륵주륵!',
-      createAt: '5분전',
-    },
-    {
-      id: '1',
-      userName: '배돌이',
-      // title: '',
-      content: '비가 주륵주륵 아휴!',
-      createAt: '5분전',
-    },
-  ]);
+import axios from 'axios';
+import { colorBlack, colorWhite } from '../components/color/ColorPalette';
+import styled from 'styled-components';
+import { setComment, asyncGetAllPost } from '../redux/reducer/postSlice';
+import { useEffect, useState } from 'react';
+import Header from '../components/total/Header';
 
-  const [like, setLike] = useState(0);
+const Home = () => {
+  const url = process.env.REACT_APP_URL;
+
+  const postList = useSelector((state) => state.comment.commentList);
+  const dispatch = useDispatch();
+  const [_post, _setPost] = useState([]);
+
+  const fetchPost = async () => {
+    const { data } = await axios.get(url + '/postList');
+    _setPost(data);
+  };
+  // const fetchPost = () => {
+  //   axios.get(url + '/postList')
+  //   .then( response => {
+  //     console.log(response)
+  //     _setPost(response.data)
+  //   })
+  //   .catch(err =>{
+  //     console.log(err.response)
+  //   })
+  // };
 
   useEffect(() => {
-    return () => {};
+    axios
+      .get(url + '/postList')
+      .then((response) => {
+        // 성공 핸들링
+        dispatch(setComment(response.data));
+      })
+      .catch((error) => {
+        // 에러 핸들링
+        console.log(error);
+      });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(url + `/replyList?postId={postId}`)
+      .then((res) => {})
+      .catch((err) => console.log(err));
+    dispatch(asyncGetAllPost());
+    return () => {};
+  }, [JSON.stringify(postList)]);
+
   return (
-    <div>
-      <HomeHeader />
-
-      <div>
-        {commentList.map((item, index) => {
-          if (commentList.length > 0) {
-            return (
-              <HomeList
-                commentList={commentList}
-                setCommentList={setCommentList}
-
-                key={`${item.id}_${item.userName}`}
-                id={item.id}
-                userName={item.userName}
-                // title={item.title}
-                content={item.content}
-                createAt={item.createAt}
-              />
-            );
+    <HomeContainer>
+      {/* <HomeHeader /> */}
+      <Header id="Home" />
+      <HomeListContainer>
+        {/* //{_post.map((item, index) => { */}
+        {postList?.map((item, index) => {
+          if (postList.length > 0) {
+            return <HomeList key={`${item.id}_${item.userName}`} post={item} />;
           } else {
             alert('입력!');
           }
         })}
-      </div>
-    </div>
+      </HomeListContainer>
+    </HomeContainer>
   );
 };
 
-export default Home;
+const HomeContainer = styled.div`
+  min-height: 100vh;
+  background-color: ${colorBlack};
+  color: ${colorWhite};
+`;
+const HomeListContainer = styled.div`
+  height: 80%;
+  min-width: 600px;
+  max-width: 800px;
+  margin: 30px auto;
+`;
 
-// const [commentList, setCommnetList] = useState([{
-//   id: ''
-//   username: ''
-//   title: ''
-//   content: ''
-//   createdAt: ''
-//   }])
+export default Home;

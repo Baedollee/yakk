@@ -1,14 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-
-import write from "../modules/write"
-import baeReducer from "../reducer/baeReducer";
-import rangReducer from '../reducer/rangReducer'
+import { configureStore } from '@reduxjs/toolkit';
+import postSlice from '../reducer/postSlice';
+import replySlice from '../reducer/replySlice';
 
 const store = configureStore({
-  reducer:{
-    write:write,
-		reply: rangReducer,
-		comment: baeReducer,
+  reducer: {
+    reply: replySlice,
+    comment: postSlice,
+		devTools: process.env.NODE_ENV !== 'production',
   },
 });
 

@@ -1,61 +1,71 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux/es/exports';
+import styled from 'styled-components';
+import { colorBlack } from '../color/ColorPalette';
+import Header from '../total/Header';
 
 import InputBox from './InputBox';
 
-const Form = () => {
+const Form = ({ commentId, replyId, isPost }) => {
+  const url = process.env.REACT_APP_URL;
 
-  const [username, setUsername] = useState('')
-  const [content, setContent] = useState('')
-  const [commentList, setCommentList] = useState([
-    {
-      id: '1',
-      username: '박재정',
-      content: '리덕스를 공부해보자',
-      createdAt: '',
-    },
-  ]);
+  const comment = useSelector((state) => state.comment.commentList);
 
-  // console.log(username,content)
+  const [commentList, setCommentList] = useState({
+    username: '',
+    content: '',
+  });
 
-  const getUsername = (username) => {
-    setUsername(username);
-  };
-  const getContent = (content) => {
-    setContent(content);
-    // console.log(content);
-  };
+  const [replyList, setReplyList] = useState({
+    username: '',
+    content: '',
+    postId: commentId,
+  });
 
-  // const inputReset = () => {
-  //   setUsername('')
-  //   setContent('')
-  // };
-  const addComment = (commentList) => {
-    if (username !== '' && content !== ''){
-      setCommentList([...commentList, { username: username, content: content }])
-      setUsername('')
-      setContent('')
-    } else {
-      alert('전부 입력해 주세요!!')
-    }
-    // ? setCommentList([...commentList, { username: username, content: content }]) setUsername('')
-    // setContent('')
-    // : alert('입력해주세요')
+  const onChangeHandler = (e) => {
+    const { value, name } = e.target;
+    setCommentList({
+      ...commentList,
+      [name]: value,
+    });
   };
 
-  const dadada = useSelector((state) => state.write.comment)
-  console.log(dadada)
+  const onReplyChangeHandler = (e) => {
+    const { value, name } = e.target;
+    setReplyList({
+      ...replyList,
+      [name]: value,
+    });
+  };
 
   return (
-    <div style={{ height: '100vh' }}>
-
-      <InputBox commentList={commentList} getUsername={getUsername} getContent={getContent} addComment={addComment} username={username} content={content}
-      // inputReset={inputReset} 
+    <StForm>
+      <Header id="Write" />
+      <InputBox
+        _comment={comment}
+        commentList={commentList}
+        onchangeHandler={onChangeHandler}
+        commentId={commentId}
+        setCommentList={setCommentList}
+        url={url}
+        replyList={replyList}
+        setReplyList={setReplyList}
+        onReplyChangeHandler={onReplyChangeHandler}
+        replyId={replyId}
+        isPost={isPost}
       />
-      작성자{username} 내용{content} abc:{dadada.username} {dadada.content}
-      
-    </div>
+    </StForm>
   );
 };
 
 export default Form;
+
+const StForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 100vh;
+
+  background-color: ${colorBlack};
+`;

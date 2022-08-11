@@ -1,118 +1,129 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import LikeButton from '../homeIcon/LikeButton';
 import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { asyncRemovePost, removeComment } from '../../redux/reducer/postSlice';
 
-const HomeList = ({
-  id,
-  userName,
-  content,
-  createAt,
-  commentList,
-  setCommentList,
-}) => {
+const HomeList = ({ post }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
-    let dummyArray = [];
-    commentList.map((item, index) => {
-      if (item.id === id) {
-      } else {
-        dummyArray.push(item);
-      }
-      setCommentList(dummyArray);
+    // dispatch(removeComment(post.id));
+    dispatch(asyncRemovePost(post.id));
+  };
+
+  const onMoveReply = () => {
+    navigate(`/Reply/${post.id}`, {
+      state: {
+        comment: {
+          id: post.id,
+          userName: post.userName,
+          content: post.content,
+          createAt: post.createAt,
+        },
+      },
     });
   };
 
-	
-	const onMoveReply = () => {
-		navigate(`/Reply/${id}`, {
-			state: {
-				comment: {
-					id: id,
-					userName: userName,
-					content: content,
-					createAt: createAt
-				}
-			}
-		});
-	}
+  const timeCalc = (date) => {
+    let today = new Date();
+    date = new Date(date);
 
-  const [count, setCount] = useState(0);
+    let time = (today.getTime() - date.getTime()) / 1000 / 60; // min
+    if (time < 1) return '방금 전';
+    if (time < 60) return parseInt(time) + '분 전';
+    time /= 60; // hour
+    if (time < 24) return parseInt(time) + '시간 전';
+    time /= 24; // day
+    return parseInt(time) + '일 전';
+  };
 
-  const [likeButton, setLikeButton] = useState({ like: 0 });
-
-  // console.log(likeButton.count);
   return (
-    <TextListDiv>
-      <HeaderDiv>
-        <UserNameDiv>{userName}</UserNameDiv>
-        <TimeDiv>{createAt}</TimeDiv>
-      </HeaderDiv>
-
-      <MentionDiv>{content}</MentionDiv>
-
-      <BtnWrapDiv>
-        <BtnLikeDiv
-        // onClick={() => {
-        //   setLike(like + 1);
-        // }}
-        >
-          <LikeButton
-            likeButton={likeButton}
-            setLikeButton={setLikeButton}
-            count={count}
-            setCount={setCount}
-          />
-          <div>{count}</div>
-        </BtnLikeDiv>
-        <BtnChatDiv onClick={onMoveReply}>
-          <Chat />
-          <div>2</div>
-        </BtnChatDiv>
-
-        <DeleteDiv onClick={handleDelete}>
-          <DeleteIcon />
-        </DeleteDiv>
-      </BtnWrapDiv>
-    </TextListDiv>
+    <>
+      <ListContainerDiv>
+        <ListWrapDiv>
+          <div>
+            <span>{post.username}</span>
+            <span>{timeCalc(post.createAt)}</span>
+          </div>
+        </ListWrapDiv>
+        <User>
+          <h3>{post.content}</h3>
+        </User>
+        <BtnWrapDiv>
+          <div>
+            <LikeButton post={post} />
+          </div>
+          <div>
+            <BtnChatDiv onClick={onMoveReply}>
+              <Chat />
+              <span>{post.replyNum}</span>
+            </BtnChatDiv>
+          </div>
+          <div>
+            <DeleteButton onClick={handleDelete}>
+              <DeleteIcon />
+            </DeleteButton>
+          </div>
+        </BtnWrapDiv>
+      </ListContainerDiv>
+    </>
   );
 };
 
-const TextListDiv = styled.div`
-  border-bottom: 1px solid #ddd;
-  padding: 20px 50px;
+const ListContainerDiv = styled.div`
+  margin-bottom: 20px;
+  border: 1px solid #f4f4f4;
+  border-radius: 10px;
 `;
-const HeaderDiv = styled.div`
+const ListWrapDiv = styled.div`
+  margin: 20px;
   display: flex;
+  justify-content: space-between;
+  div {
+    span {
+      margin-right: 10px;
+    }
+  }
 `;
-const UserNameDiv = styled.div`
+
+const User = styled.div`
+  margin-left: 20px;
   font-size: 15px;
   font-weight: 700;
-  color: red;
+  color: white;
 `;
-const TimeDiv = styled.div`
-  margin: 5px;
-  font-size: 3px;
-  color: red;
-`;
-const MentionDiv = styled.div`
-  margin-top: 7px;
-  font-size: 15px;
-`;
+
 const BtnWrapDiv = styled.div`
+  margin: 20px;
   display: flex;
   justify-content: flex-start;
-  margin: 1em 0 0 0;
+  div {
+    margin-right: 2px;
+    span {
+      margin-left: 5px;
+    }
+  }
+
+  /* justify-content: flex-start; */
+  /* margin: 1em 0 0 0; */
 `;
-const BtnLikeDiv = styled.div`
-  display: flex;
-`;
+
 const BtnChatDiv = styled.div`
   display: flex;
 `;
-const DeleteDiv = styled.div``;
+const DeleteButton = styled.button`
+  /* 버튼 테크 테두리 없애주는  */
+  border: none;
+  background-color: #08182b;
+  color: white;
+  :focus {
+    border: none;
+    outline: none !important;
+  }import { useSelector } from 'react-redux/es/exports';
+
+`;
 export default HomeList;

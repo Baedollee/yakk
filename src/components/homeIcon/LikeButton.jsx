@@ -1,30 +1,34 @@
 import React from 'react';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
+import { asyncLikePost, likeComment } from '../../redux/reducer/postSlice';
+import KingButton from '../total/Button';
 
-const LikeButton = ({ likeButton, setLikeButton, count, setCount }) => {
-  onclick = () => {
-    if (likeButton.like === '') {
-      setLikeButton({ like: likeButton.like + 1 });
-    } else {
-      setCount(count + 1);
-    }
+const LikeButton = ({ post }) => {
+  const dispatch = useDispatch();
+  const onClick = () => {
+    // dispatch(likeComment(post.id));
+		dispatch(asyncLikePost(post));
   };
 
   return (
-    <div>
-      {likeButton.like !== 0 ? (
-        <HeartFilled
-          style={{ color: 'red', fontSize: '20px' }}
-          onClick={LikeButton}
-        />
+    <div style={{ display: 'flex' }} onClick={onClick}>
+      {post.like ? (
+        <div
+          style={{
+            justifyContent: 'space-between',
+            display: 'flex',
+            flexDirection: 'row',
+          }}>
+          <KingButton id="heartFillBtn" />
+          <p style={{ margin: '0' }}>좋아요!</p>
+        </div>
       ) : (
-        <HeartOutlined style={{ fontSize: '20px' }} onClick={LikeButton} />
+        <div>
+          <KingButton id="heartBtn" />
+        </div>
       )}
-      {/* <HeartFilled
-        style={{ color: 'red', fontSize: '20px' }}
-        onclick={likeHandler}
-      />
-      <HeartOutlined style={{ fontSize: '20px' }} onclick={likeHandler} /> */}
+      <div style={{ margin: '2px 0 0 0', fontSize: '15px' }}>{post.notice}</div>
     </div>
   );
 };

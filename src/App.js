@@ -1,23 +1,36 @@
 import Home from './pages/Home';
 import Write from './pages/Write';
 import Reply from './pages/Reply.jsx';
-import styled from 'styled-components';
 
 import { Routes, Route } from 'react-router-dom';
-import ReplyWrite from './pages/ReplyWrite';
+import styled from 'styled-components';
+import useWindowSize from './hooks/useWindowSize';
 
 function App() {
+
+	const size = useWindowSize();
+
   return (
-    <div>
+    <Container width={size.width} height={size.height}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Write" element={<Write />} />
+        <Route path="/Write/:id" element={<Write />} />
         <Route path="/Reply/:id" element={<Reply />} />
-        <Route path="/Reply/:id/ReplyWrite" element={<ReplyWrite />} />
+        <Route path="/Reply/:id/ReplyWrite" element={<Write />} />
       </Routes>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+
+  * {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+`;
 
 export default App;
 
@@ -29,8 +42,6 @@ export default App;
 
 //   height:100%;
 // `
-
-
 
 // const [commentList, setCommnetList] = useState([{
 //   id: ''

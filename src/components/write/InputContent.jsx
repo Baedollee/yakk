@@ -1,18 +1,17 @@
-import { useState } from 'react';
-
 import styled from 'styled-components';
+import { colorBlack, colorPink1, colorWhite } from '../color/ColorPalette';
 
-const InputContent = ({ getContent, content }) => {
-  // const [content, setContent] = useState('');
-  // console.log(content);
+const InputContent = ({ onchangeHandler, content, isEdit }) => {
+
 
   return (
     <StInputContent>
       <StContent>내 용</StContent>
       <StInput
-        value={content}
+        name="content"
         placeholder="200자 이내로 작성해주세요."
-        onChange={(e) => getContent(e.target.value)}
+        value={content || ''}
+        onChange={(e) => onchangeHandler(e, isEdit)}
       />
     </StInputContent>
   );
@@ -29,22 +28,35 @@ const StInputContent = styled.div`
   width: 90%;
   height: 40%;
 
-  color: #fff;
+  color: ${colorWhite};
 `;
 const StInput = styled.textarea`
   width: 80%;
   height: 90%;
 
-  border: 2px solid #666;
-  border-radius: 10px;
+  font-size: 1em;
 
+  border: 2px solid ${colorPink1};
+  border-radius: 7px;
+  background-color: ${colorBlack};
   resize: none;
   overflow: hidden;
 
+  color: ${colorWhite};
+
   padding: 10px;
+  background-color: none;
+
+  transition: all 200ms;
+  :focus{
+    outline:none;
+
+    transform:scale(1.02);
+
+  }
 
   ::placeholder {
-    font-weight: bold;
+    color: ${colorWhite};
   }
 `;
 const StContent = styled.div`
