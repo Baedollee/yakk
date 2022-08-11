@@ -37,13 +37,12 @@ export const asyncAddPost = createAsyncThunk(
 );
 
 export const asyncEditPost = createAsyncThunk(
-
-	"postList/editPost",
-	async (payload, thunkAPI) => {
-		// payload -> post
-		const response = await axios.put(url_post + `/${payload.id}`, payload);
-		return response.data;
-	}
+  'postList/editPost',
+  async (payload, thunkAPI) => {
+    // payload -> post
+    const response = await axios.put(url_post + `/${payload.id}`, payload);
+    return response.data;
+  }
 );
 
 export const asyncRemovePost = createAsyncThunk(
@@ -94,7 +93,6 @@ export const asyncMinusReplyNum = createAsyncThunk(
 );
 
 const initialState = {
-
   commentList: [],
   comment: {},
 };
@@ -111,14 +109,16 @@ export const commentList = createSlice({
     addComment: (state, action) => {
       // action.payload -> comment
       state.commentList.concat(
-				axios.post(url_post,{
-        ...action.payload,
-        createAt: new Date().toISOString(),
-				like: false
-      })
-      .catch(err => {
-        console.log(err.response);
-      }));
+        axios
+          .post(url_post, {
+            ...action.payload,
+            createAt: new Date().toISOString(),
+            like: false,
+          })
+          .catch((err) => {
+            console.log(err.response);
+          })
+      );
     },
 
     //   removeComment: (state, action) => {
@@ -161,11 +161,10 @@ export const commentList = createSlice({
       state.comment = action.payload;
     },
 
-
-		[asyncGetAllPost.fulfilled]: (state, action) => {
-			// action.payload -> post all list
-			state.commentList = action.payload;
-		},
+    [asyncGetAllPost.fulfilled]: (state, action) => {
+      // action.payload -> post all list
+      state.commentList = action.payload;
+    },
 
     [asyncAddPost.fulfilled]: (state, action) => {
       // action.payload -> post
@@ -195,39 +194,37 @@ export const commentList = createSlice({
       );
     },
 
+    [asyncLikePost.fulfilled]: (state, action) => {
+      // action.payload -> post
+      state.commentList = state.commentList.map((item, index) => {
+        if (item.id === action.payload.id) {
+          return { ...item, like: !item.like };
+        } else {
+          return item;
+        }
+      });
+    },
+    [asyncPlusReplyNum.fulfilled]: (state, action) => {
+      // action.payload -> post
+      state.commentList = state.commentList.map((item, index) => {
+        if (item.id === action.payload.id) {
+          return { ...item, like: item.replyNum + 1 };
+        } else {
+          return item;
+        }
+      });
+    },
 
-		[asyncLikePost.fulfilled]: (state, action) => {
-			// action.payload -> post
-			state.commentList = state.commentList.map((item, index) => {
-	      if (item.id === action.payload.id) {
-	        return { ...item, like: !item.like };
-	      } else {
-	        return item;
-	      }
-	    });
-		},
-		[asyncPlusReplyNum.fulfilled]: (state, action) => {
-			// action.payload -> post
-			state.commentList = state.commentList.map((item, index) => {
-				if (item.id === action.payload.id) {
-					return { ...item, like: item.replyNum + 1 };
-				} else {
-					return item;
-				}
-			});
-		},
-		
-		[asyncMinusReplyNum.fulfilled]: (state, action) => {
-			// action.payload -> post
-			state.commentList = state.commentList.map((item, index) => {
-				if (item.id === action.payload.id) {
-					return { ...item, like: item.replyNum - 1 };
-				} else {
-					return item;
-				}
-			});
-		}
-	}
+    [asyncMinusReplyNum.fulfilled]: (state, action) => {
+      // action.payload -> post
+      state.commentList = state.commentList.map((item, index) => {
+        if (item.id === action.payload.id) {
+          return { ...item, like: item.replyNum - 1 };
+        } else {
+          return item;
+        }
+      });
+    },
 
     [asyncMinusReplyNum.fulfilled]: (state, action) => {
       // action.payload -> post
