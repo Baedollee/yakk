@@ -6,8 +6,8 @@ const store = configureStore({
   reducer: {
     reply: replySlice,
     comment: postSlice,
-		devTools: process.env.NODE_ENV !== 'production',
   },
+	devTools: process.env.NODE_ENV !== 'production',
 });
 
 export default store;
