@@ -8,7 +8,7 @@ import { colorWhite, colorPink2 } from '../color/ColorPalette';
 import KingButton from '../total/Button';
 import LikeButton from '../homeIcon/LikeButton';
 
-function Comment({ commentList, comment, replyLength }) {
+function Comment({ comment, replyLength }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -26,7 +26,6 @@ function Comment({ commentList, comment, replyLength }) {
   };
 
   const onRemoveCommentHandler = (commentId) => {
-    console.log('remove comment', commentId);
     // dispatch(removeComment(commentId));
     dispatch(asyncRemovePost(commentId));
     alert('글이 삭제되었습니다.');
@@ -57,9 +56,6 @@ function Comment({ commentList, comment, replyLength }) {
       <ContentFooter>
         <ContentComment>
 					<LikeButton post={comment}/>
-          {/* <HeartOutlined /> */}
-          {/* <HeartFilled /> */}
-        	{/* <span>10</span> */}
           <CommentOutlined style={{fontSize: '20px'}}/>
           <span>{replyLength}</span>
         </ContentComment>
@@ -70,27 +66,22 @@ function Comment({ commentList, comment, replyLength }) {
 
 const Content = styled.div`
   margin-bottom: 20px;
-  /* background-color: beige; */
   border: 1px solid ${colorWhite};
   border-radius: 10px;
 
   p {
     margin: 20px;
-    /* border: 1px solid black; */
-    /* background-color: aliceblue; */
     word-break: normal;
   }
 `;
 
 const ContentHeader = styled.div`
   margin: 20px;
-  /* background-color: aliceblue; */
   display: flex;
   justify-content: space-between;
 
   div {
     span {
-      /* background-color: coral; */
       margin-right: 30px;
     }
   }
@@ -102,7 +93,6 @@ const BtnContainer = styled.div`
 
 const ContentFooter = styled.div`
   margin: 20px;
-  /* background-color: aliceblue; */
   display: flex;
   justify-content: space-between;
 `;

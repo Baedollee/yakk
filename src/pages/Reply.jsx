@@ -13,21 +13,11 @@ import Header from '../components/total/Header';
 function Reply() {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	// console.log('reply', id);
 
-	// comment by reducer
 	const comment = useSelector((state) => state.comment.comment);
-	// console.log('comment reducer', comment);
-
-  // comment by parameter
-  // const location = useLocation();
-  // const comment = location.state.comment;
-  // console.log('reply', id, comment);
-
+	const commentList = useSelector((state) => state.comment.commentList);
 	const replyList = useSelector((state) => state.reply.replyList);
 	// const findReplyList = replyList.filter((item) => item.commentId === comment.id);
-	// console.log(findReplyList);
-	// console.log(replyList, JSON.parse(JSON.stringify(replyList)));
 	
 	useEffect(() => {
 		// dispatch(getComment(id));
@@ -38,7 +28,6 @@ function Reply() {
 
   return (
 		<ReplyContainer>
-			{/* <ReplyHeader /> */}
 			<Header id="Reply"/>
 	    <DetailContainer>
 				<Comment commentList={commentList} comment={comment} replyLength={replyList.length}/>
@@ -55,7 +44,6 @@ const ReplyContainer = styled.div`
 `;
 
 const DetailContainer = styled.div`
-  /* background-color: blueviolet; */
   height: 80%;
   min-width: 600px;
   max-width: 800px;

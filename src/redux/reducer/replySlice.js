@@ -111,7 +111,6 @@ const replyList = createSlice({
 
 		[asyncRemoveReply.fulfilled]: (state, action) => {
 			// action.payload -> id
-			console.log('async delete reply', action.payload);
 			state.replyList = state.replyList.filter((item) => item.id !== action.payload);
 		}
 	}
