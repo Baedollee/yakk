@@ -5,7 +5,7 @@ import { useParams,useLocation } from 'react-router-dom';
 import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
 
-import { asyncGetPost, getComment } from '../redux/reducer/postSlice';
+import { asyncGetAllPost, asyncGetPost, getComment } from '../redux/reducer/postSlice';
 import { asyncGetPostReply } from '../redux/reducer/replySlice';
 import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 import Header from '../components/total/Header';
@@ -33,14 +33,15 @@ function Reply() {
 		// dispatch(getComment(id));
 		dispatch(asyncGetPost(id));
 		dispatch(asyncGetPostReply(id));
-	}, [JSON.stringify(comment), JSON.stringify(replyList)]);
+		dispatch(asyncGetAllPost());
+	}, [JSON.stringify(commentList), JSON.stringify(comment), JSON.stringify(replyList)]);
 
   return (
 		<ReplyContainer>
 			{/* <ReplyHeader /> */}
 			<Header id="Reply"/>
 	    <DetailContainer>
-				<Comment comment={comment} replyLength={replyList.length}/>
+				<Comment commentList={commentList} comment={comment} replyLength={replyList.length}/>
 				<ReplyList commentId={comment.id} replyList={replyList} />
 	    </DetailContainer>
 		</ReplyContainer>

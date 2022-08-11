@@ -6,8 +6,9 @@ import { useDispatch } from 'react-redux';
 import { asyncRemovePost, removeComment } from '../../redux/reducer/postSlice';
 import { colorWhite, colorPink2 } from '../color/ColorPalette';
 import KingButton from '../total/Button';
+import LikeButton from '../homeIcon/LikeButton';
 
-function Comment({ comment, replyLength }) {
+function Comment({ commentList, comment, replyLength }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -55,11 +56,12 @@ function Comment({ comment, replyLength }) {
       <p>{comment.content}</p>
       <ContentFooter>
         <ContentComment>
-          <CommentOutlined />
-          <span>{replyLength}</span>
-          <HeartOutlined />
+					<LikeButton post={comment}/>
+          {/* <HeartOutlined /> */}
           {/* <HeartFilled /> */}
-          <span>10</span>
+        	{/* <span>10</span> */}
+          <CommentOutlined style={{fontSize: '20px'}}/>
+          <span>{replyLength}</span>
         </ContentComment>
       </ContentFooter>
     </Content>
@@ -91,10 +93,6 @@ const ContentHeader = styled.div`
       /* background-color: coral; */
       margin-right: 30px;
     }
-
-    button {
-      margin-left: 30px;
-    }
   }
 `;
 
@@ -110,14 +108,12 @@ const ContentFooter = styled.div`
 `;
 
 const ContentComment = styled.div`
-  button {
-    margin-right: 10px;
-  }
+	display: flex;
+	align-items: center;
 
-  span {
-    /* background-color: coral; */
-    margin-right: 10px;
-  }
+	* {
+		margin-right: 2px;
+	}
 `;
 
 export default Comment;
