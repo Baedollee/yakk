@@ -1,0 +1,21 @@
+{
+  "postList": [
+    {
+      "id": "0",
+      "username": "배돌이",
+      "content": "비가 주륵주륵!",
+      "createAt": "2022-08-08T10:50:00.000Z",
+      "like": false,
+      "replyNum": 0
+    },
+    {
+      "id": "1",
+      "username": "배돌이ㄴㅇ",
+      "content": "비가 주륵주륵 아휴!ㄴㅇㄴㅇㄹ",
+      "createAt": "2022-08-08T10:50:00.000Z",
+      "like": false,
+      "replyNum": 0
+    }
+  ],
+  "replyList": []
+}
