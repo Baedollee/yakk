@@ -9,12 +9,9 @@ const Button = ({ commentList, replyList, isEdit, isPost }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const a = useSelector((state) => state.comment.commentList);
-  console.log('a:', a);
-  // console.log(commentList.username);
 	
 	const list = isPost ? commentList : replyList;
 	const edit = isPost ? isEdit.post : isEdit.reply;
-	console.log(isPost, list);
 
   const onClickHandler = () => {
     if (list.username === '' && list.content === '') {
@@ -24,7 +21,6 @@ const Button = ({ commentList, replyList, isEdit, isPost }) => {
     } else if (list.content.split('').length > 200) {
       alert('내용을 200자 이하로 입력해주세요!');
     } else {
-			console.log('click button', list);
 			if (edit) {
 				onCheckEditHandler(isPost);
 				alert('수정 완료!');
@@ -41,7 +37,6 @@ const Button = ({ commentList, replyList, isEdit, isPost }) => {
 		if (isPost) {
 			// dispatch(addComment(commentList));
 			dispatch(asyncAddPost(commentList));
-			console.log(commentList);
 		} else {
 			// dispatch(addReply(reply));
 			dispatch(asyncAddReply(replyList));

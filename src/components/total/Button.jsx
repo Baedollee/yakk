@@ -70,9 +70,13 @@ const BtnContainer = styled.div`
 				  border-radius: 10px;
 				  border: 2px solid ${colorPink1};
 
+					transition: all 150ms;
+
 					:hover{
-						border:2px solid ${colorPink2};
-						background-color:${colorPink2}
+						border:2px solid ${colorPink1};
+
+						z-index: 1;
+						transform: scale(1.1)
 					}
 
 				  cursor: pointer;
@@ -86,15 +90,13 @@ const BtnContainer = styled.div`
 					border: none;
 					color:${colorWhite};
 				  background:none;
+					transition: all 150ms;
 					
 					:hover{
 						color:${colorPink2};
+						z-index: 1;
+						transform: scale(1.2)
 					}
-
-				  /* :focus {
-				    border: none;
-				    outline: none !important;
-				  } */
 				`;
 
       default:

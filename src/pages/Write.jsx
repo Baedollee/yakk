@@ -7,17 +7,13 @@ import { colorBlack } from '../components/color/ColorPalette';
 
 const Write = () => {
 	const { id } = useParams();
-	console.log('write', id);
 
 	const location = useLocation();
 	const isPost = location.state.isPost;
-	console.log(isPost);
 
 	let replyId = '';
   if (location.state !== null) {
     replyId = location.state.replyId;
-  } else {
-    console.log("it's null");
   }
   
   return (

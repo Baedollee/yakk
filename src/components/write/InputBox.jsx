@@ -54,11 +54,6 @@ const InputBox = ({
 			});
 			setIsEdit({...isEdit, reply:true});
 		}
-
-		if (isPost)
-			console.log('finish get comment', comment);
-		else
-			console.log('finish get reply', reply);
 	}, [JSON.stringify(comment), JSON.stringify(reply)]);
 
   return (
@@ -92,6 +87,4 @@ const InputBoxContainer = styled.div`
 
   border: 2px solid ${colorWhite};
   border-radius: 15px;
-
-  /* box-shadow: 10px 10px 10px gray; */
 `;

@@ -10,7 +10,6 @@ const Form = ({ commentId, replyId, isPost }) => {
   const url = process.env.REACT_APP_URL;
 
   const comment = useSelector((state) => state.comment.commentList);
-  console.log(comment);
 
   const [commentList, setCommentList] = useState({
     username: '',
@@ -26,7 +25,6 @@ const Form = ({ commentId, replyId, isPost }) => {
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
     setCommentList({
-      // id: id,
       ...commentList,
       [name]: value,
     });

@@ -40,7 +40,6 @@ export const asyncEditPost = createAsyncThunk(
 	"postList/editPost",
 	async (payload, thunkAPI) => {
 		// payload -> post
-		console.log('edit post', payload);
 		const response = await axios.put(url_post + `/${payload.id}`, payload);
 		return response.data;
 	}
@@ -127,8 +126,8 @@ export const commentList = createSlice({
     },
     addComment: (state, action) => {
       // action.payload -> comment
-      state.commentList.concat(axios.post(url_post,
-      {
+      state.commentList.concat(
+				axios.post(url_post,{
         ...action.payload,
         createAt: new Date().toISOString(),
 				like: false
@@ -139,7 +138,6 @@ export const commentList = createSlice({
       .catch(err => {
         console.log(err.response);
       }));
-      console.log(action);
     },
     
   //   removeComment: (state, action) => {
@@ -185,7 +183,6 @@ export const commentList = createSlice({
 		[asyncGetAllPost.fulfilled]: (state, action) => {
 			// action.payload -> post all list
 			state.commentList = action.payload;
-			console.log(state.commentList);
 		},
 
 		[asyncAddPost.fulfilled]: (state, action) => {
@@ -223,7 +220,6 @@ export const commentList = createSlice({
 	        return item;
 	      }
 	    });
-			console.log(state.commentList);
 		},
 		[asyncPlusReplyNum.fulfilled]: (state, action) => {
 			// action.payload -> post
