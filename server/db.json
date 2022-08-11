@@ -1,0 +1,43 @@
+{
+  "postList": [
+    {
+      "id": "0",
+      "username": "배돌이",
+      "content": "비가 주륵주륵!",
+      "createAt": "2022-08-08T10:50:00.000Z",
+      "like": false,
+      "replyNum": 1
+    },
+    {
+      "id": "1",
+      "username": "배돌이",
+      "content": "비가 주륵주륵 아휴!",
+      "createAt": "2022-08-08T10:50:00.000Z",
+      "like": false,
+      "replyNum": 2
+    }
+  ],
+  "replyList": [
+    {
+      "id": "0",
+      "postId": "1",
+      "username": "aaa",
+      "content": "나도 졸리다",
+      "createAt": "2022-08-08T10:50:00.000Z"
+    },
+    {
+      "id": "1",
+      "postId": "1",
+      "username": "abc",
+      "content": "오늘 날씨가 우중충해서 더 졸리다.",
+      "createAt": "2022-08-08T15:50:00.000Z"
+    },
+    {
+      "username": "dsf",
+      "content": "dsfsfd",
+      "postId": "0",
+      "createAt": "2022-08-11T05:36:46.737Z",
+      "id": "uDOHSI3"
+    }
+  ]
+}
