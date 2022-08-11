@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useParams,useLocation } from 'react-router-dom';
-import ReplyHeader from '../components/reply/ReplyHeader';
 import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
 
-import { asyncGetPost, getComment } from '../redux/reducer/baeReducer';
-import { asyncGetPostReply } from '../redux/reducer/rangReducer';
+import { asyncGetPost, getComment } from '../redux/reducer/postSlice';
+import { asyncGetPostReply } from '../redux/reducer/replySlice';
 import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 import Header from '../components/total/Header';
 

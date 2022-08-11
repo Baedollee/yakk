@@ -2,10 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { asyncRemoveReply, removeReply } from '../../redux/reducer/rangReducer';
+import { asyncRemoveReply, removeReply } from '../../redux/reducer/replySlice';
 import { colorWhite } from '../color/ColorPalette';
 import KingButton from '../total/Button';
-import { asyncMinusReplyNum } from '../../redux/reducer/baeReducer';
+import { asyncMinusReplyNum } from '../../redux/reducer/postSlice';
 
 function Reply({ commentId, reply }) {
   const dispatch = useDispatch();

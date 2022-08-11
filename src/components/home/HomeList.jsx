@@ -4,7 +4,7 @@ import LikeButton from '../homeIcon/LikeButton';
 import Chat from '../homeIcon/Chat';
 import DeleteIcon from '../homeIcon/DeleteIcon';
 import { useDispatch } from 'react-redux';
-import { asyncRemovePost, removeComment } from '../../redux/reducer/baeReducer';
+import { asyncRemovePost, removeComment } from '../../redux/reducer/postSlice';
 
 const HomeList = ({ post }) => {
   const navigate = useNavigate();
