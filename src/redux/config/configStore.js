@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import baeReducer from '../reducer/baeReducer';
-import rangReducer from '../reducer/rangReducer';
+import postSlice from '../reducer/postSlice';
+import replySlice from '../reducer/replySlice';
 
 const store = configureStore({
   reducer: {
-    reply: rangReducer,
-    comment: baeReducer,
+    reply: replySlice,
+    comment: postSlice,
 		devTools: process.env.NODE_ENV !== 'production',
   },
 });

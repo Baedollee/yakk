@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { HeartOutlined, HeartFilled, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { asyncRemovePost, removeComment } from '../../redux/reducer/baeReducer';
+import { asyncRemovePost, removeComment } from '../../redux/reducer/postSlice';
 import { colorWhite, colorPink2 } from '../color/ColorPalette';
 import KingButton from '../total/Button';
 

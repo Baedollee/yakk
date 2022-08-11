@@ -8,8 +8,8 @@ import KingButton from '../total/Button';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { colorPink1, colorWhite } from '../color/ColorPalette';
-import { asyncGetPost, getComment } from '../../redux/reducer/baeReducer';
-import { asyncGetOneReply } from '../../redux/reducer/rangReducer';
+import { asyncGetPost, getComment } from '../../redux/reducer/postSlice';
+import { asyncGetOneReply } from '../../redux/reducer/replySlice';
 
 const InputBox = ({
 		_comment,
