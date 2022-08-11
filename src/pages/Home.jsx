@@ -28,14 +28,12 @@ const Home = () => {
   //     console.log(err.response)
   //   })
   // };
-	
+
   useEffect(() => {
     axios
       .get(url + '/postList')
       .then((response) => {
         // 성공 핸들링
-        console.log('으아아아아아아아아ㅏ');
-        console.log(response.data);
         dispatch(setComment(response.data));
       })
       .catch((error) => {
@@ -49,18 +47,14 @@ const Home = () => {
       .get(url + `/replyList?postId={postId}`)
       .then((res) => {})
       .catch((err) => console.log(err));
-		dispatch(asyncGetAllPost());
+    dispatch(asyncGetAllPost());
     return () => {};
   }, [JSON.stringify(postList)]);
-
-  console.log(_post)
-
-  console.log(postList);
 
   return (
     <HomeContainer>
       {/* <HomeHeader /> */}
-			<Header id="Home" />
+      <Header id="Home" />
       <HomeListContainer>
         {/* //{_post.map((item, index) => { */}
         {postList?.map((item, index) => {
@@ -71,7 +65,7 @@ const Home = () => {
           }
         })}
       </HomeListContainer>
-    </ HomeContainer>
+    </HomeContainer>
   );
 };
 

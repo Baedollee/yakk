@@ -11,14 +11,15 @@ const Write = () => {
 	const location = useLocation();
 	const isPost = location.state.isPost;
 
-	let replyId = '';
+
+  let replyId = '';
   if (location.state !== null) {
     replyId = location.state.replyId;
   }
-  
+
   return (
     <>
-      <Form commentId={id} replyId={replyId} isPost={isPost}/>
+      <Form commentId={id} replyId={replyId} isPost={isPost} />
     </>
   );
 };

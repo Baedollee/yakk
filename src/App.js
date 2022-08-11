@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import useWindowSize from './hooks/useWindowSize';
 
 function App() {
+
 	const size = useWindowSize();
 
   return (
@@ -23,12 +24,12 @@ function App() {
 }
 
 const Container = styled.div`
-	width: ${(props) => props.width};
-	height: ${(props) => props.height};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
 
-	* {
-		font-family: 'Noto Sans KR', sans-serif;
-	}
+  * {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
 `;
 
 export default App;

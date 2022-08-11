@@ -16,11 +16,11 @@ const Form = ({ commentId, replyId, isPost }) => {
     content: '',
   });
 
-	const [replyList, setReplyList] = useState({
-		username: '',
-		content: '',
-		postId: commentId
-	});
+  const [replyList, setReplyList] = useState({
+    username: '',
+    content: '',
+    postId: commentId,
+  });
 
   const onChangeHandler = (e) => {
     const { value, name } = e.target;
@@ -30,13 +30,13 @@ const Form = ({ commentId, replyId, isPost }) => {
     });
   };
 
-	const onReplyChangeHandler = (e) => {
-		const { value, name } = e.target;
-		setReplyList({
-			...replyList,
-			[name]: value,
-		})
-	}
+  const onReplyChangeHandler = (e) => {
+    const { value, name } = e.target;
+    setReplyList({
+      ...replyList,
+      [name]: value,
+    });
+  };
 
   return (
     <StForm>
@@ -48,11 +48,11 @@ const Form = ({ commentId, replyId, isPost }) => {
         commentId={commentId}
         setCommentList={setCommentList}
         url={url}
-				replyList={replyList}
-				setReplyList={setReplyList}
-				onReplyChangeHandler={onReplyChangeHandler}
-				replyId={replyId}
-				isPost={isPost}
+        replyList={replyList}
+        setReplyList={setReplyList}
+        onReplyChangeHandler={onReplyChangeHandler}
+        replyId={replyId}
+        isPost={isPost}
       />
     </StForm>
   );
@@ -61,11 +61,11 @@ const Form = ({ commentId, replyId, isPost }) => {
 export default Form;
 
 const StForm = styled.div`
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   min-height: 100vh;
-  
-  background-color:${colorBlack};
+
+  background-color: ${colorBlack};
 `;

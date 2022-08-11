@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { addComment, asyncAddPost, asyncEditPost, asyncPlusReplyNum, editComment } from '../../redux/reducer/postSlice';
+import {
+  addComment,
+  asyncAddPost,
+  asyncEditPost,
+  asyncPlusReplyNum,
+  editComment,
+} from '../../redux/reducer/postSlice';
 import { useNavigate } from 'react-router-dom';
 import KingButton from '../total/Button';
 import { asyncAddReply, asyncEditReply } from '../../redux/reducer/replySlice';
@@ -12,6 +18,7 @@ const Button = ({ commentList, replyList, isEdit, isPost }) => {
 	
 	const list = isPost ? commentList : replyList;
 	const edit = isPost ? isEdit.post : isEdit.reply;
+
 
   const onClickHandler = () => {
     if (list.username === '' && list.content === '') {
@@ -44,19 +51,22 @@ const Button = ({ commentList, replyList, isEdit, isPost }) => {
 		}
 	};
 
-	const onCheckEditHandler = (isPost) => {
-		if (isPost) {
-			// dispatch(editComment(commentList));
-			dispatch(asyncEditPost(commentList));
-		} else {
-			// dispatch(editReply({...reply, userName: username, content: content}));
-			dispatch(asyncEditReply(replyList));
-		}
-	};
+
+  const onCheckEditHandler = (isPost) => {
+    if (isPost) {
+      // dispatch(editComment(commentList));
+      dispatch(asyncEditPost(commentList));
+    } else {
+      // dispatch(editReply({...reply, userName: username, content: content}));
+      dispatch(asyncEditReply(replyList));
+    }
+  };
 
   return (
     <>
-			<KingButton id='writeBtn' onClick={onClickHandler}>{edit ? '수정' : '작성'} 완료</KingButton>
+      <KingButton id="writeBtn" onClick={onClickHandler}>
+        {edit ? '수정' : '작성'} 완료
+      </KingButton>
     </>
   );
 };
