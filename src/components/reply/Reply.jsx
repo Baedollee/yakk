@@ -18,6 +18,7 @@ function Reply({ commentId, reply }) {
   };
 
   const onRemoveReplyHandler = (replyId) => {
+
     // dispatch(removeReply(replyId));
     dispatch(asyncRemoveReply(replyId));
     dispatch(asyncMinusReplyNum(commentId));

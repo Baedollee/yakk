@@ -3,15 +3,14 @@ import { colorBlack, colorPink1, colorWhite } from '../color/ColorPalette';
 
 const InputContent = ({ onchangeHandler, content, isEdit }) => {
   // const [content, setContent] = useState('');
-  // console.log(content);
 
   return (
     <StInputContent>
       <StContent>내 용</StContent>
       <StInput
-        name='content'
+        name="content"
         placeholder="200자 이내로 작성해주세요."
-				value={content || ''}
+        value={content || ''}
         onChange={(e) => onchangeHandler(e, isEdit)}
       />
     </StInputContent>
@@ -39,22 +38,22 @@ const StInput = styled.textarea`
 
   border: 2px solid ${colorPink1};
   border-radius: 7px;
-  background-color:${colorBlack};
+  background-color: ${colorBlack};
   resize: none;
   overflow: hidden;
 
-  color:${colorWhite};
+  color: ${colorWhite};
 
   padding: 10px;
-  background-color:none;
+  background-color: none;
 
-  :focus{
-    outline:none;
+  :focus {
+    outline: none;
   }
   /* outline-color:${colorPink1}; */
 
   ::placeholder {
-    color:${colorWhite};
+    color: ${colorWhite};
   }
 `;
 const StContent = styled.div`

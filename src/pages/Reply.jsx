@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { useParams,useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import ReplyList from '../components/reply/ReplyList';
 import Comment from '../components/reply/Comment';
 
@@ -11,6 +11,7 @@ import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 import Header from '../components/total/Header';
 
 function Reply() {
+
 	const { id } = useParams();
 	const dispatch = useDispatch();
 
