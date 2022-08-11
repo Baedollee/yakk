@@ -11,8 +11,8 @@ const InputContent = ({ onchangeHandler, content, isEdit }) => {
       <StInput
         name='content'
         placeholder="200자 이내로 작성해주세요."
-				value={content}
-        onChange={(e) => onchangeHandler(e)}
+				value={content || ''}
+        onChange={(e) => onchangeHandler(e, isEdit)}
       />
     </StInputContent>
   );

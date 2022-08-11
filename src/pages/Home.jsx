@@ -9,18 +9,18 @@ import { asyncGetAllPost } from '../redux/reducer/baeReducer';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
-  // const url = process.env.REACT_APP_URL;
+  const url = process.env.REACT_APP_URL;
 
   const postList = useSelector((state) => state.comment.commentList);
   const dispatch = useDispatch();
   const [_post, _setPost] = useState([]);
 
   const fetchPost = async () => {
-    const { data } = await axios.get('http://localhost:3001/postList');
+    const { data } = await axios.get(url + '/postList');
     _setPost(data);
   };
   // const fetchPost = () => {
-  //   axios.get('http://localhost:3001/postList')
+  //   axios.get(url + '/postList')
   //   .then( response => {
   //     console.log(response)
   //     _setPost(response.data)
@@ -32,7 +32,7 @@ const Home = () => {
 	
   useEffect(() => {
     axios
-      .get('http://localhost:3001/postList')
+      .get(url + '/postList')
       .then((response) => {
         // 성공 핸들링
         console.log('으아아아아아아아아ㅏ');
@@ -47,7 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/replyList?postId={postId}`)
+      .get(url + `/replyList?postId={postId}`)
       .then((res) => {})
       .catch((err) => console.log(err));
 		dispatch(asyncGetAllPost());

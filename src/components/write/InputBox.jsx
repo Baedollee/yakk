@@ -9,13 +9,28 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { colorPink1, colorWhite } from '../color/ColorPalette';
 import { asyncGetPost, getComment } from '../../redux/reducer/baeReducer';
+import { asyncGetOneReply } from '../../redux/reducer/rangReducer';
 
-const InputBox = ({ _comment, commentList, onchangeHandler, commentId, setCommentList, url }) => {
+const InputBox = ({
+		_comment,
+		commentList,
+		onchangeHandler,
+		commentId,
+		setCommentList,
+		url,
+		replyList,
+		setReplyList,
+		onReplyChangeHandler,
+		replyId,
+		isPost
+	}) => {
   const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const comment = useSelector((item) => item.comment.comment);
-	const [isEdit, setIsEdit] = useState(false);
+	const [isEdit, setIsEdit] = useState({ post: false, reply: false});
+
+	const reply = useSelector((item) => item.reply.reply);
 
 	useEffect(() => {
 		if (commentId !== undefined) {
@@ -26,10 +41,25 @@ const InputBox = ({ _comment, commentList, onchangeHandler, commentId, setCommen
 				username: comment.username,
 				content: comment.content,
 			});
-			setIsEdit(true);
+			setIsEdit({...isEdit, post: true});
 		}
-		console.log('finish get comment', comment);
-	}, [JSON.stringify(comment)]);
+
+		if (replyId !== undefined) {
+			// dispatch(getReply(replyId));
+			dispatch(asyncGetOneReply(replyId));
+			setReplyList({
+				...reply,
+				username: reply.username,
+				content: reply.content
+			});
+			setIsEdit({...isEdit, reply:true});
+		}
+
+		if (isPost)
+			console.log('finish get comment', comment);
+		else
+			console.log('finish get reply', reply);
+	}, [JSON.stringify(comment), JSON.stringify(reply)]);
 
   return (
     <InputBoxContainer>
@@ -38,9 +68,9 @@ const InputBox = ({ _comment, commentList, onchangeHandler, commentId, setCommen
         onClick={() => {
           navigate(-1);
         }}/>
-      <InputWriter onchangeHandler={onchangeHandler} username={commentList.username} isEdit={isEdit}/>
-      <InputContent onchangeHandler={onchangeHandler} content={commentList.content} isEdit={isEdit}/>
-      <Button _comment={_comment} commentList={commentList} setCommentList={setCommentList} isEdit={isEdit} url={url} />
+      <InputWriter onchangeHandler={isPost? onchangeHandler : onReplyChangeHandler} username={isPost? commentList.username : replyList.username} isEdit={isPost? isEdit.post : isEdit.reply}/>
+      <InputContent onchangeHandler={isPost? onchangeHandler : onReplyChangeHandler} content={isPost ? commentList.content : replyList.content} isEdit={isPost? isEdit.post : isEdit.reply}/>
+      <Button _comment={_comment} commentList={commentList} setCommentList={setCommentList} replyList={replyList} isEdit={isEdit} isPost={isPost} url={url} />
     </InputBoxContainer>
   );
 };

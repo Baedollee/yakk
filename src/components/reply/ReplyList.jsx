@@ -20,7 +20,7 @@ function ReplyList({ commentId, replyList }) {
 		<div>
 			<ReplyHeader>
 				<h4>댓글</h4>
-				<KingButton onClick={() => navigate(`/Reply/${commentId}/ReplyWrite`)}>댓글 작성</KingButton>
+				<KingButton onClick={() => navigate(`/Reply/${commentId}/ReplyWrite`, { state: { isPost: false }})}>댓글 작성</KingButton>
 			</ReplyHeader>
 			{checkReply(replyList)}
 		</div>
