@@ -7,6 +7,7 @@
       "createAt": "2022-08-08T10:50:00.000Z",
       "like": false,
 			"replyNum": 0
+
     },
     {
       "id": "1",
@@ -15,6 +16,7 @@
       "createAt": "2022-08-08T10:50:00.000Z",
       "like": false,
 			"replyNum": 2
+
     }
   ],
   "replyList": [
@@ -31,6 +33,7 @@
       "username": "abc",
       "content": "오늘 날씨가 우중충해서 더 졸리다.",
       "createAt": "2022-08-08T15:50:00.000Z"
+
     }
   ]
 }
