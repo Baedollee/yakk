@@ -10,7 +10,7 @@ const InputWriter = ({ onchangeHandler, username, isEdit }) => {
         autoComplete='off'
         placeholder="5자 이내로 작성해주세요."
         name='username'
-				value={username}
+				value={username || ''}
         onChange={(e) => {onchangeHandler(e, isEdit)}}
       />
     </StInputWriter>

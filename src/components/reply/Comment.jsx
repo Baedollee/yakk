@@ -34,7 +34,7 @@ function Comment({ comment, replyLength }) {
 
   const onMoveWriteHandler = () => {
     navigate(`/Write/${comment.id}`, {
-      state: { commentId: comment.id },
+      state: { commentId: comment.id, isPost: true },
     });
   };
 

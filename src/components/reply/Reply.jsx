@@ -14,7 +14,7 @@ function Reply({ commentId, reply }) {
 
   const onMoveReplyWrite = () => {
     navigate(`/Reply/${commentId}/ReplyWrite`, {
-      state: { replyId: reply.id },
+      state: { replyId: reply.id, isPost: false },
     });
   };
 
@@ -46,7 +46,7 @@ function Reply({ commentId, reply }) {
     <Content>
       <ContentHeader>
         <div>
-          <span>{reply.userName}</span>
+          <span>{reply.username}</span>
           <span>{timeCalc(reply.createAt)}</span>
         </div>
         <BtnContainer>

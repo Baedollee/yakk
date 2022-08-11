@@ -3,7 +3,6 @@ import Write from './pages/Write';
 import Reply from './pages/Reply.jsx';
 
 import { Routes, Route } from 'react-router-dom';
-import ReplyWrite from './pages/ReplyWrite';
 import styled from 'styled-components';
 
 function App() {
@@ -14,7 +13,7 @@ function App() {
         <Route path="/Write" element={<Write />} />
         <Route path="/Write/:id" element={<Write />} />
         <Route path="/Reply/:id" element={<Reply />} />
-        <Route path="/Reply/:id/ReplyWrite" element={<ReplyWrite />} />
+        <Route path="/Reply/:id/ReplyWrite" element={<Write />} />
       </Routes>
     </Container>
   );

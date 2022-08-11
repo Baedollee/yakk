@@ -136,7 +136,7 @@ export const commentList = createSlice({
       // action.payload -> comment
       state.commentList.concat(
         axios
-          .post('http://localhost:3001/postList', {
+          .post(url_post, {
             ...action.payload,
             createAt: new Date().toISOString(),
             like: false,

@@ -21,7 +21,7 @@ const HomeHeader = () => {
 
         <div
           onClick={() => {
-            navigate('/Write');
+            navigate('/Write', { state: { isPost: true }});
           }}>
           <WriteIcon />
         </div>

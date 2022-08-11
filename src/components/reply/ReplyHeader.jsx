@@ -20,7 +20,7 @@ function ReplyHeader() {
           홈
         </KingButton>
         <h1>YAKK</h1>
-        <KingButton id="addBtn" onClick={() => navigate('/Write')}>
+        <KingButton id="addBtn" onClick={() => navigate('/Write', { state: { isPost: true }})}>
           추가하기
         </KingButton>
       </HeaderLayout>
