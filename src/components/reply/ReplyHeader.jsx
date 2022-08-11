@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { EditOutlined } from '@ant-design/icons';
 import { colorPink1 } from '../color/ColorPalette';
-import KingButton from '../kingButton/Button';
+import KingButton from '../total/Button';
 
 function ReplyHeader() {
   const navigate = useNavigate();

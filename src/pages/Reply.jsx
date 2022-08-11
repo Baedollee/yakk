@@ -9,6 +9,7 @@ import Comment from '../components/reply/Comment';
 import { asyncGetPost, getComment } from '../redux/reducer/baeReducer';
 import { asyncGetPostReply } from '../redux/reducer/rangReducer';
 import { colorBlack, colorWhite } from '../components/color/ColorPalette';
+import Header from '../components/total/Header';
 
 function Reply() {
 	const { id } = useParams();
@@ -37,7 +38,8 @@ function Reply() {
 
   return (
 		<ReplyContainer>
-			<ReplyHeader />
+			{/* <ReplyHeader /> */}
+			<Header id="Reply"/>
 	    <DetailContainer>
 				<Comment comment={comment} replyLength={replyList.length}/>
 				<ReplyList commentId={comment.id} replyList={replyList} />

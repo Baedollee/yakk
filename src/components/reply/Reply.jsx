@@ -3,9 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { asyncRemoveReply, removeReply } from '../../redux/reducer/rangReducer';
-import ReplyButton from './ReplyButton';
 import { colorWhite } from '../color/ColorPalette';
-import KingButton from '../kingButton/Button';
+import KingButton from '../total/Button';
 import { asyncMinusReplyNum } from '../../redux/reducer/baeReducer';
 
 function Reply({ commentId, reply }) {

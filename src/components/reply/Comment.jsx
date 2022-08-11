@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { asyncRemovePost, removeComment } from '../../redux/reducer/baeReducer';
 import { colorWhite, colorPink2 } from '../color/ColorPalette';
-import KingButton from '../kingButton/Button';
+import KingButton from '../total/Button';
 
 function Comment({ comment, replyLength }) {
   const navigate = useNavigate();
