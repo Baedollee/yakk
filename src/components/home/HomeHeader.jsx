@@ -21,7 +21,7 @@ const HomeHeader = () => {
 
         <div
           onClick={() => {
-            navigate('/Write', { state: { isPost: true }});
+            navigate('/Write', { state: { isPost: true } });
           }}>
           <WriteIcon />
         </div>
@@ -31,7 +31,7 @@ const HomeHeader = () => {
 };
 
 const ContainerDiv = styled.div`
-  height: 6em;
+  height: 6rem;
 
   background-color: ${colorPink1};
 
