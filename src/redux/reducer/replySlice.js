@@ -112,14 +112,13 @@ const replyList = createSlice({
       });
     },
 
-    [asyncRemoveReply.fulfilled]: (state, action) => {
-      // action.payload -> id
-      state.replyList = state.replyList.filter(
-        (item) => item.id !== action.payload
-      );
-    },
-  },
-});
+
+		[asyncRemoveReply.fulfilled]: (state, action) => {
+			// action.payload -> id
+			state.replyList = state.replyList.filter((item) => item.id !== action.payload);
+		}
+	}
+})
 
 export const { addReply, removeReply, editReply, getReply } = replyList.actions;
 export default replyList.reducer;

@@ -7,7 +7,8 @@ import styled from 'styled-components';
 import useWindowSize from './hooks/useWindowSize';
 
 function App() {
-  const size = useWindowSize();
+
+	const size = useWindowSize();
 
   return (
     <Container width={size.width} height={size.height}>

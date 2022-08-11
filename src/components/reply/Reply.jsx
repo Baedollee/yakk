@@ -17,11 +17,9 @@ function Reply({ commentId, reply }) {
     });
   };
 
-  // const onMoveReplyWrite = () => {
-  // 	navigate(`/Reply/${commentId}/ReplyWrite`, { state: { replyId: reply.id }});
-  // }
-
   const onRemoveReplyHandler = (replyId) => {
+
+    // dispatch(removeReply(replyId));
     dispatch(asyncRemoveReply(replyId));
     dispatch(asyncMinusReplyNum(commentId));
   };
@@ -60,13 +58,11 @@ function Reply({ commentId, reply }) {
 
 const Content = styled.div`
   margin-bottom: 20px;
-  /* background-color: beige; */
   border: 1px solid ${colorWhite};
   border-radius: 10px;
 
   p {
     margin: 20px;
-    /* background-color: aliceblue; */
     word-break: normal;
   }
 `;

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { asyncRemovePost, removeComment } from '../../redux/reducer/postSlice';
 import { colorWhite, colorPink2 } from '../color/ColorPalette';
 import KingButton from '../total/Button';
+import LikeButton from '../homeIcon/LikeButton';
 
 function Comment({ comment, replyLength }) {
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ function Comment({ comment, replyLength }) {
   };
 
   const onRemoveCommentHandler = (commentId) => {
+
+    // dispatch(removeComment(commentId));
     dispatch(asyncRemovePost(commentId));
     alert('글이 삭제되었습니다.');
     navigate(-1);
@@ -53,11 +56,9 @@ function Comment({ comment, replyLength }) {
       <p>{comment.content}</p>
       <ContentFooter>
         <ContentComment>
-          <CommentOutlined />
+					<LikeButton post={comment}/>
+          <CommentOutlined style={{fontSize: '20px'}}/>
           <span>{replyLength}</span>
-          <HeartOutlined />
-          {/* <HeartFilled /> */}
-          <span>10</span>
         </ContentComment>
       </ContentFooter>
     </Content>
@@ -66,32 +67,23 @@ function Comment({ comment, replyLength }) {
 
 const Content = styled.div`
   margin-bottom: 20px;
-  /* background-color: beige; */
   border: 1px solid ${colorWhite};
   border-radius: 10px;
 
   p {
     margin: 20px;
-    /* border: 1px solid black; */
-    /* background-color: aliceblue; */
     word-break: normal;
   }
 `;
 
 const ContentHeader = styled.div`
   margin: 20px;
-  /* background-color: aliceblue; */
   display: flex;
   justify-content: space-between;
 
   div {
     span {
-      /* background-color: coral; */
       margin-right: 30px;
-    }
-
-    button {
-      margin-left: 30px;
     }
   }
 `;
@@ -102,20 +94,17 @@ const BtnContainer = styled.div`
 
 const ContentFooter = styled.div`
   margin: 20px;
-  /* background-color: aliceblue; */
   display: flex;
   justify-content: space-between;
 `;
 
 const ContentComment = styled.div`
-  button {
-    margin-right: 10px;
-  }
+	display: flex;
+	align-items: center;
 
-  span {
-    /* background-color: coral; */
-    margin-right: 10px;
-  }
+	* {
+		margin-right: 2px;
+	}
 `;
 
 export default Comment;
