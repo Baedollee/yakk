@@ -22,8 +22,6 @@ function Reply({ commentId, reply }) {
   // }
 
   const onRemoveReplyHandler = (replyId) => {
-    console.log('remove reply', replyId);
-    // dispatch(removeReply(replyId));
     dispatch(asyncRemoveReply(replyId));
     dispatch(asyncMinusReplyNum(commentId));
   };

@@ -34,8 +34,6 @@ const Home = () => {
       .get(url + '/postList')
       .then((response) => {
         // 성공 핸들링
-        console.log('으아아아아아아아아ㅏ');
-        console.log(response.data);
         dispatch(setComment(response.data));
       })
       .catch((error) => {
@@ -53,14 +51,10 @@ const Home = () => {
     return () => {};
   }, [JSON.stringify(postList)]);
 
-  console.log(_post);
-
-  console.log(postList);
-
   return (
     <HomeContainer>
       {/* <HomeHeader /> */}
-			<Header id="Home" />
+      <Header id="Home" />
       <HomeListContainer>
         {/* //{_post.map((item, index) => { */}
         {postList?.map((item, index) => {

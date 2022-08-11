@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { addComment, asyncAddPost, asyncEditPost, asyncPlusReplyNum, editComment } from '../../redux/reducer/postSlice';
+import {
+  addComment,
+  asyncAddPost,
+  asyncEditPost,
+  asyncPlusReplyNum,
+  editComment,
+} from '../../redux/reducer/postSlice';
 import { useNavigate } from 'react-router-dom';
 import KingButton from '../total/Button';
 import { asyncAddReply, asyncEditReply } from '../../redux/reducer/replySlice';
@@ -9,12 +15,9 @@ const Button = ({ commentList, replyList, isEdit, isPost }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const a = useSelector((state) => state.comment.commentList);
-  console.log('a:', a);
-  // console.log(commentList.username);
-	
-	const list = isPost ? commentList : replyList;
-	const edit = isPost ? isEdit.post : isEdit.reply;
-	console.log(isPost, list);
+
+  const list = isPost ? commentList : replyList;
+  const edit = isPost ? isEdit.post : isEdit.reply;
 
   const onClickHandler = () => {
     if (list.username === '' && list.content === '') {
@@ -24,44 +27,44 @@ const Button = ({ commentList, replyList, isEdit, isPost }) => {
     } else if (list.content.split('').length > 200) {
       alert('내용을 200자 이하로 입력해주세요!');
     } else {
-			console.log('click button', list);
-			if (edit) {
-				onCheckEditHandler(isPost);
-				alert('수정 완료!');
-				navigate(-1);
-			} else {
-				onCheckAddHandler(isPost);
-				alert('작성 완료!');
-				navigate(-1);
-			}
-		} 
+      if (edit) {
+        onCheckEditHandler(isPost);
+        alert('수정 완료!');
+        navigate(-1);
+      } else {
+        onCheckAddHandler(isPost);
+        alert('작성 완료!');
+        navigate(-1);
+      }
+    }
   };
-	
-	const onCheckAddHandler = (isPost) => {
-		if (isPost) {
-			// dispatch(addComment(commentList));
-			dispatch(asyncAddPost(commentList));
-			console.log(commentList);
-		} else {
-			// dispatch(addReply(reply));
-			dispatch(asyncAddReply(replyList));
-			dispatch(asyncPlusReplyNum(commentList.id));
-		}
-	};
 
-	const onCheckEditHandler = (isPost) => {
-		if (isPost) {
-			// dispatch(editComment(commentList));
-			dispatch(asyncEditPost(commentList));
-		} else {
-			// dispatch(editReply({...reply, userName: username, content: content}));
-			dispatch(asyncEditReply(replyList));
-		}
-	};
+  const onCheckAddHandler = (isPost) => {
+    if (isPost) {
+      // dispatch(addComment(commentList));
+      dispatch(asyncAddPost(commentList));
+    } else {
+      // dispatch(addReply(reply));
+      dispatch(asyncAddReply(replyList));
+      dispatch(asyncPlusReplyNum(commentList.id));
+    }
+  };
+
+  const onCheckEditHandler = (isPost) => {
+    if (isPost) {
+      // dispatch(editComment(commentList));
+      dispatch(asyncEditPost(commentList));
+    } else {
+      // dispatch(editReply({...reply, userName: username, content: content}));
+      dispatch(asyncEditReply(replyList));
+    }
+  };
 
   return (
     <>
-			<KingButton id='writeBtn' onClick={onClickHandler}>{edit ? '수정' : '작성'} 완료</KingButton>
+      <KingButton id="writeBtn" onClick={onClickHandler}>
+        {edit ? '수정' : '작성'} 완료
+      </KingButton>
     </>
   );
 };

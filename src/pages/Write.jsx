@@ -6,23 +6,21 @@ import { useLocation, useParams } from 'react-router-dom';
 import { colorBlack } from '../components/color/ColorPalette';
 
 const Write = () => {
-	const { id } = useParams();
-	console.log('write', id);
+  const { id } = useParams();
 
-	const location = useLocation();
-	const isPost = location.state.isPost;
-	console.log(isPost);
+  const location = useLocation();
+  const isPost = location.state.isPost;
 
-	let replyId = '';
+  let replyId = '';
   if (location.state !== null) {
     replyId = location.state.replyId;
   } else {
     console.log("it's null");
   }
-  
+
   return (
     <>
-      <Form commentId={id} replyId={replyId} isPost={isPost}/>
+      <Form commentId={id} replyId={replyId} isPost={isPost} />
     </>
   );
 };

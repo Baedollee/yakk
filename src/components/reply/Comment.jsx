@@ -25,8 +25,6 @@ function Comment({ comment, replyLength }) {
   };
 
   const onRemoveCommentHandler = (commentId) => {
-    console.log('remove comment', commentId);
-    // dispatch(removeComment(commentId));
     dispatch(asyncRemovePost(commentId));
     alert('글이 삭제되었습니다.');
     navigate(-1);
