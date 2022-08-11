@@ -4,10 +4,14 @@ import Reply from './pages/Reply.jsx';
 
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
+import useWindowSize from './hooks/useWindowSize';
 
 function App() {
+	const size = useWindowSize();
+	console.log(size);
+
   return (
-    <Container>
+    <Container width={size.width} height={size.height}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Write" element={<Write />} />
@@ -20,6 +24,9 @@ function App() {
 }
 
 const Container = styled.div`
+	width: ${(props) => props.width};
+	height: ${(props) => props.height};
+
 	* {
 		font-family: 'Noto Sans KR', sans-serif;
 	}

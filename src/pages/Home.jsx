@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import HomeHeader from '../components/home/HomeHeader';
 import HomeList from '../components/home/HomeList';
 import axios from 'axios';
-import { setComment } from '../redux/reducer/baeReducer';
 import { colorBlack, colorWhite } from '../components/color/ColorPalette';
 import styled from 'styled-components';
-import { asyncGetAllPost } from '../redux/reducer/baeReducer';
+import { setComment, asyncGetAllPost } from '../redux/reducer/postSlice';
 import { useEffect, useState } from 'react';
 import Header from '../components/total/Header';
 

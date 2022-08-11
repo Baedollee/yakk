@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { addComment, asyncAddPost, asyncEditPost, asyncPlusReplyNum, editComment } from '../../redux/reducer/baeReducer';
+import { addComment, asyncAddPost, asyncEditPost, asyncPlusReplyNum, editComment } from '../../redux/reducer/postSlice';
 import { useNavigate } from 'react-router-dom';
 import KingButton from '../total/Button';
-import { asyncAddReply, asyncEditReply } from '../../redux/reducer/rangReducer';
+import { asyncAddReply, asyncEditReply } from '../../redux/reducer/replySlice';
 
 const Button = ({ commentList, replyList, isEdit, isPost }) => {
   const dispatch = useDispatch();
@@ -61,12 +61,6 @@ const Button = ({ commentList, replyList, isEdit, isPost }) => {
 
   return (
     <>
-      {/* <KingButton id='writeBtn'
-        onClick={() => {
-          onClickHandler(commentList);
-        }}>
-        작성 완료
-      </KingButton> */}
 			<KingButton id='writeBtn' onClick={onClickHandler}>{edit ? '수정' : '작성'} 완료</KingButton>
     </>
   );
