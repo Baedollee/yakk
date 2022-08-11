@@ -40,7 +40,6 @@ export const asyncEditPost = createAsyncThunk(
 	"postList/editPost",
 	async (payload, thunkAPI) => {
 		// payload -> post
-		console.log('edit post', payload);
 		const response = await axios.put(url_post + `/${payload.id}`, payload);
 		return response.data;
 	}
@@ -85,33 +84,8 @@ export const asyncMinusReplyNum = createAsyncThunk(
 );
 
 const initialState = {
-  commentList: [
-      {
-      id: '0',
-      username: '배돌이',
-      content: '비가 주륵주륵!',
-      createAt: nowDate,
-      like: false,
-			replyNum: 0
-    },
-    {
-      id: '1',
-      username: '배돌이',
-      content: '비가 주륵주륵 아휴!',
-      createAt: nowDate,
-      like: false,
-			replyNum: 2
-    },
-  ],
-  
-  comment: {
-    id: '0',
-    userName: '배돌이',
-    content: '비가 주륵주륵!',
-    createAt: nowDate,
-    like: false,
-		replyNum: 0
-  },
+  commentList: [],
+  comment: {},
 };
 
 export const asyncGetPostComment = createAsyncThunk(
@@ -133,13 +107,9 @@ export const commentList = createSlice({
         createAt: new Date().toISOString(),
 				like: false
       })
-      .then(response => {
-        console.log(response);
-      })
       .catch(err => {
         console.log(err.response);
       }));
-      console.log(action);
     },
     
   //   removeComment: (state, action) => {
@@ -185,7 +155,6 @@ export const commentList = createSlice({
 		[asyncGetAllPost.fulfilled]: (state, action) => {
 			// action.payload -> post all list
 			state.commentList = action.payload;
-			console.log(state.commentList);
 		},
 
 		[asyncAddPost.fulfilled]: (state, action) => {
@@ -223,7 +192,6 @@ export const commentList = createSlice({
 	        return item;
 	      }
 	    });
-			console.log(state.commentList);
 		},
 		[asyncPlusReplyNum.fulfilled]: (state, action) => {
 			// action.payload -> post

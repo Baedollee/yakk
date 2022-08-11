@@ -8,7 +8,6 @@ import useWindowSize from './hooks/useWindowSize';
 
 function App() {
 	const size = useWindowSize();
-	console.log(size);
 
   return (
     <Container width={size.width} height={size.height}>
