@@ -151,38 +151,38 @@ export const commentList = createSlice({
       console.log(action);
     },
 
-    removeComment: (state, action) => {
-      // action.paylod -> id
-      state.commentList = state.commentList.filter(
-        (item) => item.id !== action.payload
-      );
-    },
-    editComment: (state, action) => {
-      // action.payload -> comment
+    //   removeComment: (state, action) => {
+    //     // action.paylod -> id
+    //     state.commentList = state.commentList.filter(
+    //       (item) => item.id !== action.payload
+    //     );
+    //   },
+    //   editComment: (state, action) => {
+    //     // action.payload -> comment
 
-  //     state.commentList = state.commentList.map((item) => {
-  //       if (item.id === action.payload.id) {
-  //         return { ...action.payload, createAt: item.createAt, like: item.like };
-  //       } else {
-  //         return item;
-  //       }
-  //     });
-  //   },
-  //   likeComment: (state, action) => {
-  //     state.commentList = state.commentList.map((item, index) => {
-  //       if (item.id === action.payload) {
-  //         return { ...item, like: !item.like };
-  //       } else {
-  //         return item;
-  //       }
-  //     });
-  //   },
-  //   getComment: (state, action) => {
-  //     // action.payload -> id
-  //     state.comment = state.commentList.find(
-  //       (item) => item.id === action.payload
-  //     );
-  //   },
+    //     state.commentList = state.commentList.map((item) => {
+    //       if (item.id === action.payload.id) {
+    //         return { ...action.payload, createAt: item.createAt, like: item.like };
+    //       } else {
+    //         return item;
+    //       }
+    //     });
+    //   },
+    //   likeComment: (state, action) => {
+    //     state.commentList = state.commentList.map((item, index) => {
+    //       if (item.id === action.payload) {
+    //         return { ...item, like: !item.like };
+    //       } else {
+    //         return item;
+    //       }
+    //     });
+    //   },
+    //   getComment: (state, action) => {
+    //     // action.payload -> id
+    //     state.comment = state.commentList.find(
+    //       (item) => item.id === action.payload
+    //     );
+    //   },
   },
 
   extraReducers: {
@@ -225,40 +225,39 @@ export const commentList = createSlice({
       );
     },
 
-		[asyncLikePost.fulfilled]: (state, action) => {
-			// action.payload -> post
-			state.commentList = state.commentList.map((item, index) => {
-	      if (item.id === action.payload.id) {
-	        return { ...item, like: !item.like };
-	      } else {
-	        return item;
-	      }
-	    });
-			console.log(state.commentList);
-		},
-		[asyncPlusReplyNum.fulfilled]: (state, action) => {
-			// action.payload -> post
-			state.commentList = state.commentList.map((item, index) => {
-				if (item.id === action.payload.id) {
-					return { ...item, like: item.replyNum + 1 };
-				} else {
-					return item;
-				}
-			});
-		},
-		
-		[asyncMinusReplyNum.fulfilled]: (state, action) => {
-			// action.payload -> post
-			state.commentList = state.commentList.map((item, index) => {
-				if (item.id === action.payload.id) {
-					return { ...item, like: item.replyNum - 1 };
-				} else {
-					return item;
-				}
-			});
-		}
-	}
+    [asyncLikePost.fulfilled]: (state, action) => {
+      // action.payload -> post
+      state.commentList = state.commentList.map((item, index) => {
+        if (item.id === action.payload.id) {
+          return { ...item, like: !item.like };
+        } else {
+          return item;
+        }
+      });
+      console.log(state.commentList);
+    },
+    [asyncPlusReplyNum.fulfilled]: (state, action) => {
+      // action.payload -> post
+      state.commentList = state.commentList.map((item, index) => {
+        if (item.id === action.payload.id) {
+          return { ...item, like: item.replyNum + 1 };
+        } else {
+          return item;
+        }
+      });
+    },
 
+    [asyncMinusReplyNum.fulfilled]: (state, action) => {
+      // action.payload -> post
+      state.commentList = state.commentList.map((item, index) => {
+        if (item.id === action.payload.id) {
+          return { ...item, like: item.replyNum - 1 };
+        } else {
+          return item;
+        }
+      });
+    },
+  },
 });
 
 export const {
