@@ -61,12 +61,6 @@ const Button = ({ commentList, replyList, isEdit, isPost }) => {
 
   return (
     <>
-      {/* <KingButton id='writeBtn'
-        onClick={() => {
-          onClickHandler(commentList);
-        }}>
-        작성 완료
-      </KingButton> */}
 			<KingButton id='writeBtn' onClick={onClickHandler}>{edit ? '수정' : '작성'} 완료</KingButton>
     </>
   );
