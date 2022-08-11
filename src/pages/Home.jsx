@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import HomeHeader from '../components/home/HomeHeader';
 import HomeList from '../components/home/HomeList';
 import axios from 'axios';
 import { setComment } from '../redux/reducer/baeReducer';

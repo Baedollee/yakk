@@ -21,23 +21,10 @@ const Write = () => {
   }
   
   return (
-    <WriteContainer>
-      {/* <Header /> */}
-			<Header id="Write" />
+    <>
       <Form commentId={id} replyId={replyId} isPost={isPost}/>
-    </WriteContainer>
+    </>
   );
 };
 
 export default Write;
-
-const WriteContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  height: 100vh;
-
-  background-color: ${colorBlack};
-`;
