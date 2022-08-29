@@ -59,31 +59,6 @@ const initialState = {
 const replyList = createSlice({
   name: 'replyList',
   initialState,
-  // reducers: {
-  // 	addReply: (state, action) => {
-  // 		// action.payload -> reply
-  // 		state.replyList.push({ ...action.payload, createAt: new Date().toISOString()});
-  // 	},
-  // 	removeReply: (state, action) => {
-  // 		// action.payload -> id
-  // 		state.replyList = state.replyList.filter((item) => item.id !== action.payload);
-  // 	},
-  // 	editReply: (state, action) => {
-  // 		// action.payload -> reply
-  // 		// console.log('edit reducer', action.payload);
-  // 		state.replyList = state.replyList.map((item) => {
-  // 			if (item.id === action.payload.id) {
-  // 				return action.payload;
-  // 			} else {
-  // 				return item;
-  // 			}
-  // 		})
-  // 	},
-  // 	getReply: (state, action) => {
-  // 		// action.payload -> id
-  // 		state.reply = state.replyList.find((item) => item.id === action.payload);
-  // 	}
-  // },
 
   extraReducers: {
     [asyncGetOneReply.fulfilled]: (state, action) => {
@@ -112,13 +87,14 @@ const replyList = createSlice({
       });
     },
 
-
-		[asyncRemoveReply.fulfilled]: (state, action) => {
-			// action.payload -> id
-			state.replyList = state.replyList.filter((item) => item.id !== action.payload);
-		}
-	}
-})
+    [asyncRemoveReply.fulfilled]: (state, action) => {
+      // action.payload -> id
+      state.replyList = state.replyList.filter(
+        (item) => item.id !== action.payload
+      );
+    },
+  },
+});
 
 export const { addReply, removeReply, editReply, getReply } = replyList.actions;
 export default replyList.reducer;

@@ -21,11 +21,9 @@ const Home = () => {
   // const fetchPost = () => {
   //   axios.get(url + '/postList')
   //   .then( response => {
-  //     console.log(response)
   //     _setPost(response.data)
   //   })
   //   .catch(err =>{
-  //     console.log(err.response)
   //   })
   // };
 
@@ -54,7 +52,7 @@ const Home = () => {
   return (
     <HomeContainer>
       {/* <HomeHeader /> */}
-      <Header id="Home" />
+      <Header id='Home' />
       <HomeListContainer>
         {/* //{_post.map((item, index) => { */}
         {postList?.map((item, index) => {
